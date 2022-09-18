@@ -19,3 +19,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
 
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<a class="navbar-brand" href="#"><img id="logo" src="/application/img/logo.png"></a>
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Туда-Обратно</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Главная</a></li>
+				<li><a href="/request">Заявки</a></li>
+				<li><a href="/equipment">Обрудование</a></li>
+				<li><a href="/customer">Клиенты</a></li>
+				<li><a href="/payment">Расчеты</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
