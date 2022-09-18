@@ -12,7 +12,7 @@
 			$this->request = $this->RequestModel->getRequests();
 //			prettyDump($this->request);
 			$this->load->view('header');
-			$this->load->view('request', ['requests' => $this->request]);
+			$this->load->view('request', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
 			$this->load->view('footer');
 		}
     }
