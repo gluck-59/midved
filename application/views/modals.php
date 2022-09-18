@@ -22,7 +22,7 @@
 				<select class="selectpicker" id="equipment" data-live-search="true" title="Выберите станок...">
 					<?php
 						foreach ($equipments as $equipment) { ?>
-							<option value="<?=$equipment->id?>" data-subtext="<?=$equipment->customer_name?>&nbsp;<?=$equipment->equipment_mark?>"><?=$equipment->equipment_name?>&nbsp;<?=$equipment->mark?></option>
+							<option value="<?=$equipment->id?>" data-subtext="<?=$equipment->address?>&nbsp;<?=$equipment->equipment_mark?>"><?=$equipment->name?>&nbsp;<?=$equipment->mark?></option>
 						<?php } ?>
 				</select>
 
