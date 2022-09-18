@@ -10,17 +10,14 @@
         public $name;
         public $marka;
 
-		public function getEquipment() {
-			$sql = "select e.id, e.mark, e.name equipment_name, c.name customer_name from equipment e JOIN customer c ON c.id = e.customer_id";
+		public function getEquipment(array $customerIds = []) : array
+		{
+			$where = 'WHERE 1 ';
+			if (!empty($customerIds)) $where .= 'AND c.id IN('.implode(',', $customerIds).')';
+			$sql = "select e.id, e.name, e.mark, e.address, c.name customer from equipment e JOIN customer c ON c.id = e.customer_id $where";
 			$stmt = $this->db->query($sql);
-
-			foreach ($stmt->result_array() as $equipment) {
-				$out[$equipment['id']] = (object) $equipment;
-			}
-			return $out;
+			return $stmt->result();
 		}
 
 
-
-
-    }
+   }

@@ -7,7 +7,6 @@
 			<h3>Заявки <small class="text-muted">просто список</small></h3>
 			<p class="text-muted">Наверное еще надо возможность добвлять и редактировать. Удалять думаю будет низзя.</p>
 
-
 			<table class="table table-condensed table-bordered table-condensed">
 				<thead>
 				<th>Станок/Клиент</th>
