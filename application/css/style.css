@@ -21,3 +21,5 @@ img#logo {
 	min-height: 100%;
 	border-radius: 0;
 }
+
+.label { cursor: pointer;}
