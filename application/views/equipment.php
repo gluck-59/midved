@@ -16,7 +16,7 @@
 					foreach ($equipments as $equipment) { ?>
 						<tr>
 							<td><?=$equipment->name?>&nbsp;<?=$equipment->mark?><br><span class="text-muted"><?=$equipment->customer?></span></td>
-							<td><?=$equipment->address?></td>
+							<td><?=$equipment->city?>, <?=$equipment->address?></td>
 						</tr>
 					<?php }	?>
 			</table>

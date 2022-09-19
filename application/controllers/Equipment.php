@@ -16,4 +16,16 @@
 			$this->load->view('equipment', ['customers' => $this->customer, 'equipments' => $this->equipment]);
 			$this->load->view('footer');
 		}
+
+
+		/**
+		 * для аякса
+		 * тянет станки, принадлежащие клиентам с уазанными ID
+		 * возвращает json
+		 * @param string $customerId
+		 * @return string
+		 */
+		public function getEquipmentByCustomerId(string $customerId = '') {
+			echo json_encode($this->EquipmentModel->getEquipment([$customerId]));
+		}
     }

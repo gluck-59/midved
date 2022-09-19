@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="icon" href="/application/favicon.ico">
 <!--	<link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/starter-template/">-->
 
-	<title>Starter</title>
+	<title>Превед</title>
 
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/application/css/style.css">

@@ -10,29 +10,16 @@
 				<h4 class="modal-title" id="requestLabel">Заявка</h4>
 			</div>
 			<div class="modal-body">
-				<select class="selectpicker" id="customer" data-live-search="true" title="Выберите клиента...">
-					<?php
-						foreach ($customers as $customer) { ?>
-							<option value="<?=$customer->id?>" data-subtext="<?=$customer->address?>"><?=$customer->name?></option>
-						<?php } ?>
-				</select>
-
+				<select class="" name="customers" data-live-search="true" title="Выберите клиента..."></select>
 				<div class="clearfix">&nbsp;</div>
-
-				<select class="selectpicker" id="equipment" data-live-search="true" title="Выберите станок...">
-					<?php
-						foreach ($equipments as $equipment) { ?>
-							<option value="<?=$equipment->id?>" data-subtext="<?=$equipment->address?>&nbsp;<?=$equipment->equipment_mark?>"><?=$equipment->name?>&nbsp;<?=$equipment->mark?></option>
-						<?php } ?>
-				</select>
-
+				<select class=""  name="equipments" data-live-search="true" title="Выберите станок..."></select>
 				<div class="clearfix">&nbsp;</div>
 
 				<input type="text" class="form-control" placeholder="Описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
 				<p>Выбираешь клиента и станок. Забиваешь новую заявку.</p>
-				<p>Связь "клиент-станок" пока не прописана. Заявка не сохраняется. Не ссать, это демо.</p>
+				<p>Заявка не сохраняется. Не ссать, это демо.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
@@ -52,12 +39,7 @@
 				<h4 class="modal-title" id="paymentLabel">Платеж</h4>
 			</div>
 			<div class="modal-body">
-				<select class="selectpicker" data-live-search="true" title="Выберите заявку...">
-					<?php
-						foreach ($requests as $request) { ?>
-							<option value="<?=$request->id?>" data-subtext="<?=$request->equipment?>&nbsp;<?=$request->mark?> — <?=$request->customer?>"><?=$request->name?></option>
-						<?php } ?>
-				</select>
+				<select class="" name="requests" data-live-search="true" title="Выберите заявку..."></select>
 				<div class="clearfix">&nbsp;</div>
 				<input type="number" class="form-control" placeholder="Сумма">
 				<div class="clearfix">&nbsp;</div>
@@ -71,3 +53,43 @@
 		</div>
 	</div>
 </div>
+
+
+<script>
+	$('select').selectpicker();
+
+	// заполним селект клиентов сразу после вызова модала
+	$('#modal-request').on('show.bs.modal', function (e) {
+		console.log('#modal-request загружен')
+		$.getJSON( "/customer/getAll", function( data ) {
+			let select = $('[name=customers]');
+			$.each(data, function (index, currentObject) {
+				var option = new Option();
+				$(option).html(currentObject.name);
+				$(option).val(currentObject.id);
+				select.append(option);
+			})
+			$('[name=customers]').selectpicker("refresh");
+		});
+	})
+
+
+
+	$('[name=customers]').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+		console.log('name=customers событие select', clickedIndex)
+		$.getJSON( "/equipment/getEquipmentByCustomerId/"+clickedIndex, function( data ) {
+			let select = $('[name=equipments]');
+			select.html('');
+			$.each(data, function (index, currentObject) {
+				console.log('currentObject', currentObject);
+				var option = new Option();
+				$(option).html(currentObject.name+' '+currentObject.mark);
+				$(option).val(currentObject.id);
+				$(option).attr('data-subtext', currentObject.city+ ' ' +currentObject.address);
+				select.append(option);
+			})
+			$('[name=equipments]').selectpicker("refresh");
+		})
+
+	});
+</script>

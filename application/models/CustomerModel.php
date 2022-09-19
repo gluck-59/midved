@@ -9,8 +9,8 @@
 
 		function __construct()
 		{
-//			$stmt = $this->db->query('select * from customer');
-//			$this->customers = $stmt->result();
+			$stmt = $this->db->query('select * from customer');
+			$this->customers = $stmt->result();
 		}
 
 

@@ -1,9 +1,5 @@
 $(document).on('ready', function (){
-	// $('select').selectpicker();
+	console.warn('стр загружена');
 
 })
-
-$('#customer').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-	console.log(clickedIndex)
-});
 

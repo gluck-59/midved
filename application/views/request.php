@@ -28,7 +28,7 @@
 
 						?>
 						<tr class="<?=$trClass?>">
-							<td><span><?=$request->equipment .' '.$request->mark.'<br><span class="text-muted">'.$request->customer. ' '.$request->address?></span></td>
+							<td><span><?=$request->equipment .' '.$request->mark.'<br><span class="text-muted">'.$request->customer. ' '.$request->city.', '.$request->address?></span></td>
 							<td><?=$request->name?></td>
 							<td><?=round($request->price, 2)?>р.<br><span class="label label-info">транзакции</span></td>
 							<td><?=$request->created?><br><span class="text-muted"><?=$request->updated?></span> </td>
@@ -38,12 +38,12 @@
 		</div>
 	</div>
 </div>
-<!--div class="starter-template">
+<div class="starter-template">
 	<div class="row">
 		<div class="col-md-2"
 		<div class="btn-block">
 			<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-request">Новая заявка</button>
 		</div>
 	</div>
-</div-->
+</div>
 
