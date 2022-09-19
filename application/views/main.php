@@ -11,12 +11,13 @@
 				<div class="btn-block">
 					<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-request">Новая заявка</button>
 					<button type="button" class="btn btn-info btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-payment">Новый платеж</button>
-					<a href="https://calendar.google.com/calendar" target="_blank" type="button" class="btn btn-warning btn-lg btn-block">Расписние</a>
+					<a href="/calendar" type="button" class="btn btn-warning btn-lg btn-block">Расписание</a>
 				</div>
 			</div>
 		</div>
-
 	</div>
+	<h3>Сводка <small class="text-muted">на неделю</small></h3>
+	<p class="text-muted">Думаю поставить сюда предстоящие в следующие дни события — в какие города ехать что делать. Наверное можно будет интегрироваться с гуглокалендарем и тянуть оттуда данные.</p>
 </div>
 
 
