@@ -24,3 +24,20 @@ img#logo {
 
 .label { cursor: pointer;}
 .text-muted { opacity: 0.6; }
+
+
+
+
+/*request edit*/
+.items_container {
+	margin-bottom: 1em;
+}
+.items_head {
+	/* margin: 0 0 4px 0; */
+	font-size: 12px;
+	color: #888;
+	text-transform: uppercase;
+}
+.items_value {
+}
+/*request edit*/
