@@ -135,7 +135,7 @@
 					<div class="col-md-6 items_container">
 <!--						<div class="items_head">Работы</div>-->
 						<div class="items_value">
-							<a href="https://www.google.ru/maps/place/<?=$request->city.' '.$request->address?>" target="_blank"><? echo $request->city . ' ' . $request->address; ?> </a>
+							<a href="https://www.google.ru/maps/place/<?=$request->city.' '.$request->address?>" target="_blank"><?=$request->city . ' ' . $request->address?> </a>
 						</div>
 					</div>
 				</div>
