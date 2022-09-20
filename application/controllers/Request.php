@@ -2,11 +2,13 @@
 
 	class Request extends CI_Controller
 	{
-		private $payments;
+		public $payments;
 		function __construct()
 		{
 			parent::__construct();
 			$this->load->model('RequestModel');
+			$this->router->pageName = 'Заявки';
+
 		}
 
 		public function index() {

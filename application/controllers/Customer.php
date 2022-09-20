@@ -6,7 +6,7 @@
 		{
 			parent::__construct();
 			$this->load->model('CustomerModel');
-
+			$this->router->pageName = 'Клиенты';
 		}
 
 		public function index() {

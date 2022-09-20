@@ -25,6 +25,7 @@ class Welcome extends CI_Controller
 		$this->load->model('customerModel');
 		$this->load->model('RequestModel');
 		$this->load->model('equipmentModel');
+		$this->router->pageName = 'Главная';
 	}
 
 	public function index()

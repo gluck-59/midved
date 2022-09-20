@@ -6,6 +6,7 @@ class Payment extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('PaymentModel');
+		$this->router->pageName = 'Расчеты';
 	}
 
 	public function history($reqestId = null) : array {

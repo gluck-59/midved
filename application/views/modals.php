@@ -55,8 +55,41 @@
 </div>
 
 
+<!-- Modal prihod-rashod -->
+<div class="modal fade" id="modal-prihod_rashod" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="prihod_rashod">Накладным</h4>
+			</div>
+			<div class="modal-body">
+				<input type="number" name="sum" class="form-control" style="zoom: 5;">
+				<div class="clearfix">&nbsp;</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+				<button type="button" class="btn btn-success">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script>
 	$('select').selectpicker();
+	// расставим заголовки
+	$('.modal').on('shown.bs.modal', function (event) {
+		let button = $(event.relatedTarget)
+		let recipient = button.data('modal-name')
+		let color = (button.data('direction') == 0 ? 'rgb(255 177 177 / 60%)' : 'rgb(131 233 102 / 60%)');
+		let box_shadow = (button.data('direction') == 0 ? 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color : 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color);
+console.log(button.data('direction'))
+		let modal = $(this);
+		modal.find('.modal-title').text(recipient);
+		modal.find('[name=sum]').focus().css('border-color', color).css('box-shadow', box_shadow);
+	})
+
 
 	// заполним селект клиентов сразу после вызова модала
 	$('#modal-request').on('show.bs.modal', function (e) {

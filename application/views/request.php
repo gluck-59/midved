@@ -32,8 +32,8 @@
 						?>
 						<tr class="<?=$trClass?>">
 							<td><span><?=$request->equipment .' '.$request->mark.'<br><span class="text-muted">'.$request->customer. ' '.$request->city.', '.$request->address?></span></td>
-							<td><a href="/request/edit/<?=$request->id?>"><?=$request->name?></a></td>
-							<td><span class="label <?=$amountClass?>"><?=round($request->sum, 2)?>&nbsp;₽</span><br><a href="#" class="text-muted">история</a></td>
+							<td><a href="/request/edit/<?=$request->id?>"><?=$request->id?>. <?=$request->name?></a></td>
+							<td><span class="label <?=$amountClass?>"><?=round($request->sum, 2)?>&nbsp;₽</span><!--br><a href="#" class="text-muted">история</a--></td>
 							<td><?=$request->created?><br><span class="text-muted"><?=$request->updated?></span> </td>
 						</tr>
 					<?php }	?>

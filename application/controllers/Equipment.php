@@ -7,6 +7,7 @@
 		{
 			parent::__construct();
 			$this->load->model('EquipmentModel');
+			$this->router->pageName = 'Оборудование';
 		}
 
 		public function index() {

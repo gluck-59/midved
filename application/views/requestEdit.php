@@ -48,6 +48,7 @@
 						<div class="items_value">
 							<?=$request->name?>
 						</div>
+						<a href="https://www.google.ru/maps/place/<?=$request->city.' '.$request->address?>" target="_blank"><?=$request->city . ' ' . $request->address?> </a>
 					</div>
 				</div>
 
@@ -61,7 +62,7 @@
 									Подробно
 									<span class="caret"></span>
 								</a>
-								<div class="dropdown-menu" aria-labelledby="" style="max-width: 80vw; padding: 5px;">
+								<div class="dropdown-menu" aria-labelledby="" style="width: 30em; max-width: 80vw; padding: 5px;">
 									<div class='items_value' style="opacity: 0.6">
 										<table id="equipmentDetailsData" class="table table-responsive table-striped table-condensed table-border">
 											<thead>
@@ -90,52 +91,41 @@
 					</div>
 				</div>
 
-				<div class="col-md-9 col-lg-6 col-sm-12">
-					<div class="col-md-6 items_container">
-						<div class="items_head">Расчеты</div>
-						<div class="items_value">
-							<div id="paymentsHistory" role="presentation" class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-									История
-									<span class="caret"></span>
-								</a>
-								<div class="dropdown-menu" aria-labelledby="" style="max-width: 80vw; padding: 5px;">
-									<div class='items_value' style="opacity: 0.8">
-										<table id="paymentsHistoryData" class="table table-responsive table-striped table-condensed table-border">
-											<thead>
-												<tr>
-													<th>Дата</th>
-													<th>Сумма</th>
-													<th>Статья</th>
-												</tr>
-											</thead>
-											<tbody><?=$tableHtml?></tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+
 
 				<div class="1col-md-9 1col-lg-9 col-sm-12">
 					<div class="col-md-6 items_container">
 <!--						<div class="items_head">Расчеты</div>-->
 						<center class="items_value">
 							<h3>
-								<span class="label label-danger"><?=$rashod?> ₽</span> <span class="label label-success"><?=$prihod?> ₽</span>
+<!--								<span class="label label-info">--><?//=$rashod?><!-- ₽</span> <span class="label label-info">--><?//=$prihod?><!-- ₽</span>-->
+								<span style="color: #3e8f3e"><?=$rashod?></span><span class="small">₽</span>&nbsp;&nbsp;<span style="color: #761c19"><?=$prihod?></span><span class="small">₽</span>
 							</h3>
+							<div class="clearfix">&nbsp;</div>
+							<div class="label label-danger paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Накладные: расход" data-type="0" data-direction="0" style="padding: 10px 10px">– Накладные</div>
+							<div class="label label-danger paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Работа: расход" data-type="1" data-direction="0" data-modal-name="Работа" style="padding: 10px 10px">– Работа</div>
+							<div class="label label-success paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Работа: приход" data-type="1" data-direction="1" data-modal-name="Работа" style="padding: 10px 10px">+ Работа</div>
+							<div class="label label-success paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Накладные: приход" data-type="0" data-direction="1" data-modal-name="Накладные" style="padding: 10px 10px">+ Накладные</div>
 						</center>
 					</div>
 				</div>
 
-				<div class="clearfix">&nbsp;</div>
+				<div class="clearfix">&nbsp;</div><div class="clearfix"><hr></div>
 
 				<div class="col-md-9 col-lg-6 col-sm-12">
 					<div class="col-md-6 items_container">
-<!--						<div class="items_head">Работы</div>-->
+						<div class="items_head">История</div>
 						<div class="items_value">
-							<a href="https://www.google.ru/maps/place/<?=$request->city.' '.$request->address?>" target="_blank"><?=$request->city . ' ' . $request->address?> </a>
+							<table id="paymentsHistoryData" class="table table-responsive table-striped table-condensed table-border">
+								<thead>
+								<tr>
+									<th>Дата</th>
+									<th>Сумма</th>
+									<th>Статья</th>
+								</tr>
+								</thead>
+								<tbody><?=$tableHtml?></tbody>
+							</table>
 						</div>
 					</div>
 				</div>
