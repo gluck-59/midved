@@ -33,25 +33,10 @@ class Welcome extends CI_Controller
 		$this->request = $this->RequestModel->getRequests();
 		$this->equipment = $this->equipmentModel->getEquipment();
 
-//prettyDump($this->request);
+//prettyDump($this);
 
 		$this->load->view('header');
 		$this->load->view('main', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
-		$this->load->view('footer');
-	}
-
-//	public function request()
-//	{
-//		$this->request = $this->request->getRequests();
-//		$this->load->view('header');
-//		$this->load->view('request', ['request' => $this->request]);
-//		$this->load->view('footer');
-//	}
-
-	public function two()
-	{
-		$this->load->view('header');
-		$this->load->view('two', ['page' => __FUNCTION__]);
 		$this->load->view('footer');
 	}
 

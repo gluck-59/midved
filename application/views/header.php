@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -17,7 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="/application/css/style.css">
 	<link rel="stylesheet" href="/application/css/bootstrap-select/bootstrap-select.min.css">
 </head>
-
 <body>
 
 
@@ -32,15 +32,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Туда-Обратно</a>
+<!--			<a class="navbar-brand" href="#">Туда-Обратно</a>-->
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="/">Главная</a></li>
-				<li><a href="/request">Заявки</a></li>
-				<li><a href="/equipment">Обрудование</a></li>
-				<li><a href="/customer">Клиенты</a></li>
-				<li><a href="/payment">Расчеты</a></li>
+				<li><a href="/"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Главная</a></li>
+				<li><a href="/request"><i class="glyphicon glyphicon-list"></i>&nbsp;&nbsp;Заявки</a></li>
+				<li><a href="/equipment"><i class="glyphicon glyphicon-hdd"></i>&nbsp;&nbsp;Обрудование</a></li>
+				<li><a href="/customer"><i class="glyphicon glyphicon-object-align-bottom"></i>&nbsp;&nbsp;Клиенты</a></li>
+				<li><a href="/payment"><i class="glyphicon glyphicon-ruble"></i>&nbsp;&nbsp;Расчеты</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
