@@ -5,7 +5,7 @@
 	 */
 	class PaymentModel extends CI_Model
 	{
-		public $customers;
+//		public $payment;
 
 		function __construct()
 		{
@@ -14,12 +14,14 @@
 		}
 
 
-		public function getPaymentsByRequest(array $idRequest = null) : array {
-//			if (!is_null($idRequest)) {
-//				return new ErrorException('Отсутствует $idRequest в '.__FUNCTION__);
-//			}
-
-			$sql = "select * from payment WHERE id IN (implode(',', $idRequest))";
+		/**
+		 * тянет историю затрат/платежей по номеру заявки
+		 * @param int $reqestId
+		 * @return array
+		 */
+		public function history(int $reqestId = null) : array {
+			if (is_null($reqestId)) throw new Exception('Отсутствует номер заявки в '.__CLASS__.': '.__LINE__);
+			$sql = "select  p.id, p.request_id, p.type, p.sum/100 as sum, DATE_FORMAT(p.created, '%m.%d.%Y') created FROM  payment p WHERE p.request_id = $reqestId ORDER BY p.created ASC";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();
 		}
