@@ -64,7 +64,7 @@
 				<h4 class="modal-title" id="prihod_rashod">Накладным</h4>
 			</div>
 			<div class="modal-body">
-				<input type="number" name="sum" class="form-control" style="zoom: 5;">
+				<input type="number" pattern="[0-9]*" name="sum" class="form-control" style="zoom: 5;">
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="modal-footer">

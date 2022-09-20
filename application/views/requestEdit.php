@@ -11,7 +11,7 @@
 	$rashod = 0.0;
 	$tableHtml = '';
 	$tableHtmlSpanClass = 'label label-default';
-	$paymentType = 'Накладные';
+
 	foreach ($payments as $payment) {
 		if ($payment->sum < 0) {
 			$rashod += abs($payment->sum);
@@ -22,7 +22,12 @@
 			$tableHtmlSpanClass = 'label label-success';
 		}
 
-		if ($payment->type) $paymentType = 'Работы';
+
+		switch ($payment->type) {
+			case 0: $paymentType = 'Работа'; break;
+			case 1: $paymentType = 'Накладные'; break;
+		}
+
 
 		$tableHtml .= '<tr>
 			<td>'.$payment->created.'</td>
@@ -31,7 +36,7 @@
 		</tr>';
 
 
-}
+	}
 ?>
 
 <div class="container-fluid">
