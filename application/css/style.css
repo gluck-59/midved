@@ -58,5 +58,5 @@ div#keyboard .row-fluid {
 	border: solid 1px #444;
 	height: 10vh;
 	width: 30vw;
-	line-height: 1.6em;
+	/*line-height: 1.6em;*/
 }
