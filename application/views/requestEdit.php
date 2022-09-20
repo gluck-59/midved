@@ -99,7 +99,7 @@
 						<center class="items_value">
 							<h3>
 <!--								<span class="label label-info">--><?//=$rashod?><!-- ₽</span> <span class="label label-info">--><?//=$prihod?><!-- ₽</span>-->
-								<span style="color: #3e8f3e"><?=$rashod?></span><span class="small">₽</span>&nbsp;&nbsp;<span style="color: #761c19"><?=$prihod?></span><span class="small">₽</span>
+								<span style="color: #761c19"><?=$rashod?></span><span class="small">₽</span>&nbsp;&nbsp;<span style="color: #3e8f3e"><?=$prihod?></span><span class="small">₽</span>
 							</h3>
 							<div class="clearfix">&nbsp;</div>
 							<div class="label label-danger paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Накладные: расход" data-type="0" data-direction="0" style="padding: 10px 10px">– Накладные</div>
