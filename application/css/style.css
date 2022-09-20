@@ -42,3 +42,21 @@ img#logo {
 .items_value {
 }
 /*request edit*/
+
+
+
+/* modal */
+div#keyboard {
+	text-align: center;
+}
+
+div#keyboard .row-fluid {
+	margin: 7px;
+}
+.row-fluid > a.btn {
+	font-size: 3em;
+	border: solid 1px #444;
+	height: 10vh;
+	width: 30vw;
+	line-height: 1.6em;
+}

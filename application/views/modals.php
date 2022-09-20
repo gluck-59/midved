@@ -61,7 +61,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="prihod_rashod">Накладным</h4>
+				<h2 class="modal-title" id="prihod_rashod"></h2>
 			</div>
 			<div class="modal-body">
 				<input type="number" pattern="[0-9]*" name="sum" class="form-control" style="zoom: 5;">
@@ -71,6 +71,28 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				<button type="button" class="btn btn-success">OK</button>
 			</div>
+			<div id="keyboard">
+				<div class="row-fluid">
+					<a href="#" class="btn" data-key="55">7</a>
+					<a href="#" class="btn" data-key="56">8</a>
+					<a href="#" class="btn" data-key="57">9</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn" data-key="52">4</a>
+					<a href="#" class="btn" data-key="53">5</a>
+					<a href="#" class="btn" data-key="54">6</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn" data-key="49">1</a>
+					<a href="#" class="btn" data-key="50">2</a>
+					<a href="#" class="btn" data-key="51">3</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn btn-danger" data-method="reset" data-key="8">C</a>
+					<a href="#" class="btn" data-key="48">0</a>
+					<a href="#" class="btn btn-success" data-method="calculate" data-key="61">OK</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -79,15 +101,18 @@
 <script>
 	$('select').selectpicker();
 	// расставим заголовки
-	$('.modal').on('shown.bs.modal', function (event) {
+	$('.modal').on('show.bs.modal', function (event) {
 		let button = $(event.relatedTarget)
 		let recipient = button.data('modal-name')
+
+		// покрасим элементы
 		let color = (button.data('direction') == 0 ? 'rgb(255 177 177 / 60%)' : 'rgb(131 233 102 / 60%)');
 		let box_shadow = (button.data('direction') == 0 ? 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color : 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color);
-console.log(button.data('direction'))
 		let modal = $(this);
 		modal.find('.modal-title').text(recipient);
 		modal.find('[name=sum]').focus().css('border-color', color).css('box-shadow', box_shadow);
+
+		// отработаем нажатия
 	})
 
 
