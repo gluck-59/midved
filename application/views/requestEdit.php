@@ -38,7 +38,7 @@
 
 		$tableHtml .= '<tr id="'.$payment->id.'">
 			<td><input class="editPayment form-control" data-entity="created" value="'.$payment->created.'" ></td>
-			<td><input class="editPayment form-control" data-entity="sum" value="'.$currency->format($payment->sum).'"></td>
+			<td><input class="editPayment form-control" data-entity="sum" value="'.round($payment->sum, 0).'"></td>
 			<td><a href="#" class="1editPayment" data-entity="note"><span class="'.$tableHtmlSpanClass.'">'.(is_null($payment->note) || empty($payment->note) ? $paymentType : $payment->note).'</span></a></td>
 			<td><button type="button" class="close deletePayment" id="'.$payment->id.'"><i class="glyphicon glyphicon-remove"></i></button></td>
 		</tr>';

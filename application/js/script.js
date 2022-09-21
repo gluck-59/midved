@@ -52,8 +52,8 @@ $(document).on('ready', function (){
 	$('.editPayment').on('blur', function (event) {
 		let postData = {};
 		postData.paymentId = event.currentTarget.parentElement.parentElement.id;
-		postData.value = event.currentTarget.value;
 		postData.entity = event.currentTarget.dataset.entity;
+		postData.value = event.currentTarget.value;
 
 		$.post('/payment/edit', postData, function (data) {
 			// console.log('POST /payment/edit', data, typeof data);
