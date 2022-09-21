@@ -30,13 +30,15 @@ $(document).on('ready', function (){
 		let requestId =  $(prihodRashodModal).find('#requestId').val();
 		let type =  $(prihodRashodModal).find('#type').val();
 		let direction =  $(prihodRashodModal).find('#direction').val();
-		console.log('отправка', requestId, type, direction, sum)
+		let note =  $(prihodRashodModal).find('#notes').val();
+		console.log('отправка', requestId, type, direction, sum, note)
 
 		sendData = {
 			'requestId': requestId,
 			'type': type,
 			'direction': direction,
-			'sum': sum
+			'sum': sum,
+			'note': note
 		};
 		$.post('/request/payment/', sendData, function (data) {
 			console.log('POST /request/payment', data);

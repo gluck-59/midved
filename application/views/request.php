@@ -7,6 +7,14 @@
 			<h3>Заявки <small class="text-muted">просто список</small></h3>
 			<p class="text-muted">Наверное еще надо возможность добвлять и редактировать. Удалять думаю будет низзя.</p>
 
+			<div class="col-lg-6">
+				<div class="btn-block">
+					<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-request">Новая заявка</button>
+				</div>
+			</div>
+
+			<div class="clearfix">&nbsp;</div>
+
 			<table class="table table-condensed table-bordered table-condensed">
 				<thead>
 				<th>Станок/Клиент</th>
@@ -42,12 +50,3 @@
 		</div>
 	</div>
 </div>
-<div class="starter-template">
-	<div class="row">
-		<div class="col-md-2"
-		<div class="btn-block">
-			<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-request">Новая заявка</button>
-		</div>
-	</div>
-</div>
-

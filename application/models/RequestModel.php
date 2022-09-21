@@ -16,7 +16,7 @@
 		public function getRequests(array $idRequests = null) : array {
 			$where = 'WHERE 1 ';
 			if (!is_null($idRequests)) $where .= 'AND id IN('.implode(',', $idRequests).')';
-			$sql = "select r.id, r.name, r.status, DATE_FORMAT(r.created, '%d.%m.%y') created, DATE_FORMAT(r.updated, '%d.%m.%y') updated, e.name equipment, e.city, e.address, e.mark, c.name customer
+			$sql = "select r.id, r.name, r.status, r.notes, DATE_FORMAT(r.created, '%d.%m.%y') created, DATE_FORMAT(r.updated, '%d.%m.%y') updated, e.name equipment, e.city, e.address, e.mark, c.name customer
      		,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
 			from request r 
 			JOIN equipment e ON e.id = r.equipment_id 

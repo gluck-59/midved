@@ -35,10 +35,11 @@
 			case 1: $paymentType = 'Накладные'; break;
 		}
 
+
 		$tableHtml .= '<tr>
 			<td>'.$payment->created.'</td>
 			<td><span class="'.$tableHtmlSpanClass.'">'.$currency->format($payment->sum).' ₽</span></td>
-			<td>'.$paymentType.'</td>
+			<td>'.(is_null($payment->note) || empty($payment->note) ? $paymentType : $payment->note).'</td>
 			<td><button type="button" class="close deletePayment" id="'.$payment->id.'"><i class="glyphicon glyphicon-remove"></i></button></td>
 		</tr>';
 

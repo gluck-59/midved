@@ -7,7 +7,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
-				<h4 class="modal-title" id="requestLabel">Новая заявка<small>на ремонт</small></h4>
+				<h4 class="modal-title" id="requestLabel">Новая заявка&nbsp;<small>на ремонт</small></h4>
 			</div>
 			<div class="modal-body">
 				<select class="" name="customers" data-live-search="true" title="Выберите клиента..."></select>
@@ -18,8 +18,7 @@
 				<input type="text" class="form-control" id="desc" placeholder="Описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
-				<p>Выбираешь клиента и станок. Забиваешь новую заявку.</p>
-				<p>Заявка не сохраняется. Не ссать, это демо.</p>
+				<p>Выбираешь клиента и станок. Забиваешь новую заявку. Подробности описываешь внутри. Полноценного лога не делал, чай не многопользовательский CRM :)</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
@@ -92,6 +91,10 @@
 					<a href="#" class="btn key" data-key="48">0</a>
 					<a href="#" class="btn btn-success" id="calculate">OK</a>
 				</div>
+			</div>
+
+			<div class="modal-body">
+			<input type="text" id="notes" class="form-control" value="" placeholder="Заметка">
 			</div>
 			<!--div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

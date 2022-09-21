@@ -45,6 +45,7 @@
 		public function payment() {
 			$this->payments = $this->load->model('PaymentModel');
 			$paymentData = $this->input->get_post(null, TRUE);
+
 			$res = $this->PaymentModel->payment($paymentData);
 			echo json_encode($res);
 		}
