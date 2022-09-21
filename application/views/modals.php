@@ -67,29 +67,31 @@
 				<input type="number" pattern="[0-9]*" name="sum" class="form-control" style="zoom: 5;">
 				<div class="clearfix">&nbsp;</div>
 			</div>
-			<div class="modal-footer">
+
+			<!--div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				<button type="button" class="btn btn-success">OK</button>
-			</div>
+			</div-->
+
 			<div id="keyboard">
 				<div class="row-fluid">
-					<a href="#" class="btn" data-key="55">7</a>
-					<a href="#" class="btn" data-key="56">8</a>
-					<a href="#" class="btn" data-key="57">9</a>
+					<a href="#" class="btn key" data-key="55">7</a>
+					<a href="#" class="btn key" data-key="56">8</a>
+					<a href="#" class="btn key" data-key="57">9</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn" data-key="52">4</a>
-					<a href="#" class="btn" data-key="53">5</a>
-					<a href="#" class="btn" data-key="54">6</a>
+					<a href="#" class="btn key" data-key="52">4</a>
+					<a href="#" class="btn key" data-key="53">5</a>
+					<a href="#" class="btn key" data-key="54">6</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn" data-key="49">1</a>
-					<a href="#" class="btn" data-key="50">2</a>
-					<a href="#" class="btn" data-key="51">3</a>
+					<a href="#" class="btn key" data-key="49">1</a>
+					<a href="#" class="btn key" data-key="50">2</a>
+					<a href="#" class="btn key" data-key="51">3</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn btn-danger" data-method="reset" data-key="8">C</a>
-					<a href="#" class="btn" data-key="48">0</a>
+					<a href="#" class="btn btn-danger" onclick="$('[name=sum]').val('')" data-method="reset" data-key="8">C</a>
+					<a href="#" class="btn key" data-key="48">0</a>
 					<a href="#" class="btn btn-success" data-method="calculate" data-key="61">OK</a>
 				</div>
 			</div>
@@ -100,12 +102,14 @@
 
 <script>
 	$('select').selectpicker();
-	// расставим заголовки
+
+	// расставим заголовки модала
 	$('.modal').on('show.bs.modal', function (event) {
 		let button = $(event.relatedTarget)
 		let recipient = button.data('modal-name')
 
-		// покрасим элементы
+		/** экранная клава */
+		// покрасим элементы модала
 		let color = (button.data('direction') == 0 ? 'rgb(255 177 177 / 60%)' : 'rgb(131 233 102 / 60%)');
 		let box_shadow = (button.data('direction') == 0 ? 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color : 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color);
 		let modal = $(this);
@@ -113,6 +117,12 @@
 		modal.find('[name=sum]').focus().css('border-color', color).css('box-shadow', box_shadow);
 
 		// отработаем нажатия
+		$('#keyboard .row-fluid .btn.key').on('click', function (event) {
+			let keyboard = $(event.currentTarget);
+			let sumInput = $('[name=sum]');
+			sumInput.val($('[name=sum]').val() + $(event.currentTarget).text())
+		})
+		/** /экранная клава */
 	})
 
 
