@@ -114,19 +114,29 @@
 							</h3>
 							<div class="row">
 								<div class="col-xs-6 text-right">
-									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="1" data-direction="0" data-modal-name="Работа" >Work</div>
-									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: приход" data-type="1" data-direction="1" data-modal-name="Работа" >Work</div>
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="0" data-direction="0" data-modal-name="Работа" >Work</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: приход" data-type="0" data-direction="1" data-modal-name="Работа" >Work</div>
 								</div>
 
 								<div class="col-xs-6 text-left">
-									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: расход" data-type="0" data-direction="0" >Extra</div>
-									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: приход" data-type="0" data-direction="1" data-modal-name="Накладные" >Extra</div>
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: расход" data-type="1" data-direction="0" >Extra</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: приход" data-type="1" data-direction="1" data-modal-name="Накладные" >Extra</div>
 								</div>
 							</div>
 						</center>
 					</div>
 				</div>
 
+				<div class="clearfix hidden-xs">&nbsp;</div>
+
+				<div class="1col-md-9 1col-lg-9 col-sm-12">
+					<div class="col-md-6 items_container">
+						<div class="items_head">Заметки</div>
+						<center class="items_value">
+							<textarea id="notes" data-request-id="<?=$request->id?>" class="form-control"><?=$request->notes?></textarea>
+						</center>
+					</div>
+				</div>
 				<div class="clearfix hidden-xs">&nbsp;</div><div class="clearfix hidden-xs"><hr></div>
 
 				<div class="col-md-9 col-lg-6 col-sm-12">

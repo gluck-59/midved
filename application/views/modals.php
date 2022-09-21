@@ -7,7 +7,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
-				<h4 class="modal-title" id="requestLabel">Заявка</h4>
+				<h4 class="modal-title" id="requestLabel">Новая заявка<small>на ремонт</small></h4>
 			</div>
 			<div class="modal-body">
 				<select class="" name="customers" data-live-search="true" title="Выберите клиента..."></select>
@@ -15,7 +15,7 @@
 				<select class=""  name="equipments" data-live-search="true" title="Выберите станок..."></select>
 				<div class="clearfix">&nbsp;</div>
 
-				<input type="text" class="form-control" placeholder="Описание заявки">
+				<input type="text" class="form-control" id="desc" placeholder="Описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
 				<p>Выбираешь клиента и станок. Забиваешь новую заявку.</p>
@@ -23,7 +23,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-success">OK</button>
+				<button type="button" class="btn btn-success" id="addRequest">OK</button>
 			</div>
 		</div>
 	</div>

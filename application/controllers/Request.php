@@ -38,10 +38,32 @@
 		}
 
 
+		/**
+		 * пишет приход-расход в заявку № ID
+		 * @return void
+		 */
 		public function payment() {
 			$this->payments = $this->load->model('PaymentModel');
 			$paymentData = $this->input->get_post(null, TRUE);
 			$res = $this->PaymentModel->payment($paymentData);
 			echo json_encode($res);
+		}
+
+
+		/**
+		 * создает заявку
+		 * @return void
+		 */
+		public function create() {
+			$data = $this->input->get_post(null, TRUE);
+			echo $this->RequestModel->create($data);
+		}
+
+
+
+
+		public function setNotes() {
+			$data = $this->input->get_post(null, TRUE);
+			echo $this->RequestModel->setNotes($data);
 		}
     }

@@ -33,7 +33,7 @@
 		 * @return object
 		 */
 		public function edit(int $requestId = null) : object {
-			$sql = "select DISTINCT r.id, r.equipment_id, r.name, r.status, DATE_FORMAT(r.created, '%d.%m.%Y') created, DATE_FORMAT(r.updated, '%d.%m.%Y') updated
+			$sql = "select DISTINCT r.id, r.equipment_id, r.name, r.status, r.notes, DATE_FORMAT(r.created, '%d.%m.%Y') created, DATE_FORMAT(r.updated, '%d.%m.%Y') updated
 			,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum, 
 			e.name equipment, e.mark, e.city, e.address, c.name customer_name
 			FROM  request r 
@@ -44,5 +44,23 @@
 			$stmt = $this->db->query($sql);
 			$res = $stmt->row();
 			return $res;
+		}
+
+		/**
+		 * создает новую заявку
+		 * возвращает ее номер
+		 * @param array $requestData
+		 * @return int
+		 */
+		public function create(array $requestData) : int {
+			$sql = 'INSERT INTO request (equipment_id, name) VALUES ('.(int) $requestData['equipments'].', '.$this->db->escape($requestData['desc']).' )';
+			return  $this->db->query($sql);
+		}
+
+
+
+		public function setNotes(array $requestData) : int {
+			$sql = 'UPDATE request SET notes = '.$this->db->escape($requestData['notes']).' WHERE id = '.$requestData['requestId'];
+			return  $this->db->query($sql);
 		}
 	}

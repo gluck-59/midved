@@ -21,7 +21,8 @@ $(document).on('ready', function (){
 		}
 	});
 
-	// отправка приход-расходы
+
+	// отправка приход-расход
 	$('#calculate').on('click', function (event) {
 		var prihodRashodModal = $('#modalPrihodRashod');
 		let sum = $(prihodRashodModal).find('#sum').val();
@@ -44,14 +45,44 @@ $(document).on('ready', function (){
 		})
 	});
 
+
+
+	// удаление приход-расход
 	$('.deletePayment').on('click', function (event) {
 		if (!confirm('Удалить строку?')) return;
 		$.post('/payment/delete', {'id': event.currentTarget.id}, function (data) {
 			console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();
-
 		})
 	} )
+
+
+
+	// новая заявка
+	$('#addRequest').on('click', function (event) {
+		let modal = $('#modal-request');
+		let sendData = {
+			'equipments': modal.find('[name=equipments]').val(),
+			'desc': modal.find('#desc').val()
+		};
+		$.post('/request/create/', sendData, function (data) {
+			if (data == 1) window.location.href='/request';
+		})
+	});
+
+
+
+	// сохранение заметок
+	$('#notes').on('blur', function (event) {
+console.log('textarea', event.currentTarget.dataset.requestId, $(event.currentTarget).val());
+		let sendData = {
+			'requestId': event.currentTarget.dataset.requestId,
+			'notes': $(event.currentTarget).val()
+		};
+		$.post('/request/setNotes/', sendData, function (data) {
+			console.log(data)
+		})
+	})
 
 }) // document ready
 
