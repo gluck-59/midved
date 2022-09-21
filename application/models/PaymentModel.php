@@ -51,7 +51,15 @@
 		 * @return int
 		 */
 		public function edit(array $paymentData) : int {
-			$set = $this->db->escape_str($paymentData['entity']).' = '.$this->db->escape($paymentData['value']);
+			$entity = $this->db->escape_str($paymentData['entity']);
+			if ($entity == 'sum') {
+				$value = $this->db->escape_str($paymentData['value']);
+				$value = (int) $value*100;
+			} else {
+				$value = $this->db->escape($paymentData['value']);
+			}
+			$set = $entity.' = '.$value;
+
 			$sql = 'UPDATE payment SET '.$set.' WHERE id = '.$paymentData['paymentId'];
 			return  $this->db->query($sql);
 		}
