@@ -87,7 +87,7 @@
 					<a href="#" class="btn key" data-key="51">3</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn btn-danger" onclick="$('[name=sum]').val('')">C</a>
+					<a href="#" class="btn btn-danger" onclick="$('#sum').val('')">C</a>
 					<a href="#" class="btn key" data-key="48">0</a>
 					<a href="#" class="btn btn-success" id="calculate">OK</a>
 				</div>

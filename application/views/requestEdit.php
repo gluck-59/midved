@@ -32,7 +32,7 @@
 
 		switch ($payment->type) {
 			case 0: $paymentType = 'Работа'; break;
-			case 1: $paymentType = 'Накладные'; break;
+			case 1: $paymentType = 'Накл.р.'; break;
 		}
 
 
@@ -150,6 +150,7 @@
 									<th>Дата</th>
 									<th>Сумма</th>
 									<th>Статья</th>
+									<th>Del.</th>
 								</tr>
 								</thead>
 								<tbody><?=$tableHtml?></tbody>
