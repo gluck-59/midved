@@ -17,4 +17,14 @@ class Payment extends CI_Controller {
 //		$this->load->view('footer');
 	}
 
+
+
+
+	public function delete() {
+		$this->payments = $this->load->model('PaymentModel');
+		$paymentId = $this->input->get_post('id', TRUE);
+		$res = $this->PaymentModel->delete($paymentId);
+		echo json_encode($res);
+	}
+
 }

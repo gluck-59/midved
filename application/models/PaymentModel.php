@@ -26,6 +26,12 @@
 			return $stmt->result();
 		}
 
+
+		/**
+		 * платеж: приход-расход
+		 * @param array $paymentData
+		 * @return mixed
+		 */
 		public function payment(array $paymentData) {
 			if ($paymentData['direction'] == 0) $sum = -$paymentData['sum']; 	// расход
 			elseif ($paymentData['direction'] == 1) $sum = $paymentData['sum'];	// приход
@@ -34,5 +40,15 @@
 			return  $this->db->query($sql);
 		}
 
+
+		/**
+		 * удаляет приход-расход по ID
+		 * @param int $paymentId
+		 * @return bool
+		 */
+		public function delete(int $paymentId) : bool {
+			$sql = 'DELETE FROM payment WHERE id = '.$paymentId;
+			return  $this->db->query($sql);
+		}
 
 	}

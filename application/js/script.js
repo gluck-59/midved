@@ -42,10 +42,17 @@ $(document).on('ready', function (){
 			if (data == 'true') location.reload();
 
 		})
+	});
 
-	})
+	$('.deletePayment').on('click', function (event) {
+		$.post('/payment/delete', {'id': event.currentTarget.id}, function (data) {
+			console.log('POST /request/payment', data);
+			if (data == 'true') location.reload();
 
-})
+		})
+	} )
+
+}) // document ready
 
 // календарь во весь экран
 $("#ical").on('load', function (){
