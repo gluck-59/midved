@@ -43,17 +43,31 @@ $(document).on('ready', function (){
 		$.post('/request/payment/', sendData, function (data) {
 			console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();
-
 		})
 	});
 
+
+
+	// редактирование приход-расход
+	$('.editPayment').on('blur', function (event) {
+		let postData = {};
+		postData.paymentId = event.currentTarget.parentElement.parentElement.id;
+		postData.value = event.currentTarget.value;
+		postData.entity = event.currentTarget.dataset.entity;
+
+		$.post('/payment/edit', postData, function (data) {
+			// console.log('POST /payment/edit', data, typeof data);
+			if (data == 1) location.reload();
+		})
+	})
+	// /редактирование приход-расход
 
 
 	// удаление приход-расход
 	$('.deletePayment').on('click', function (event) {
 		if (!confirm('Удалить строку?')) return;
 		$.post('/payment/delete', {'id': event.currentTarget.id}, function (data) {
-			console.log('POST /request/payment', data);
+			// console.log('POST /payment/delete', data);
 			if (data == 'true') location.reload();
 		})
 	} )

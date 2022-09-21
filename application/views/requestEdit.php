@@ -36,10 +36,10 @@
 		}
 
 
-		$tableHtml .= '<tr>
-			<td>'.$payment->created.'</td>
-			<td><span class="'.$tableHtmlSpanClass.'">'.$currency->format($payment->sum).' ₽</span></td>
-			<td>'.(is_null($payment->note) || empty($payment->note) ? $paymentType : $payment->note).'</td>
+		$tableHtml .= '<tr id="'.$payment->id.'">
+			<td><input class="editPayment form-control" data-entity="created" value="'.$payment->created.'" ></td>
+			<td><input class="editPayment form-control" data-entity="sum" value="'.$currency->format($payment->sum).'"></td>
+			<td><a href="#" class="1editPayment" data-entity="note"><span class="'.$tableHtmlSpanClass.'">'.(is_null($payment->note) || empty($payment->note) ? $paymentType : $payment->note).'</span></a></td>
 			<td><button type="button" class="close deletePayment" id="'.$payment->id.'"><i class="glyphicon glyphicon-remove"></i></button></td>
 		</tr>';
 
@@ -144,11 +144,11 @@
 					<div class="col-md-6 items_container">
 						<div class="items_head">История</div>
 						<div class="items_value">
-							<table id="paymentsHistoryData" class="table table-responsive table-striped table-condensed table-border">
+							<table id="paymentsHistoryData" class="1table table-responsive table-striped table-condensed 1table-border" style="margin: 0 -30px; width: 100vw;">
 								<thead>
 								<tr>
 									<th>Дата</th>
-									<th>Сумма</th>
+									<th width="100px">Сумма</th>
 									<th>Статья</th>
 									<th>Del.</th>
 								</tr>

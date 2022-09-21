@@ -25,7 +25,7 @@
 		 */
 		public function history(int $reqestId = null) : array {
 			if (is_null($reqestId)) throw new Exception('Отсутствует номер заявки в '.__CLASS__.': '.__LINE__);
-			$sql = "select  p.id, p.request_id, p.type, p.note, p.sum/100 as sum, DATE_FORMAT(p.created, '%m.%d.%Y') created FROM  payment p WHERE p.request_id = $reqestId ORDER BY p.created ASC";
+			$sql = "select  p.id, p.request_id, p.type, p.note, p.sum/100 as sum, /*DATE_FORMAT(p.created, '%m.%d.%Y') created*/p.created FROM  payment p WHERE p.request_id = $reqestId ORDER BY p.created ASC";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();
 		}
@@ -43,6 +43,19 @@
 			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.(int) $paymentData['type'].', '.$sum*100 .', '.$this->db->escape($paymentData['note']).')';
 			return  $this->db->query($sql);
 		}
+
+
+		/**
+		 * редактирует приход-расход по ID
+		 * @param int $paymentId
+		 * @return int
+		 */
+		public function edit(array $paymentData) : int {
+			$set = $this->db->escape_str($paymentData['entity']).' = '.$this->db->escape($paymentData['value']);
+			$sql = 'UPDATE payment SET '.$set.' WHERE id = '.$paymentData['paymentId'];
+			return  $this->db->query($sql);
+		}
+
 
 
 		/**

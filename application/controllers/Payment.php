@@ -18,13 +18,23 @@ class Payment extends CI_Controller {
 	}
 
 
-
-
+	/**
+	 * удаляет платеж
+	 * @return void
+	 */
 	public function delete() {
 		$this->payments = $this->load->model('PaymentModel');
 		$paymentId = $this->input->get_post('id', TRUE);
 		$res = $this->PaymentModel->delete($paymentId);
 		echo json_encode($res);
+	}
+
+
+
+	public function edit() {
+		$this->load->model('PaymentModel');
+		$paymentData = $this->input->get_post(null, TRUE);
+		echo $this->PaymentModel->edit($paymentData);
 	}
 
 }
