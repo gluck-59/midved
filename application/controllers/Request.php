@@ -2,6 +2,9 @@
 
 	class Request extends CI_Controller
 	{
+		const STATUS_NEW = 0;
+		const STATUS_WORK = 1;
+		const STATUS_DONE = 2;
 		public $payments;
 		function __construct()
 		{

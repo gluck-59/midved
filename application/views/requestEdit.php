@@ -1,8 +1,12 @@
 <?php
 //	prettyDump($request);
 //	prettyDump($payments);
-	$status = 'Новая';
-	($request->status == 1 ? $status = 'В работе' : $status = 'Выполнена');
+	switch($request->status) {
+		case 0: $status = 'Новая';break;
+		case 1: $status = 'В работе';break;
+		case 2: $status = 'Готово';break;
+	}
+
 	$sumStatus = 'label label-danger';
 	($request->sum > 0 ? $sumStatus = 'label label-success' : '');
 

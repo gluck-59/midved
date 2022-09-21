@@ -16,12 +16,13 @@
 				</thead>
 				<?php
 					foreach ($requests as $request) {
-						$trClass = 'success';
-						$status = 'Новая';
-						if ($request->status == 1) {
+						if ($request->status == Request::STATUS_NEW) {
 							$trClass = 'danger';
+							$status = 'Новая';
+						} elseif ($request->status == Request::STATUS_WORK) {
+							$trClass = 'success';
 							$status = 'В работе';
-						} elseif ($request->status == 2) {
+						} elseif ($request->status == Request::STATUS_DONE) {
 							$trClass = '';
 							$status = 'Готово';
 						}
