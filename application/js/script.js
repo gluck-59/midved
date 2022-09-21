@@ -45,6 +45,7 @@ $(document).on('ready', function (){
 	});
 
 	$('.deletePayment').on('click', function (event) {
+		if (!confirm('Удалить строку?')) return;
 		$.post('/payment/delete', {'id': event.currentTarget.id}, function (data) {
 			console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();

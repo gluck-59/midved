@@ -47,7 +47,7 @@
 		 * @return bool
 		 */
 		public function delete(int $paymentId) : bool {
-			echo $sql = 'DELETE FROM payment WHERE id = '.$paymentId;
+			$sql = 'DELETE FROM payment WHERE id = '.$paymentId;
 			return  $this->db->query($sql);
 		}
 
