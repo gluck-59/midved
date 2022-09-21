@@ -56,7 +56,7 @@
 
 
 <!-- Modal prihod-rashod -->
-<div class="modal fade" id="modal-prihod_rashod" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+<div class="modal fade" id="modalPrihodRashod" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -64,9 +64,10 @@
 				<h3 class="modal-title" id="prihod_rashod"></h3>
 			</div>
 			<div class="modal-body">
-				<input type="number" pattern="[0-9]*" name="sum" class="form-control" style="zoom: 5;">
-				<input hidden name="type" placeholder="тип">
-				<input hidden name="direction" placeholder="direction">
+				<input type="number" pattern="[0-9]*" id="sum" class="form-control" style="zoom: 3;">
+				<input hidden id="requestId" placeholder="заявка #">
+				<input hidden id="type" placeholder="тип">
+				<input hidden id="direction" placeholder="direction">
 				<div class="clearfix">&nbsp;</div>
 			</div>
 
@@ -87,9 +88,9 @@
 					<a href="#" class="btn key" data-key="51">3</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn btn-danger" onclick="$('[name=sum]').val('')" data-method="reset" data-key="8">C</a>
+					<a href="#" class="btn btn-danger" onclick="$('[name=sum]').val('')">C</a>
 					<a href="#" class="btn key" data-key="48">0</a>
-					<a href="#" class="btn btn-success" data-method="calculate" data-key="61">OK</a>
+					<a href="#" class="btn btn-success" id="calculate">OK</a>
 				</div>
 			</div>
 			<!--div class="modal-footer">
@@ -107,13 +108,16 @@
 
 	// при открытии модала расставим заголовки
 	$('.modal').on('show.bs.modal', function (event) {
-		let sumInput = $('[name=sum]');
+		let sumInput = $('#sum');
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
+		let requestId = button.data('request-id')
+
 		let modal = $(this);
 		modal.find('.modal-title').text(modalName);
-		modal.find('[name=type]').val(button.data('type'));
-		modal.find('[name=direction]').val(button.data('direction'));
+		modal.find('#requestId').val(requestId);
+		modal.find('#type').val(button.data('type'));
+		modal.find('#direction').val(button.data('direction'));
 
 		sumInput.val('');
 		// console.log(button.data());
@@ -126,7 +130,7 @@
 		// отработаем нажатия
 		$('#keyboard .row-fluid .btn.key').on('click', function (event) {
 			let keyboard = $(event.currentTarget);
-			sumInput.val($('[name=sum]').val() + $(event.currentTarget).text())
+			sumInput.val($('#sum').val() + $(event.currentTarget).text())
 		})
 		/** /экранная клава */
 	})

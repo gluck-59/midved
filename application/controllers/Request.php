@@ -33,4 +33,12 @@
 			$this->load->view('requestEdit', ['request' => $this->RequestModel->edit($requestId), 'payments' => $this->PaymentModel->history($requestId)]);
 			$this->load->view('footer');
 		}
+
+
+		public function payment() {
+			$this->payments = $this->load->model('PaymentModel');
+			$paymentData = $this->input->get_post(null, TRUE);
+			$res = $this->PaymentModel->payment($paymentData);
+			echo json_encode($res);
+		}
     }

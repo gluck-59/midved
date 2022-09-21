@@ -28,13 +28,14 @@
 			case 1: $paymentType = 'Накладные'; break;
 		}
 
+		$currency = new NumberFormatter( 'ru_RU', NumberFormatter::DECIMAL );
+		$currency->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
 
 		$tableHtml .= '<tr>
 			<td>'.$payment->created.'</td>
-			<td><span class="'.$tableHtmlSpanClass.'">'.round($payment->sum, 2).' ₽</span></td>
+			<td><span class="'.$tableHtmlSpanClass.'">'.$currency->format($payment->sum).' ₽</span></td>
 			<td>'.$paymentType.'</td>
 		</tr>';
-
 
 	}
 ?>
@@ -43,7 +44,7 @@
 	<div class="row">
 		<div class="col-lg-6 col-xs-12">
 			<h3><a href="/request"><span class="label label-info"><i class="glyphicon glyphicon-arrow-left"></i></span></a>
-				Заявка №<?=$request->id?>&nbsp;<small class="label label-default hidden-xs"><?=$status?></small>&nbsp;<small class="hidden-xs">баланс</small>&nbsp;<small class="<?=$sumStatus?>"><?=round($request->sum, 2)?>&nbsp;₽</small></h3>
+				Заявка №<?=$request->id?>&nbsp;<small class="label label-default hidden-xs"><?=$status?></small>&nbsp;<small class="hidden-xs">баланс</small>&nbsp;<small class="<?=$sumStatus?>"><?=$currency->format($request->sum)?>&nbsp;₽</small></h3>
 			<span class="text-muted">создано</span> <?=$request->created?> <span class="text-muted">обновлено</span> <?=$request->updated?>
 			<div class="clearfix">&nbsp;</div>
 			<div class="row">
@@ -104,18 +105,24 @@
 						<center class="items_value">
 							<h3>
 <!--								<span class="label label-info">--><?//=$rashod?><!-- ₽</span> <span class="label label-info">--><?//=$prihod?><!-- ₽</span>-->
-								<span style="color: #761c19"><?=$rashod?></span><span class="small">₽</span>&nbsp;&nbsp;<span style="color: #3e8f3e"><?=$prihod?></span><span class="small">₽</span>
+								<span style="color: #761c19"><?=$currency->format($rashod)?> ₽</span><span class="small"></span>&nbsp;&nbsp;<span style="color: #3e8f3e"><?=$currency->format($prihod)?> ₽</span><span class="small"></span>
 							</h3>
-							<div class="clearfix">&nbsp;</div>
-							<div class="label label-danger paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Накладные: расход" data-type="0" data-direction="0" style="padding: 15px 6px">– Накладные</div>
-							<div class="label label-danger paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Работа: расход" data-type="1" data-direction="0" data-modal-name="Работа" style="padding: 15px 6px">– Работа</div>
-							<div class="label label-success paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Работа: приход" data-type="1" data-direction="1" data-modal-name="Работа" style="padding: 15px 6px">+ Работа</div>
-							<div class="label label-success paymentEdit" data-toggle="modal" data-target="#modal-prihod_rashod" data-modal-name="Накладные: приход" data-type="0" data-direction="1" data-modal-name="Накладные" style="padding: 15px 6px">+ Накладные</div>
+							<div class="row">
+								<div class="col-xs-6 text-right">
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="1" data-direction="0" data-modal-name="Работа" >Work</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: приход" data-type="1" data-direction="1" data-modal-name="Работа" >Work</div>
+								</div>
+
+								<div class="col-xs-6 text-left">
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: расход" data-type="0" data-direction="0" >Extra</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: приход" data-type="0" data-direction="1" data-modal-name="Накладные" >Extra</div>
+								</div>
+							</div>
 						</center>
 					</div>
 				</div>
 
-				<div class="clearfix">&nbsp;</div><div class="clearfix"><hr></div>
+				<div class="clearfix hidden-xs">&nbsp;</div><div class="clearfix hidden-xs"><hr></div>
 
 				<div class="col-md-9 col-lg-6 col-sm-12">
 					<div class="col-md-6 items_container">

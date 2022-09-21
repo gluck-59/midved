@@ -26,5 +26,13 @@
 			return $stmt->result();
 		}
 
+		public function payment(array $paymentData) {
+			if ($paymentData['direction'] == 0) $sum = -$paymentData['sum']; 	// расход
+			elseif ($paymentData['direction'] == 1) $sum = $paymentData['sum'];	// приход
+
+			$sql = 'INSERT INTO payment (request_id, type, sum) VALUES ('.(int) $paymentData['requestId'].', '.(int) $paymentData['type'].', '.$sum*100 .')';
+			return  $this->db->query($sql);
+		}
+
 
 	}

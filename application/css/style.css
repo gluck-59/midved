@@ -42,7 +42,11 @@ img#logo {
 .items_value {
 }
 /*request edit*/
-
+.paymentEdit {
+	font-size: 2em;
+	padding: 15px 6px;
+	margin: 2px 0;
+}
 
 
 /* modal */
