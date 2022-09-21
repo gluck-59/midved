@@ -60,18 +60,15 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
 				<h3 class="modal-title" id="prihod_rashod"></h3>
 			</div>
 			<div class="modal-body">
 				<input type="number" pattern="[0-9]*" name="sum" class="form-control" style="zoom: 5;">
+				<input hidden name="type" placeholder="тип">
+				<input hidden name="direction" placeholder="direction">
 				<div class="clearfix">&nbsp;</div>
 			</div>
-
-			<!--div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-				<button type="button" class="btn btn-success">OK</button>
-			</div-->
 
 			<div id="keyboard">
 				<div class="row-fluid">
@@ -95,6 +92,11 @@
 					<a href="#" class="btn btn-success" data-method="calculate" data-key="61">OK</a>
 				</div>
 			</div>
+			<!--div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+				<button type="button" class="btn btn-success">OK</button>
+			</div-->
+
 		</div>
 	</div>
 </div>
@@ -103,28 +105,37 @@
 <script>
 	$('select').selectpicker();
 
-	// расставим заголовки модала
+	// при открытии модала расставим заголовки
 	$('.modal').on('show.bs.modal', function (event) {
+		let sumInput = $('[name=sum]');
 		let button = $(event.relatedTarget)
-		let recipient = button.data('modal-name')
+		let modalName = button.data('modal-name')
+		let modal = $(this);
+		modal.find('.modal-title').text(modalName);
+		modal.find('[name=type]').val(button.data('type'));
+		modal.find('[name=direction]').val(button.data('direction'));
+
+		sumInput.val('');
+		// console.log(button.data());
 
 		/** экранная клава */
-		// покрасим элементы модала
-		let color = (button.data('direction') == 0 ? 'rgb(255 177 177 / 60%)' : 'rgb(131 233 102 / 60%)');
-		let box_shadow = (button.data('direction') == 0 ? 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color : 'inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px '+color);
-		let modal = $(this);
-		modal.find('.modal-title').text(recipient);
-		modal.find('[name=sum]').focus().css('border-color', color).css('box-shadow', box_shadow);
+		// покрасим кнопки
+		let color = (button.data('direction') == 0 ? '#fcc' : '#afa');
+		$('.row-fluid > a.btn').css('border-color', color);
 
 		// отработаем нажатия
 		$('#keyboard .row-fluid .btn.key').on('click', function (event) {
 			let keyboard = $(event.currentTarget);
-			let sumInput = $('[name=sum]');
 			sumInput.val($('[name=sum]').val() + $(event.currentTarget).text())
 		})
 		/** /экранная клава */
 	})
 
+
+	// при закрытии модала нужно откл обработку нажатий на экранную клаву
+	$('.modal').on('hidden.bs.modal', function (event) {
+		$('#keyboard .row-fluid .btn.key').off();
+	} )
 
 	// заполним селект клиентов сразу после вызова модала
 	$('#modal-request').on('show.bs.modal', function (e) {

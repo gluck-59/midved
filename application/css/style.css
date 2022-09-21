@@ -55,8 +55,8 @@ div#keyboard .row-fluid {
 }
 .row-fluid > a.btn {
 	font-size: 3em;
-	border: solid 1px #444;
+	border: solid 2px #6e6e6e;
 	height: 10vh;
 	width: 30vw;
-	/*line-height: 1.6em;*/
+	line-height: 100%;
 }
