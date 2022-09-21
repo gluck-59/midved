@@ -7,6 +7,9 @@
 	($request->sum > 0 ? $sumStatus = 'label label-success' : '');
 
 	// платежи
+	$currency = new NumberFormatter( 'ru_RU', NumberFormatter::DECIMAL );
+	$currency->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
+
 	$prihod = 0.0;
 	$rashod = 0.0;
 	$tableHtml = '';
@@ -27,9 +30,6 @@
 			case 0: $paymentType = 'Работа'; break;
 			case 1: $paymentType = 'Накладные'; break;
 		}
-
-		$currency = new NumberFormatter( 'ru_RU', NumberFormatter::DECIMAL );
-		$currency->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
 
 		$tableHtml .= '<tr>
 			<td>'.$payment->created.'</td>
