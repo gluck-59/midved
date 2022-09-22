@@ -2,9 +2,12 @@
 
 	class Request extends CI_Controller
 	{
-		const STATUS_NEW = 0;
-		const STATUS_WORK = 1;
-		const STATUS_DONE = 2;
+		const STATUS_NEW = ['status' => 0, 'statusText' => 'Новая'];
+		const STATUS_WORK = ['status' => 1, 'statusText' => 'Работаем'];
+		const STATUS_DONE = ['status' => 2, 'statusText' => 'Готово'];
+
+		const STATUSES = ['Новая', 'В работе', 'Готово'];
+
 		public $payments;
 		function __construct()
 		{
@@ -61,10 +64,22 @@
 		}
 
 
-
-
+		/**
+		 * пишет заметку
+		 * @return void
+		 */
 		public function setNotes() {
 			$data = $this->input->get_post(null, TRUE);
 			echo $this->RequestModel->setNotes($data);
+		}
+
+
+		/**
+		 * пишет новый статус заявки
+		 * @return void
+		 */
+		public function setStatus() {
+			$data = $this->input->get_post(null, TRUE);
+			echo $this->RequestModel->setStatus($data);
 		}
     }

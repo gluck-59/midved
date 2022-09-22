@@ -1,28 +1,10 @@
 $(document).on('ready', function (){
 	console.warn('стр загружена');
 
-	// кнопки +/- приходы-расходы
-	$('.paymentEdit').on('click', function (event) {
-		// накладные
-		if (event.currentTarget.dataset.type == 0) {
-			if (event.currentTarget.dataset.direction == 0) { // расход
-				console.log('накл расход')
-			} else {
-				console.log('накл приход')
-			}
-		}
-		//работа
-		if (event.currentTarget.dataset.type == 1) {
-			if (event.currentTarget.dataset.direction == 0) { // расход
-				console.log('работа расход')
-			} else {
-				console.log('работа приход')
-			}
-		}
-	});
 
-
-	// отправка приход-расход
+	/**
+	 * создает приход-расход
+ 	 */
 	$('#calculate').on('click', function (event) {
 		var prihodRashodModal = $('#modalPrihodRashod');
 		let sum = $(prihodRashodModal).find('#sum').val();
@@ -47,8 +29,9 @@ $(document).on('ready', function (){
 	});
 
 
-
-	// редактирование приход-расход
+	/**
+	 * редактирование приход-расход
+	 */
 	$('.editPayment').on('blur', function (event) {
 		let postData = {};
 		postData.paymentId = event.currentTarget.parentElement.parentElement.id;
@@ -60,10 +43,13 @@ $(document).on('ready', function (){
 			if (data == 1) location.reload();
 		})
 	})
-	// /редактирование приход-расход
 
 
-	// удаление приход-расход
+
+
+	/**
+	 * удаление приход-расход
+	 */
 	$('.deletePayment').on('click', function (event) {
 		if (!confirm('Удалить строку?')) return;
 		$.post('/payment/delete', {'id': event.currentTarget.id}, function (data) {
@@ -73,8 +59,9 @@ $(document).on('ready', function (){
 	} )
 
 
-
-	// новая заявка
+	/**
+	 * новая заявка
+	 */
 	$('#addRequest').on('click', function (event) {
 		let modal = $('#modal-request');
 		let sendData = {
@@ -88,9 +75,10 @@ $(document).on('ready', function (){
 
 
 
-	// сохранение заметок
+	/**
+	 * сохраняет заметку в заявке
+	 */
 	$('#notes').on('blur', function (event) {
-console.log('textarea', event.currentTarget.dataset.requestId, $(event.currentTarget).val());
 		let sendData = {
 			'requestId': event.currentTarget.dataset.requestId,
 			'notes': $(event.currentTarget).val()
@@ -100,7 +88,46 @@ console.log('textarea', event.currentTarget.dataset.requestId, $(event.currentTa
 		})
 	})
 
+
+
+	/**
+	 * устанавливает статус заявки
+	 */
+	$('.selectStatus').on('click', function (event) {
+		let sendData = {
+			'statusId': this.id,
+			'requestId': $('#requestId').val()
+		};
+		$.post('/request/setStatus', sendData, function (data) {
+			if (data == 1) window.location.href='/request';
+		})
+	})
+
+
 }) // document ready
+
+
+
+// кнопки +/- приходы-расходы
+$('.paymentEdit').on('click', function (event) {
+	// накладные
+	if (event.currentTarget.dataset.type == 0) {
+		if (event.currentTarget.dataset.direction == 0) { // расход
+			console.log('накл расход')
+		} else {
+			console.log('накл приход')
+		}
+	}
+	//работа
+	if (event.currentTarget.dataset.type == 1) {
+		if (event.currentTarget.dataset.direction == 0) { // расход
+			console.log('работа расход')
+		} else {
+			console.log('работа приход')
+		}
+	}
+});
+
 
 // календарь во весь экран
 $("#ical").on('load', function (){

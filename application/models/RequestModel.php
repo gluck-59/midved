@@ -59,8 +59,20 @@
 
 
 
+		/**
+		 * пишет заметку
+		 * @param array $requestData
+		 * @return int
+		 */
 		public function setNotes(array $requestData) : int {
 			$sql = 'UPDATE request SET notes = '.$this->db->escape($requestData['notes']).' WHERE id = '.$requestData['requestId'];
+			return  $this->db->query($sql);
+		}
+
+
+		public function setStatus($statusData)
+		{
+			$sql = 'UPDATE request SET status = '.$this->db->escape($statusData['statusId']).' WHERE id = '.$statusData['requestId'];
 			return  $this->db->query($sql);
 		}
 	}
