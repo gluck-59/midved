@@ -61,7 +61,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
 				<h3 class="modal-title" id="prihod_rashod"></h3>
-				<select id="requestList" data-live-search="true"></select>
+				<select id="requestList" data-live-search="true" title="В какую заявку платеж?"></select>
 				<label for="paymentType" style="vertical-align: -webkit-baseline-middle;">
 					<input type="checkbox" id="paymentType" name="paymentType" class="1form-control" style="zoom: 1.3;">
 					работа
