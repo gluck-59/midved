@@ -143,14 +143,13 @@
 							</h3>
 							<div class="row">
 								<div class="col-xs-6 text-right">
-									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="0" data-direction="0" data-modal-name="Работа" >Work</div>
-									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: расход" data-type="1" data-direction="0" >Extra</div>
-
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="false" data-direction="0">Work</div>
+									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: расход" data-type="true" data-direction="0">Extra</div>
 								</div>
 
 								<div class="col-xs-6 text-left">
-									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: приход" data-type="0" data-direction="1" data-modal-name="Работа" >Work</div>
-									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: приход" data-type="1" data-direction="1" data-modal-name="Накладные" >Extra</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: приход" data-type="false" data-direction="1" >Work</div>
+									<div class="btn btn-success paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Накладные: приход" data-type="true" data-direction="1">Extra</div>
 								</div>
 							</div>
 						</center>

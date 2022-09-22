@@ -61,11 +61,16 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
 				<h3 class="modal-title" id="prihod_rashod"></h3>
+				<select id="requestList" data-live-search="true"></select>
+				<label for="paymentType" style="vertical-align: -webkit-baseline-middle;">
+					<input type="checkbox" id="paymentType" name="paymentType" class="1form-control" style="zoom: 1.3;">
+					работа
+				</label>
 			</div>
 			<div class="modal-body">
 				<input type="number" pattern="[0-9]*" id="sum" class="form-control" style="zoom: 3;">
 				<input hidden id="requestId" placeholder="заявка #">
-				<input hidden id="type" placeholder="тип">
+				<input hidden id="typePayment" placeholder="тип">
 				<input hidden id="direction" placeholder="direction">
 				<div class="clearfix">&nbsp;</div>
 			</div>
@@ -119,7 +124,7 @@
 		let modal = $(this);
 		modal.find('.modal-title').text(modalName);
 		modal.find('#requestId').val(requestId);
-		modal.find('#type').val(button.data('type'));
+		modal.find('#typePayment').val(button.data('type'));
 		modal.find('#direction').val(button.data('direction'));
 
 		sumInput.val('');
@@ -132,10 +137,20 @@
 
 		// отработаем нажатия
 		$('#keyboard .row-fluid .btn.key').on('click', function (event) {
-			let keyboard = $(event.currentTarget);
+			// let keyboard = $(event.currentTarget);
 			sumInput.val($('#sum').val() + $(event.currentTarget).text())
 		})
 		/** /экранная клава */
+
+
+
+		// это модал платежа с главной
+		if (modal.attr('id') == 'modalPrihodRashod' && requestId == 0 ) {
+			fillRequestSelect();
+		} else {
+			$('select#requestList').selectpicker("hide");
+			// скрыть чекбокс
+		}
 	})
 
 
@@ -174,8 +189,11 @@
 				$(option).attr('data-subtext', currentObject.city+ ' ' +currentObject.address);
 				select.append(option);
 			})
-			$('[name=equipments]').selectpicker("refresh");
+			$('[name=equipments]').selectpicker("refresh")
 		})
 
 	});
+
+
+
 </script>

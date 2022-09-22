@@ -27,6 +27,15 @@
 
 
 		/**
+		 * @return void
+		 */
+		public function getAll()
+		{
+			echo json_encode($this->RequestModel->getRequests());
+		}
+
+
+		/**
 		 * редактирование заявки
 		 * @param int|null $requestId
 		 * @return void
@@ -49,7 +58,7 @@
 			$this->payments = $this->load->model('PaymentModel');
 			$paymentData = $this->input->get_post(null, TRUE);
 
-			$res = $this->PaymentModel->payment($paymentData);
+			$res = $this->PaymentModel->set($paymentData);
 			echo json_encode($res);
 		}
 

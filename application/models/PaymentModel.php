@@ -36,11 +36,13 @@
 		 * @param array $paymentData
 		 * @return mixed
 		 */
-		public function payment(array $paymentData) {
+		public function set(array $paymentData) {
 			if ($paymentData['direction'] == 0) $sum = -$paymentData['sum']; 	// расход
 			elseif ($paymentData['direction'] == 1) $sum = $paymentData['sum'];	// приход
 
-			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.(int) $paymentData['type'].', '.$sum*100 .', '.$this->db->escape($paymentData['note']).')';
+			$type = 0;
+			if ($paymentData['type'] == 'true') $type = 1;
+			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.$type.', '.$sum*100 .', '.$this->db->escape($paymentData['note']).')';
 			return  $this->db->query($sql);
 		}
 

@@ -9,11 +9,11 @@ $(document).on('ready', function (){
 		var prihodRashodModal = $('#modalPrihodRashod');
 		let sum = $(prihodRashodModal).find('#sum').val();
 		if (sum == '') return;
-		let requestId =  $(prihodRashodModal).find('#requestId').val();
-		let type =  $(prihodRashodModal).find('#type').val();
+		let requestId =  $(prihodRashodModal).find('#requestId').val() || $('#requestList').val();
+		let type =  $(prihodRashodModal).find('#typePayment').val() || prihodRashodModal.find('#paymentType').prop('checked');
 		let direction =  $(prihodRashodModal).find('#direction').val();
 		let note =  $(prihodRashodModal).find('#notes').val();
-		console.log('отправка', requestId, type, direction, sum, note)
+		// console.log('отправка', requestId, type, direction, sum, note)
 
 		sendData = {
 			'requestId': requestId,
@@ -22,6 +22,7 @@ $(document).on('ready', function (){
 			'sum': sum,
 			'note': note
 		};
+		console.log('sendData', sendData);
 		$.post('/request/payment/', sendData, function (data) {
 			console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();
@@ -130,6 +131,26 @@ $('.paymentEdit').on('click', function (event) {
 
 
 // календарь во весь экран
-$("#ical").on('load', function (){
-	$("#ical").removeClass("iframe-class-resize").css({ width : innerWidth, height : innerHeight })
-})
+// $("#ical").on('load', function (){
+// 	$("#ical").removeClass("iframe-class-resize").css({ width : innerWidth, height : innerHeight })
+// })
+
+/**
+ * заполняет селектор заявок с главной
+ */
+function fillRequestSelect() {
+	$.getJSON( "/request/getAll", function( data ) {
+		let select = $('#requestList');
+		select.text('');
+
+		$.each(data, function (index, currentObject) {
+			var option = new Option();
+			$(option).html(currentObject.id+ '. '+ currentObject.name);
+			$(option).val(currentObject.id);
+			$(option).attr('data-subtext', currentObject.customer+' '+currentObject.city+' '+ currentObject.equipment);
+			select.append(option);
+		})
+		$('select#requestList').selectpicker("refresh");
+
+	});
+}
