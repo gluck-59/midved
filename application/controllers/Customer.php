@@ -36,11 +36,11 @@
 			$customerData = $this->input->get_post(null, TRUE);
 			// это новый
 			if ($customerData['customerId'] == '') {
-				return $this->CustomerModel->create($customerData);
+				echo $this->CustomerModel->create($customerData);
 			}
 			// это старый
 			else {
-				return $this->CustomerModel->edit($customerData);
+				echo $this->CustomerModel->edit($customerData);
 			}
 
 

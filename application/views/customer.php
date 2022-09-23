@@ -7,7 +7,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-4 col-xs-12">
-			<h3>Клиенты <small class="text-muted">просто список</small></h3>
+			<h3>Клиенты <small class="text-muted">список</small></h3>
 <!--			<p class="text-muted"></p>-->
 		</div>
 	</div>
