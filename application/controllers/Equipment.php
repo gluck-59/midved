@@ -29,4 +29,26 @@
 		public function getEquipmentByCustomerId(string $customerId = '') {
 			echo json_encode($this->EquipmentModel->getEquipment([$customerId]));
 		}
+
+
+		/**
+		 * создает станок
+		 * @return void
+		 */
+		public function create() {
+			$equipmentData = $this->input->get_post(null, TRUE);
+			$res = $this->EquipmentModel->create($equipmentData);
+			echo $res;
+		}
+
+
+		/**
+		 * удаляет станок
+		 * @return void
+		 */
+		public function delete() {
+			$equipmentData = $this->input->get_post(null, TRUE);
+			$res = $this->EquipmentModel->delete($equipmentData);
+			echo $res;
+		}
     }

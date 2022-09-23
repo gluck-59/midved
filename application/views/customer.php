@@ -1,24 +1,50 @@
 <?php
 //		prettyDump($customers);
 ?>
+<?php
+	//	prettyDump($requests[0]);
+?>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-6">
+		<div class="col-lg-4 col-xs-12">
 			<h3>Клиенты <small class="text-muted">просто список</small></h3>
-			<!--			<p class="text-muted">Наверное еще надо возможность добвлять и редактировать. Удалять думаю будет низзя.</p>-->
+<!--			<p class="text-muted"></p>-->
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-lg-2 col-xs-12">
+			<div class="btn-block">
+				<button id="newCilent" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#newCustomer">Новый клиент</button>
+			</div>
+		</div>
+
+		<div class="clearfix hidden-xs">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-xs-12">
 			<table class="table table-condensed table-bordered table-condensed">
 				<thead>
 				<th>Название</th>
-<!--				<th>Адрес</th>-->
+				<th></th>
+				<!--				<th>Адрес</th>-->
 				</thead>
 				<?php
 					foreach ($customers as $customer) { ?>
 						<tr>
-							<td><?=$customer->name?></td>
+							<td>
+								<a href="#" id="editCustomer"><?=$customer->name?></a>
+								<br>
+								<span class="small text-muted"><?=$customer->data?></span>
+							</td>
+							<td><button type="button" class="close deleteCustomer" id="<?=$customer->id?>"><i class="glyphicon glyphicon-remove"></i></button></td>
 						</tr>
 					<?php }	?>
 			</table>
+
 		</div>
 	</div>
 </div>
+
+

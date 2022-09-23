@@ -105,6 +105,94 @@ $(document).on('ready', function (){
 	})
 
 
+
+	/**
+	 * создает клиента
+	 */
+	$('#createCustomer').on('click', function (event) {
+		let modal = $('.modal#newCustomer');
+		let sendData = {
+			'customerName': modal.find('#name').val(),
+			'customerData': modal.find('#addidionalData').val(),
+		};
+		$.post('/customer/create', sendData, function (data) {
+			if (data > 0) window.location.href='/customer';
+		})
+	})
+
+
+
+
+	/**
+	* удаляет клиента
+	 * затем через базу по цепочке удаляются все связанные станки, заявки и платежи
+	 */
+	$('.deleteCustomer').on('click', function (event) {
+		if (!confirm('При удалении клиента удалятся все его оборудование, документы, заявки и платежи.')) return;
+		let sendData = {
+			'customerId': this.id,
+		};
+		$.post('/customer/delete', sendData, function (data) {
+			if (data == 1) window.location.href='/customer';
+		})
+	})
+
+
+
+
+	/**
+	 * создает оборудование
+	 */
+	$('#saveEquipment').on('click', function (event) {
+		let modal = $('.modal#modal-equipment');
+		let sendData = {
+			'owner': modal.find('[name=customers]').val(),
+			'name': modal.find('#name').val(),
+			'mark': modal.find('#mark').val(),
+			'city': modal.find('#city').val(),
+			'address': modal.find('#address').val(),
+		};
+		$.post('/equipment/create', sendData, function (data) {
+			if (data > 0) window.location.href='/equipment';
+		})
+	})
+
+
+/**
+ * редактирует оборудование
+ */
+$('.editEquipment').on('click', function (event) {
+	let sendData = {
+		'id': modal.find('#name').val(),
+
+	};
+	$.post('/equipment/edit', sendData, function (data) {
+		if (data == 1) window.location.href='/equipment';
+	})
+})
+
+
+
+
+
+	/**
+	 * удаляет оборудование
+	 * затем через базу по цепочке удаляются все связанные станки, заявки и платежи
+	 */
+	$('.deleteEquipment').on('click', function (event) {
+		if (!confirm('При удалении оборудования удалятся все его документы, заявки и платежи.')) return;
+		let sendData = {
+			'equipmentId': this.id,
+		};
+		$.post('/equipment/delete', sendData, function (data) {
+			if (data == 1) window.location.href='/equipment';
+		})
+	})
+
+
+
+
+
 }) // document ready
 
 

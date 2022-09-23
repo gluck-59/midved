@@ -30,7 +30,7 @@ class Welcome extends CI_Controller
 
 	public function index()
 	{
-		$this->customer = $this->customerModel->getCustomers();
+		$this->customer = $this->customerModel->get();
 		$this->request = $this->RequestModel->getRequests();
 		$this->equipment = $this->equipmentModel->getEquipment();
 
