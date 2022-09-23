@@ -107,15 +107,16 @@ $(document).on('ready', function (){
 
 
 	/**
-	 * создает клиента
+	 * создает или редактирует клиента
 	 */
-	$('#createCustomer').on('click', function (event) {
-		let modal = $('.modal#newCustomer');
+	$('#saveCustomer').on('click', function (event) {
+		let modal = $('.modal#modal-customer');
 		let sendData = {
+			'customerId': modal.find('#customerId').val(),
 			'customerName': modal.find('#name').val(),
-			'customerData': modal.find('#addidionalData').val(),
+			'customerData': modal.find('#data').val(),
 		};
-		$.post('/customer/create', sendData, function (data) {
+		$.post('/customer/save', sendData, function (data) {
 			if (data > 0) window.location.href='/customer';
 		})
 	})

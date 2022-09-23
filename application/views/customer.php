@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-lg-2 col-xs-12">
 			<div class="btn-block">
-				<button id="newCilent" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#newCustomer">Новый клиент</button>
+				<button id="newCilent" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-customer">Новый клиент</button>
 			</div>
 		</div>
 
@@ -34,7 +34,8 @@
 					foreach ($customers as $customer) { ?>
 						<tr>
 							<td>
-								<a href="#" id="editCustomer"><?=$customer->name?></a>
+								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$customer->id?>" data-name="<?=$customer->name?>" data-data="<?=$customer->data?>" ><?=$customer->name?></a>
+
 								<br>
 								<span class="small text-muted"><?=$customer->data?></span>
 							</td>

@@ -30,6 +30,24 @@
 		}
 
 
+
+		/**
+		 * редактирует заказчика
+		 * @param array $customerData
+		 * @return mixed
+		 */
+		public function edit(array $customerData) {
+			$sql = 'UPDATE customer SET 
+			name = '.$this->db->escape($customerData['customerName']).', 
+			data = '.$this->db->escape($customerData['customerData']).' 
+			WHERE id = '.$this->db->escape_str($customerData['customerId']);
+			return $this->db->query($sql);
+		}
+
+
+
+
+
 		/**
 		 * удаляет клиента со всеми потрохами — станками, заявками, документами, платежами
 		 * @param array $customerData

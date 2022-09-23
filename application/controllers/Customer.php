@@ -28,10 +28,31 @@
 
 
 		/**
+		 * создает или редактирует клиента
+		 * разбирает что надо сделать
+		 * @return void
+		 */
+		public function save() {
+			$customerData = $this->input->get_post(null, TRUE);
+			// это новый
+			if ($customerData['customerId'] == '') {
+				return $this->CustomerModel->create($customerData);
+			}
+			// это старый
+			else {
+				return $this->CustomerModel->edit($customerData);
+			}
+
+
+		}
+
+
+		/**
 		 * создает клиента
 		 * @return void
 		 */
 		public function create() {
+			die('create customer ?');
 			$customerData = $this->input->get_post(null, TRUE);
 			$res = $this->CustomerModel->create($customerData);
 			echo $res;

@@ -55,8 +55,8 @@
 
 
 
-<!-- Modal newCustomer -->
-<div class="modal fade" id="newCustomer" tabindex="-1" role="dialog" aria-labelledby="newCustomer" aria-hidden="true">
+<!-- Modal Customer -->
+<div class="modal fade" id="modal-customer" tabindex="-1" role="dialog" aria-labelledby="newCustomer" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -64,14 +64,15 @@
 				<h4 class="modal-title" id="paymentLabel">Клиент</h4>
 			</div>
 			<div class="modal-body">
-				<input type="text" id="name" class="form-control" placeholder="Название">
+				<input hidden id="customerId" placeholder="customerId">
+				<input type="text" id="name" class="form-control" placeholder="Название (обязательно)">
 				<div class="clearfix">&nbsp;</div>
-				<textarea type="text" id="addidionalData" class="form-control" placeholder="Какие-то дополнительные данные"></textarea>
+				<textarea type="text" id="data" class="form-control" placeholder="Дополнительные данные"></textarea>
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-				<button type="button" id="createCustomer" class="btn btn-success">OK</button>
+				<button type="button" id="saveCustomer" class="btn btn-success">OK</button>
 			</div>
 		</div>
 	</div>
@@ -80,7 +81,7 @@
 
 
 
-<!-- Modal newEquipment -->
+<!-- Modal Equipment -->
 <div class="modal fade" id="modal-equipment" tabindex="-1" role="dialog" aria-labelledby="newEquipment" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -191,6 +192,7 @@
 		modal.find('#mark').val(button.data('mark'));
 		modal.find('#city').val(button.data('city'));
 		modal.find('#address').val(button.data('address'));
+		modal.find('#data').val(button.data('data'));
 
 		sumInput.val('');
 		// console.log(button.data());
@@ -216,9 +218,9 @@
 			$('select#requestList').selectpicker("hide");
 			// скрыть чекбокс
 		}
-		// это модал создания нового клиента
-		// if (modal.attr('id') == 'newCustomer' && requestId == 0 ) {
-		// 	createCustomer(modal);
+		// это модал создания-редактироваиня клиента
+		// if (modal.attr('id') == 'modal-customer' && requestId == 0 ) {
+		// 	saveCustomer(modal);
 		// }
 	})
 

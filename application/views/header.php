@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li class="<?=($this->router->class == 'request' ? 'active':'' )?>"><a href="/request"><i class="glyphicon glyphicon-list"></i>&nbsp;&nbsp;Заявки</a></li>
 				<li class="<?=($this->router->class == 'equipment' ? 'active':'' )?>"><a href="/equipment"><i class="glyphicon glyphicon-hdd"></i>&nbsp;&nbsp;Обрудование</a></li>
 				<li class="<?=($this->router->class == 'customer' ? 'active':'' )?>"><a href="/customer"><i class="glyphicon glyphicon-object-align-bottom"></i>&nbsp;&nbsp;Клиенты</a></li>
-				<li class="<?=($this->router->class == 'payment' ? 'active':'' )?>"><a href="/payment"><i class="glyphicon glyphicon-ruble"></i>&nbsp;&nbsp;Расчеты</a></li>
+				<li class="<?=($this->router->class == 'payment' ? 'active':'' )?>"><a href="/report"><i class="glyphicon glyphicon-ruble"></i>&nbsp;&nbsp;Отчеты</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 	</div>
