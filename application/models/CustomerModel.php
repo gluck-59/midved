@@ -14,7 +14,12 @@
 //		}
 
 
-		public function create(array $customerData) {
+		/**
+		 * создвет заказчика
+		 * @param array $customerData
+		 * @return int
+		 */
+		public function create(array $customerData) : int {
 			$sql = 'INSERT INTO customer SET name = '.$this->db->escape($customerData['customerName']).', data = '.$this->db->escape($customerData['customerData']);
 			$this->db->query($sql);
 			return $this->db->insert_id();
@@ -34,9 +39,9 @@
 		/**
 		 * редактирует заказчика
 		 * @param array $customerData
-		 * @return mixed
+		 * @return int
 		 */
-		public function edit(array $customerData) {
+		public function edit(array $customerData) : int {
 			$sql = 'UPDATE customer SET 
 			name = '.$this->db->escape($customerData['customerName']).', 
 			data = '.$this->db->escape($customerData['customerData']).' 

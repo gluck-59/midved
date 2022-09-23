@@ -106,6 +106,7 @@ $(document).on('ready', function (){
 
 
 
+
 	/**
 	 * создает или редактирует клиента
 	 */
@@ -123,7 +124,6 @@ $(document).on('ready', function (){
 
 
 
-
 	/**
 	* удаляет клиента
 	 * затем через базу по цепочке удаляются все связанные станки, заявки и платежи
@@ -137,7 +137,6 @@ $(document).on('ready', function (){
 			if (data == 1) window.location.href='/customer';
 		})
 	})
-
 
 
 
