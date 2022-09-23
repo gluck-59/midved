@@ -32,12 +32,39 @@
 
 
 		/**
+		 * разбирает create или edit станка
+		 * вызывает соотв методы
+		 * @return void
+		 */
+		public function save() {
+			$equipmentData = $this->input->get_post(null, TRUE);
+			// это новый станок
+			if ($equipmentData['customerField'] == '') {
+				echo self::create($equipmentData);
+			}
+			// это старый станок
+			else {
+				echo self::edit($equipmentData);
+			}
+		}
+
+
+		/**
 		 * создает станок
 		 * @return void
 		 */
-		public function create() {
-			$equipmentData = $this->input->get_post(null, TRUE);
+		public function create($equipmentData) {
 			$res = $this->EquipmentModel->create($equipmentData);
+			echo $res;
+		}
+
+
+		/**
+		 * редактирует станок
+		 * @return void
+		 */
+		public function edit($equipmentData) {
+			$res = $this->EquipmentModel->edit($equipmentData);
 			echo $res;
 		}
 

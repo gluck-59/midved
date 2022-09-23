@@ -141,18 +141,20 @@ $(document).on('ready', function (){
 
 
 	/**
-	 * создает оборудование
+	 * создает и редактирует оборудование
 	 */
 	$('#saveEquipment').on('click', function (event) {
 		let modal = $('.modal#modal-equipment');
 		let sendData = {
-			'owner': modal.find('[name=customers]').val(),
+			'customerSelector': modal.find('[name=customers]').val(),
+			'customerField': modal.find('#customerId').val(),
+			'equipmentId': modal.find('#equipmentId').val(),
 			'name': modal.find('#name').val(),
 			'mark': modal.find('#mark').val(),
 			'city': modal.find('#city').val(),
 			'address': modal.find('#address').val(),
 		};
-		$.post('/equipment/create', sendData, function (data) {
+		$.post('/equipment/save', sendData, function (data) {
 			if (data > 0) window.location.href='/equipment';
 		})
 	})

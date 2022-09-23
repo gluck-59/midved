@@ -40,13 +40,31 @@
 		 */
 		public function create(array $equipmentData) {
  			$sql = 'INSERT INTO equipment SET 
-				customer_id = '.$this->db->escape_str($equipmentData['owner']).', 
+				customer_id = '.$this->db->escape($equipmentData['customerSelector']).', 
 				name = '.$this->db->escape($equipmentData['name']).', 
 				mark = '.$this->db->escape($equipmentData['mark']).', 
 				address = '.$this->db->escape($equipmentData['address']).', 
 				city = '.$this->db->escape($equipmentData['city']);
 			$this->db->query($sql);
 			return $this->db->insert_id();
+		}
+
+
+
+		/**
+		 * редактирует станок
+		 * @param array $equipmentData
+		 * @return mixed
+		 */
+		public function edit(array $equipmentData) {
+ 			$sql = 'UPDATE equipment SET 
+				name = '.$this->db->escape($equipmentData['name']).', 
+				mark = '.$this->db->escape($equipmentData['mark']).', 
+				address = '.$this->db->escape($equipmentData['address']).', 
+				city = '.$this->db->escape($equipmentData['city']).
+				' WHERE id = '.$this->db->escape_str($equipmentData['equipmentId']);
+
+			return $this->db->query($sql);
 		}
 
 

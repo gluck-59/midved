@@ -184,7 +184,7 @@
 
 		// оборудование (@TODO сделать универсальный заполнятель)
 		// заполнение полей на редактирование
-		console.log('заполняем',button.data())
+		// console.log('заполняем',button.data())
 		modal.find('#equipmentId').val(button.data('equipment_id'));
 		modal.find('#customerId').val(button.data('customer_id'));
 		modal.find('#name').val(button.data('name'));
@@ -223,10 +223,15 @@
 	})
 
 
+
+
 	// при закрытии модала нужно откл обработку нажатий на экранную клаву
 	$('.modal').on('hidden.bs.modal', function (event) {
 		$('#keyboard .row-fluid .btn.key').off();
 	} )
+
+
+
 
 	// заполним селект клиентов сразу после вызова модала
 	$('#modal-request, #modal-equipment').on('show.bs.modal', function (e) {
@@ -259,7 +264,7 @@
 			let select = $('[name=equipments]');
 			select.html('');
 			$.each(data, function (index, currentObject) {
-				console.log('currentObject', currentObject);
+				// console.log('currentObject', currentObject);
 				var option = new Option();
 				$(option).html(currentObject.name+' '+currentObject.mark);
 				$(option).val(currentObject.id);
