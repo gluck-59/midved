@@ -93,8 +93,8 @@
 				<select class="" name="customers" data-live-search="true" title="Выберите клиента..."></select>
 				<div class="clearfix">&nbsp;</div>
 
-				<input 1hidden id="equipmentId">
-				<input 1hidden id="customerId">
+				<input hidden id="equipmentId">
+				<input hidden id="customerId">
 				<input type="text" id="name" class="form-control" placeholder="Название оборудования (обязательно)">
 				<div class="clearfix">&nbsp;</div>
 				<input type="text" id="mark" class="form-control" placeholder="Марка/модель">
@@ -233,13 +233,15 @@
 		console.log('загружен модал'+e.currentTarget.id)
 		$.getJSON( "/customer/getAll", function( data ) {
 			let select = $('[name=customers]');
+			select.text('');
+			select.selectpicker("refresh");
 			$.each(data, function (index, currentObject) {
 				var option = new Option();
 				$(option).html(currentObject.name);
 				$(option).val(currentObject.id);
 				select.append(option);
 			})
-			$('[name=customers]').selectpicker("refresh");
+			select.selectpicker("refresh");
 
 
 			// если это #modal-equipment и equipment_id непустое, то это редактирование оборудования и нужно установть селектор
