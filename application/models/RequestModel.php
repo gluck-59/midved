@@ -33,7 +33,7 @@
 		 * @return object
 		 */
 		public function edit(int $requestId = null) : object {
-			$sql = "select DISTINCT r.id, r.equipment_id, r.name, r.status, r.notes, DATE_FORMAT(r.created, '%d.%m.%Y') created, DATE_FORMAT(r.updated, '%d.%m.%Y') updated
+			$sql = "select DISTINCT r.id, r.equipment_id, r.name, r.status, r.notes, e.notes equipment_notes, DATE_FORMAT(r.created, '%d.%m.%Y') created, DATE_FORMAT(r.updated, '%d.%m.%Y') updated
 			,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum, 
 			e.name equipment, e.mark, e.city, e.address, c.name customer_name
 			FROM  request r 

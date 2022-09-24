@@ -104,7 +104,7 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="" style="width: 30em; max-width: 80vw; padding: 5px;">
 									<div class='items_value' style="opacity: 0.6">
-										<?=$request->notes?>
+										<?=$request->equipment_notes?>
 									</div>
 								</div>
 							</div>
