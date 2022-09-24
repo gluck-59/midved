@@ -104,17 +104,7 @@
 								</a>
 								<div class="dropdown-menu" aria-labelledby="" style="width: 30em; max-width: 80vw; padding: 5px;">
 									<div class='items_value' style="opacity: 0.6">
-										<table id="equipmentDetailsData" class="table table-responsive table-striped table-condensed table-border">
-											<thead>
-												<tr>
-													<th>Голова</th>
-													<th>Ноги</th>
-													<th>Жопа</th>
-													<th>Серийник</th>
-												</tr>
-											</thead>
-											<tbody></tbody>
-										</table>
+										<?=$request->notes?>
 									</div>
 								</div>
 							</div>
