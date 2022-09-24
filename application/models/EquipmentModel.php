@@ -27,7 +27,7 @@
 		{
 			$where = 'WHERE 1 ';
 			if (!empty($customerIds)) $where .= 'AND c.id IN('.implode(',', $customerIds).')';
-			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer from equipment e JOIN customer c ON c.id = e.customer_id $where";
+			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer, e.serial, e.notes from equipment e JOIN customer c ON c.id = e.customer_id $where";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();
 		}
@@ -42,6 +42,8 @@
  			$sql = 'INSERT INTO equipment SET 
 				customer_id = '.$this->db->escape($equipmentData['customerSelector']).', 
 				name = '.$this->db->escape($equipmentData['name']).', 
+				serial = '.$this->db->escape($equipmentData['serial']).', 
+				notes = '.$this->db->escape($equipmentData['notes']).', 
 				mark = '.$this->db->escape($equipmentData['mark']).', 
 				address = '.$this->db->escape($equipmentData['address']).', 
 				city = '.$this->db->escape($equipmentData['city']);
@@ -59,6 +61,8 @@
 		public function edit(array $equipmentData) {
  			$sql = 'UPDATE equipment SET 
 				name = '.$this->db->escape($equipmentData['name']).', 
+				serial = '.$this->db->escape($equipmentData['serial']).', 
+				notes = '.$this->db->escape($equipmentData['notes']).', 
 				mark = '.$this->db->escape($equipmentData['mark']).', 
 				address = '.$this->db->escape($equipmentData['address']).', 
 				city = '.$this->db->escape($equipmentData['city']).

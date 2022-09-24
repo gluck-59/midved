@@ -162,7 +162,7 @@
 					<div class="col-md-6 items_container">
 						<div class="items_head">Заметки</div>
 						<center class="items_value">
-							<textarea id="notes" data-request-id="<?=$request->id?>" class="form-control"><?=$request->notes?></textarea>
+							<textarea id="requestNotes" data-request-id="<?=$request->id?>" class="form-control"><?=$request->notes?></textarea>
 						</center>
 					</div>
 				</div>

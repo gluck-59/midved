@@ -31,7 +31,7 @@
 				<?php
 					foreach ($equipments as $equipment) { ?>
 					<td>
-						<a href="#" id="editEquipment" data-equipment_id="<?=$equipment->id?>" data-customer_id="<?=$equipment->customer_id?>" data-name="<?=$equipment->name?>" data-mark="<?=$equipment->mark?>" data-city="<?=$equipment->city?>" data-address="<?=$equipment->address?>" data-toggle="modal" class="btn-open-modal" data-target="#modal-equipment">
+						<a href="#" id="editEquipment" data-equipment_id="<?=$equipment->id?>" data-customer_id="<?=$equipment->customer_id?>" data-name="<?=$equipment->name?>" data-mark="<?=$equipment->mark?>" data-city="<?=$equipment->city?>" data-address="<?=$equipment->address?>" data-serial="<?=$equipment->serial?>" data-notes="<?=$equipment->notes?>" data-toggle="modal" class="btn-open-modal" data-target="#modal-equipment">
 							<?=$equipment->name?>&nbsp;<?=$equipment->mark?><br>
 							<span class="text-muted"><?=$equipment->customer?></span>
 						</a>

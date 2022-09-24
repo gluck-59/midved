@@ -96,13 +96,31 @@
 
 				<input hidden id="equipmentId">
 				<input hidden id="customerId">
-				<input type="text" id="name" class="form-control" placeholder="Название оборудования (обязательно)">
+				<div class="row">
+					<div class="col-xs-6">
+						<input type="text" id="name" class="form-control" placeholder="Название (обязательно)">
+					</div>
+					<div class="col-xs-6">
+						<input type="text" id="mark" class="form-control" placeholder="Марка/модель">
+					</div>
+				</div>
 				<div class="clearfix">&nbsp;</div>
-				<input type="text" id="mark" class="form-control" placeholder="Марка/модель">
+				<input type="text" id="serial" class="form-control" placeholder="Серийный номер">
 				<div class="clearfix">&nbsp;</div>
-				<input type="text" id="city" class="form-control" placeholder="Город">
+				<div class="row">
+					<div class="col-xs-6">
+						<input type="text" id="city" class="form-control" placeholder="Город">
+					</div>
+					<div class="col-xs-6">
+						<input type="text" id="address" class="form-control" placeholder="Адрес установки">
+					</div>
+				</div>
 				<div class="clearfix">&nbsp;</div>
-				<input type="text" id="address" class="form-control" placeholder="Адрес установки оборудования">
+				<div class="row">
+					<div class="col-xs-12">
+						<textarea id="notes" class="form-control" placeholder="Дополнительные данные"></textarea>
+					</div>
+				</div>
 				<div class="clearfix">&nbsp;</div>
 			</div>
 			<div class="modal-footer">
@@ -193,6 +211,8 @@
 		modal.find('#city').val(button.data('city'));
 		modal.find('#address').val(button.data('address'));
 		modal.find('#data').val(button.data('data'));
+		modal.find('#serial').val(button.data('serial'));
+		modal.find('#notes').val(button.data('notes'));
 
 		sumInput.val('');
 		// console.log(button.data());
@@ -218,10 +238,7 @@
 			$('select#requestList').selectpicker("hide");
 			// скрыть чекбокс
 		}
-		// это модал создания-редактироваиня клиента
-		// if (modal.attr('id') == 'modal-customer' && requestId == 0 ) {
-		// 	saveCustomer(modal);
-		// }
+
 	})
 
 
@@ -261,8 +278,8 @@
 
 
 	$('[name=customers]').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-		console.log('name=customers событие select', clickedIndex)
-		$.getJSON( "/equipment/getEquipmentByCustomerId/"+clickedIndex, function( data ) {
+		// console.log('name=customers событие select', $('[name=customers]').val())
+		$.getJSON( "/equipment/getEquipmentByCustomerId/"+$('[name=customers]').val(), function( data ) {
 			let select = $('[name=equipments]');
 			select.html('');
 			$.each(data, function (index, currentObject) {
@@ -277,7 +294,5 @@
 		})
 
 	});
-
-
 
 </script>

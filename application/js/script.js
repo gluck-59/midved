@@ -79,7 +79,7 @@ $(document).on('ready', function (){
 	/**
 	 * сохраняет заметку в заявке
 	 */
-	$('#notes').on('blur', function (event) {
+	$('#requestNotes').on('blur', function (event) {
 		let sendData = {
 			'requestId': event.currentTarget.dataset.requestId,
 			'notes': $(event.currentTarget).val()
@@ -153,6 +153,8 @@ $(document).on('ready', function (){
 			'mark': modal.find('#mark').val(),
 			'city': modal.find('#city').val(),
 			'address': modal.find('#address').val(),
+			'serial': modal.find('#serial').val(),
+			'notes': modal.find('#notes').val(),
 		};
 		$.post('/equipment/save', sendData, function (data) {
 			if (data > 0) window.location.href='/equipment';
@@ -244,3 +246,5 @@ function fillRequestSelect() {
 
 	});
 }
+
+

@@ -27,8 +27,6 @@ img#logo {
 .text-muted { opacity: 0.6; }
 
 
-
-
 /*request edit*/
 .items_container {
 	margin-bottom: 1em;
@@ -66,3 +64,5 @@ div#keyboard .row-fluid {
 	width: 30vw;
 	line-height: 100%;
 }
+
+#modal-equipment #notes { height: 20vh; }
