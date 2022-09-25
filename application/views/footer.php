@@ -5,7 +5,7 @@
 		<script src="/application/js/script.js"></script>
 		<?php include_once 'modals.php';?>
 
-		<center class="row" style="position:absolute; left: 35%">
+		<center class="row" style="opacity: 0.4;">
 			<span class="hidden-xs label label-primary">hidden-xs</span>
 			<span class="hidden-sm label label-primary">hidden-sm</span>
 			<span class="hidden-md label label-danger">hidden-md</span>

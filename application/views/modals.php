@@ -18,7 +18,7 @@
 				<input type="text" class="form-control" id="desc" placeholder="Описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
-				<p>Выбираешь клиента и станок. Забиваешь новую заявку. Подробности описываешь внутри. Полноценного лога не делал, чай не многопользовательский CRM :)</p>
+				<p>Выберите клиента и станок. Подробности заявки можно будет добавлять и изменять внутри на всем жизненном циеле заявки.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

@@ -4,8 +4,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-4 col-xs-12">
-			<h3>Заявки <small class="text-muted">просто список</small></h3>
-			<p class="text-muted">Наверное еще надо возможность добвлять и редактировать. Удалять думаю будет низзя.</p>
+			<h3>Заявки <small class="text-muted">список</small></h3>
+<!--			<p class="text-muted">Наверное еще надо возможность добвлять и редактировать. Удалять думаю будет низзя.</p>-->
 		</div>
 	</div>
 
