@@ -193,7 +193,7 @@
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
-
+		console.warn('загружен модал', button.data('target') );
 		let modal = $(this);
 		// платежи
 		modal.find('.modal-title').text(modalName);
@@ -234,17 +234,16 @@
 		// это модал платежа с главной
 		if (modal.attr('id') == 'modalPrihodRashod' && requestId == 0 ) {
 			fillRequestSelect();
-		} else {
+		} else if (modal.attr('id') == 'modalPrihodRashod' && requestId > 0 ) {
 			$('select#requestList').selectpicker("hide");
-			// скрыть чекбокс
+			$('[for=paymentType]').hide();
 		}
-
 	})
 
 
 
 
-	// при закрытии модала нужно откл обработку нажатий на экранную клаву
+	// при закрытии модала нужно откл обработку нажатий на экранную клаву  чтобы потом цифры не двоились
 	$('.modal').on('hidden.bs.modal', function (event) {
 		$('#keyboard .row-fluid .btn.key').off();
 	} )

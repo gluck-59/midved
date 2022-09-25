@@ -20,7 +20,7 @@
      		,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
 			from request r 
 			JOIN equipment e ON e.id = r.equipment_id 
-			    JOIN customer c ON c.id = e.customer_id $where  ORDER BY r.id DESC, r.updated DESC";
+			    JOIN customer c ON c.id = e.customer_id $where ORDER BY r.status, r.updated DESC";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();
 		}

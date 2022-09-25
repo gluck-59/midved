@@ -1,7 +1,4 @@
 $(document).on('ready', function (){
-	console.warn('стр загружена');
-
-
 	/**
 	 * создает приход-расход
  	 */
