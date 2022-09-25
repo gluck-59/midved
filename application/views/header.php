@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
-	<a class="navbar-brand" href="/"><img id="logo" src="/application/img/logo.png"></a>
+	<a class="navbar-brand" href="/login"><img id="logo" src="/application/img/logo.png"></a>
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="<?=($this->router->class == $this->router->default_controller ? 'active':'' )?>"><a href="/"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Главная</a></li>
+				<li class="<?=($this->router->class == $this->router->default_controller ? 'active':'' )?>"><a href="/login"><i class="glyphicon glyphicon-home"></i>&nbsp;&nbsp;Главная</a></li>
 				<li class="<?=($this->router->class == 'request' ? 'active':'' )?>"><a href="/request"><i class="glyphicon glyphicon-list"></i>&nbsp;&nbsp;Заявки</a></li>
 				<li class="<?=($this->router->class == 'equipment' ? 'active':'' )?>"><a href="/equipment"><i class="glyphicon glyphicon-hdd"></i>&nbsp;&nbsp;Обрудование</a></li>
 				<li class="<?=($this->router->class == 'customer' ? 'active':'' )?>"><a href="/customer"><i class="glyphicon glyphicon-object-align-bottom"></i>&nbsp;&nbsp;Клиенты</a></li>
