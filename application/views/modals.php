@@ -177,7 +177,7 @@
 			</div>
 
 			<div class="modal-body">
-			<input type="text" id="notes" class="form-control" value="" placeholder="Заметка">
+			<input type="text" id="notes" maxlength="14" class="form-control" value="" placeholder="Заметка">
 			</div>
 		</div>
 	</div>

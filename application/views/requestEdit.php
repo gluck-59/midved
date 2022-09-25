@@ -35,7 +35,7 @@
 
 		switch ($payment->type) {
 			case 0: $paymentType = 'Работа'; break;
-			case 1: $paymentType = 'Накл.р.'; break;
+			case 1: $paymentType = 'Накладные'; break;
 		}
 
 

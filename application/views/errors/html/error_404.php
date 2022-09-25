@@ -56,7 +56,7 @@ p {
 </style>
 </head>
 <body>
-<h1>JOPA</h1>
+<h1>НАПИШИ ЗАПРОСЫ ДЛЯ ОТЧЕТОВ</h1>
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>

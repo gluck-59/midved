@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--	<link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/starter-template/">-->
 
 	<title><?=$this->router->pageName?></title>
-<link rel="stylesheet" href="/application/css/normalize.css">
+<!--<link rel="stylesheet" href="/application/css/normalize.css">-->
 
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/application/css/bootstrap-select/bootstrap-select.min.css">
