@@ -13,7 +13,7 @@ class Welcome extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-//		echo ENVIRONMENT;
+		echo ENVIRONMENT;
 //		$this->load->model('customerModel');
 //		$this->load->model('RequestModel');
 //		$this->load->model('equipmentModel');
