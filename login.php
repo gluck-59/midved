@@ -10,9 +10,35 @@
 	<script src="/application/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 </head>
+<style>
+	#background {
+		background-image: url(application/img/medved-login.gif);
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: top left;
+		height: 70vh;
+	}
+
+	#pad	{
+		margin: 40vh auto;
+		/* width: 30vw; */
+		position: relative;
+		opacity: 0.8;
+	}
+	form {
+		border: solid 60px #f5eeeb;
+		position: absolute;
+		bottom: -100px;
+		padding: 40px;
+	}
+
+	.form-control, button {
+		zoom: 1.6;}
+</style>
 
 <body>
-	<div style="margin: 30vh auto; width: 200px;">
+<div id="background">
+	<div id="pad">
 		<form method="post" action="/login" class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-10">
@@ -31,4 +57,7 @@
 			</div>
 		</form>
 	</div>
+</div>
+
+
 </body>
