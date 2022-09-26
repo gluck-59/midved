@@ -37,7 +37,7 @@ class Welcome extends CI_Controller
 	 * @return void
 	 */
 	public function jopaReGisTer($user, $password) {
-		$this->userModel->register($user, $password);
+		echo ($this->userModel->register($user, $password) ? 'TRUE':'FALSE');
 	}
 
 }

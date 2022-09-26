@@ -30,7 +30,10 @@ class Payment extends CI_Controller {
 	}
 
 
-
+	/**
+	 * редактирует платеж
+	 * @return void
+	 */
 	public function edit() {
 		$this->load->model('PaymentModel');
 		$paymentData = $this->input->get_post(null, TRUE);

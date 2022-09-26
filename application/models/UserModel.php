@@ -54,7 +54,7 @@
 
 		public function register($user, $password) {
 			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.$this->db->escape_str(password_hash("'.$password.'", PASSWORD_DEFAULT)).'")';
-			var_dump($this->db->query($sql));
+			return $this->db->query($sql);
 		}
 
 
