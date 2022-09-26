@@ -13,22 +13,10 @@ class Welcome extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		echo ENVIRONMENT;
-//		$this->load->model('customerModel');
-//		$this->load->model('RequestModel');
-//		$this->load->model('equipmentModel');
-//		$this->load->model('userModel');
+
+//		echo ENVIRONMENT;
+
 		$this->router->pageName = 'Главная';
-
-
-
-//		$userlogged = $this->userModel->isAuth();
-////		var_dump(($userlogged));
-//		if (!empty($userlogged)) {
-//			return self::getmain();
-//		} else {
-//			return self::login();
-//		}
 	}
 
 	public function index()

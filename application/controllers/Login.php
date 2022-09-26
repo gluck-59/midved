@@ -5,16 +5,24 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->model('UserModel');
 		}
+
 
 
         public function index() {
-			$user = new UserModel();
-			if (!is_null($user->isAuth())) {
+			$loginData = $this->input->get_post(null, TRUE);
+			if (!empty($loginData['user'])) {
 				header('Location: /welcome');
-			} else {
-				$this->load->view('login');
 			}
+
 		}
+
+
+
+
+        public function loginPage() {
+			$this->load->view('login');
+		}
+
+
     }

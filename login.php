@@ -13,7 +13,7 @@
 
 <body>
 	<div style="margin: 30vh auto; width: 200px;">
-		<form method="post" action="/" class="form-horizontal">
+		<form method="post" action="/login" class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="user" placeholder="User">
