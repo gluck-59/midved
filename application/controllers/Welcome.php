@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller
 {
-	private $url;
 	public $customer;
 	public $request;
 	public $equipment;
@@ -32,12 +31,12 @@ class Welcome extends CI_Controller
 
 
 	/**
-	 * использование: https://ссайт/welcome/jopaRegiser/имя/пароль/
+	 * использование: https://ссайт/welcome/jopaReGisTer/имя/пароль/
 	 * @param $user
 	 * @param $password
 	 * @return void
 	 */
-	public function jopaRegiser($user, $password) {
+	public function jopaReGisTer($user, $password) {
 		$this->userModel->register($user, $password);
 	}
 
