@@ -48,8 +48,8 @@
 
 		function isAuth()
 		{
-			return $_SESSION['user_id'];
-//			return !!($_SESSION['user_id'] ?? false);
+//			return $_SESSION['user_id'];
+			return !!($_SESSION['user_id'] ?? false);
 		}
 
 
