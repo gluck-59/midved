@@ -11,14 +11,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link		https://codeigniter.com/userguide3/libraries/config.html
  */
 class CI_Model {
-
 	/**
 	 * Class constructor
 	 *
 	 * @link	https://github.com/bcit-ci/CodeIgniter/issues/5332
 	 * @return	void
 	 */
-	public function __construct() {}
+	public function __construct() {
+	session_start();
+
+//		echo '<br>'.__CLASS__.'$_SESSION user_id] = '.$_SESSION['user_id'];
+	}
 
 	/**
 	 * __get magic

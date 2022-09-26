@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller
 {
-	private $url;
 	public $customer;
 	public $request;
 	public $equipment;
@@ -13,18 +12,9 @@ class Welcome extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
 //		echo ENVIRONMENT;
-/*
-		$this->url = 'index';
-		if (isset($_SERVER['PATH_INFO'])) {
-			$temp = explode("/", $_SERVER['PATH_INFO']);
-			$this->url = end($temp);
-		}
-		var_dump($this->url);
-	*/
-		$this->load->model('customerModel');
-		$this->load->model('RequestModel');
-		$this->load->model('equipmentModel');
+
 		$this->router->pageName = 'Главная';
 	}
 
@@ -34,12 +24,20 @@ class Welcome extends CI_Controller
 		$this->request = $this->RequestModel->getRequests();
 		$this->equipment = $this->equipmentModel->getEquipment();
 
-//prettyDump($this);
-
 		$this->load->view('header');
 		$this->load->view('main', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
 		$this->load->view('footer');
 	}
 
+
+	/**
+	 * использование: https://ссайт/welcome/jopaReGisTer/имя/пароль/
+	 * @param $user
+	 * @param $password
+	 * @return void
+	 */
+	public function jopaReGisTer($user, $password) {
+		$this->userModel->register($user, $password);
+	}
 
 }
