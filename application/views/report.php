@@ -1,6 +1,6 @@
 <?php
 //	prettyDump($result);
-//	prettyDump($tableColumns);
+//	prettyDump($stopWords);
 ?>
 
 <div class="container-fluid">
@@ -8,7 +8,13 @@
 	<p class="text-muted">Разрешены SELECT и JOIN. Структура базы сам знаешь где. Первое слово в запросе — &laquo;SELECT&raquo;.</p>
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
-			<?php if (!is_array($result)) echo $result; ?>
+			<?php if (!empty($stopWords[0])) { ?>
+				<h4>Низзя:</h4>
+			<?php
+				foreach ($stopWords[0] as $stopWord) { ?>
+						<h4><span class="label label-danger"><?=$stopWord?></span></h4>
+				<?php } ?>
+			<?php } ?>
 			<table class="table table-bordered table-condensed table-responsive table-striped">
 				<?php
 				foreach ($result as $rows) {

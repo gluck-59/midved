@@ -17,10 +17,11 @@
 
 				// недопустимые слова в запросах
 				$re = ['delete', 'drop', 'alter', 'shutdown', 'grant', 'execute', 'super'];
+				$matches = [];
 
  				if ((strpos(mb_strtolower($sql['sql']),'select') == 0 AND strpos(mb_strtolower($sql['sql']),'select') !== false) AND !preg_match_all('/'.implode("|", $re).'/mi', $sql['sql'], $matches)) {
 					$result = self::execRequest($sql['sql']);
-				} else $result = implode(', ', $matches[0]).' — низзя';
+				} //else $matches = //$result = implode(', ', $matches[0]).' — низзя';
 			} else {
 					$sql['sql'] = '
 SELECT r.name, p.sum/100
@@ -39,7 +40,7 @@ SELECT sum
 FROM payment as s
 */
 			$this->load->view('header');
-			$this->load->view('report', ['request' => $sql, 'result' => $result]);
+			$this->load->view('report', ['request' => $sql, 'result' => $result, 'stopWords' => $matches]);
 			$this->load->view('footer');
 		}
 
