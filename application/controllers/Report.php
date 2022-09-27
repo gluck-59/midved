@@ -15,9 +15,12 @@
 			if ($_POST) {
 				$sql = $this->input->get_post(null, TRUE);
 
- 				if (strpos(mb_strtolower($sql['sql']),'select') == 0 AND strpos(mb_strtolower($sql['sql']),'select') !== false) {
+				// недопустимые слова в запросах
+				$re = ['delete', 'drop', 'alter', 'shutdown', 'grant', 'execute', 'super'];
+
+ 				if ((strpos(mb_strtolower($sql['sql']),'select') == 0 AND strpos(mb_strtolower($sql['sql']),'select') !== false) AND !preg_match_all('/'.implode("|", $re).'/mi', $sql['sql'], $matches)) {
 					$result = self::execRequest($sql['sql']);
-				} else $result = 'низзя';
+				} else $result = implode(', ', $matches[0]).' — низзя';
 			} else {
 					$sql['sql'] = '
 SELECT r.name, p.sum/100
