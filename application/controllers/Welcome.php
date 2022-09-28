@@ -13,8 +13,6 @@ class Welcome extends CI_Controller
 	{
 		parent::__construct();
 
-//		echo ENVIRONMENT;
-
 		$this->router->pageName = 'Главная';
 	}
 

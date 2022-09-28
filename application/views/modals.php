@@ -144,7 +144,7 @@
 						<select id="requestList" data-live-search="true" title="В какую заявку?" data-width="150"></select>
 					</div>
 					<div class="col-xs-4">
-						<div class="checkbox">
+						<div class="checkbox" id="paymentTypeWrapper">
 							<label>
 								<input type="checkbox" id="paymentType" name="paymentType" class="1form-control" style="/*zoom: 1.3;*/">
 								работа
@@ -247,7 +247,8 @@
 			fillRequestSelect();
 		} else if (modal.attr('id') == 'modalPrihodRashod' && requestId > 0 ) {
 			$('select#requestList').selectpicker("hide");
-			$('[for=paymentType]').hide();
+			$('#paymentTypeWrapper').hide();
+
 		}
 	})
 
@@ -264,7 +265,6 @@
 
 	// заполним селект клиентов сразу после вызова модала
 	$('#modal-request, #modal-equipment').on('show.bs.modal', function (e) {
-		console.log('загружен модал'+e.currentTarget.id)
 		$.getJSON( "/customer/getAll", function( data ) {
 			let select = $('[name=customers]');
 			select.text('');

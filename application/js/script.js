@@ -12,6 +12,7 @@ $(document).on('ready', function (){
 		let note =  $(prihodRashodModal).find('#notes').val();
 		// console.log('отправка', requestId, type, direction, sum, note)
 
+
 		sendData = {
 			'requestId': requestId,
 			'type': type,

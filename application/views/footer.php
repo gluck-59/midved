@@ -30,5 +30,6 @@
 			<span class="hidden-md label label-danger">hidden-md</span>
 			<span class="hidden-lg label label-default">hidden-lg</span>
 		</center-->
+		<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?>s, env=<?=ENVIRONMENT?></center>
 	</body>
 </html>
