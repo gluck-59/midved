@@ -15,7 +15,7 @@ $(document).on('ready', function (){
 
 		sendData = {
 			'requestId': requestId,
-			'type': type,
+			'type': (type == 'true' ? 1:0),
 			'direction': direction,
 			'sum': sum,
 			'note': note

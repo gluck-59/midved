@@ -40,10 +40,24 @@
 			if ($paymentData['direction'] == 0) $sum = -$paymentData['sum']; 	// расход
 			elseif ($paymentData['direction'] == 1) $sum = $paymentData['sum'];	// приход
 
+			// из-за необходимости записи NULL в $paymentData['note']
+			// будем использовать builder
+			$data = array(
+				'request_id' => $paymentData['requestId'],
+				'type' => $paymentData['type'],
+				'sum' => $sum*100,
+			);
+			if (!empty($paymentData['note'])) {
+				$data['note'] = $paymentData['note'];
+			}
+			return $this->db->insert('payment', $data);
+
+			/* без buildera было так
 			$type = 0;
 			if ($paymentData['type'] == 'true') $type = 1;
-			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.$type.', '.$sum*100 .', '.$this->db->escape($paymentData['note']).')';
+			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.$type.', '.$sum*100 .', '.$note.')';
 			return  $this->db->query($sql);
+			*/
 		}
 
 

@@ -49,6 +49,8 @@
 	}
 ?>
 
+
+<!--главная таблица-->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-4 col-xs-12">
@@ -96,7 +98,7 @@
 					<div class="col-md-6 items_container">
 						<div class="items_head">Оборудование</div>
 						<div class="items_value">
-						<?=$request->equipment?> <?=$request->mark?>
+						<?=$request->equipment?> <?=$request->mark?> <span class="text-muted"> s/n <?=$request->serial?> </span>
 							<div id="equipmentDetails" role="presentation" class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
 									Подробно
