@@ -1,7 +1,22 @@
 body {
+	font-family: "PT Sans",Helvetica,Arial,sans-serif;
 	padding-top: 50px;
 }
-
+.navbar-inverse {
+	background-color: #2f1500;
+	border-color: #080808;
+}
+.navbar-inverse .navbar-brand {
+	font-weight: 100;
+	font-size: xx-large;
+}
+.navbar-inverse .navbar-nav>li>a {
+	color: #93817b;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+	color: #edd8cb;
+	background-color: #3c2109;
+}
 .starter-template {
 	padding: 40px 15px;
 	text-align: center;
@@ -66,3 +81,4 @@ div#keyboard .row-fluid {
 }
 
 #modal-equipment #notes { height: 20vh; }
+textarea[name="sql"] { font-family: monospace; }

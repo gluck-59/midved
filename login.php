@@ -18,24 +18,27 @@
 		background-size: contain;
 		background-position: top left;
 		height: 70vh;
+		opacity: 0.3;
 	}
 
 	#pad	{
 		margin: 27vh auto;
 		width: 380px;
 		position: relative;
-		opacity: 0.9;
+		/*opacity: 0.9;*/
 	}
 	form {
-		border: solid 60px #f5eeeb;
+		border: solid 60px #eddad2;
 		position: absolute;
-		bottom: -100px;
+		bottom: -110px;
 		padding: 40px;
+		border-radius: 50%;
+		width: 450px;
+		padding-left: 20%;
 	}
 </style>
 
 <body>
-<div id="background">
 	<div id="pad">
 		<form method="post" action="/login" class="form-horizontal">
 			<div class="form-group">
@@ -55,7 +58,7 @@
 			</div>
 		</form>
 	</div>
-</div>
+	<div id="background"></div>
 
 
 </body>
