@@ -13,7 +13,7 @@
 
 
 		public function auth() {
-			if (isset($_SESSION['user_id'])) return true;
+			if ($_SESSION['user_id'] > 0) return true;
 
 			$userData = $this->input->get_post(null, TRUE);
 			$sql = 'SELECT * FROM `users` WHERE `username` = '.$this->db->escape($userData['user']);
@@ -21,8 +21,6 @@
 			$user = $stmt->row();
 			$this->userId = $user->id;
 			$this->userName = $user->username;
-
-			$_SESSION['user_id'] = $user->id;
 
 			if (password_verify($userData['password'], $user->password)) {
 				// Проверяем, не нужно ли использовать более новый алгоритм или другую алгоритмическую стоимость
@@ -34,26 +32,21 @@
 				}
 
 				$_SESSION['user_id'] = $user->id;
-				$this->isAuth = true;
-
-//				header("Location, ".$_SERVER['REQUEST_URI']);
-				return true;
 			} else {
-//				echo '<br>'.__CLASS__.'$_SESSION user_id] = '.$_SESSION['user_id'];
-				return false;
+				$_SESSION['user_id'] = 0;
 			}
 		}
 
 
-		function isAuth()
+		function isAuth($loginData)
 		{
-			return !!($_SESSION['user_id'] ?? self::auth());
+			return !!($_SESSION['user_id'] ?? self::auth($loginData));
 		}
 
 
 
 		public function register($user, $password) {
-			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.$this->db->escape_str(password_hash("'.$password.'", PASSWORD_DEFAULT)).'")';
+			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.password_hash($password, PASSWORD_DEFAULT).'")';
 			return $this->db->query($sql);
 		}
 
