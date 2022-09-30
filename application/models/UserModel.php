@@ -35,13 +35,11 @@
 
 				$_SESSION['user_id'] = $user->id;
 				$this->isAuth = true;
-
-//				header("Location, ".$_SERVER['REQUEST_URI']);
-				return true;
 			} else {
-//				echo '<br>'.__CLASS__.'$_SESSION user_id] = '.$_SESSION['user_id'];
-				return false;
+				session_destroy();
+				$this->isAuth = true;
 			}
+			return $this->isAuth;
 		}
 
 
@@ -53,7 +51,7 @@
 
 
 		public function register($user, $password) {
-			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.$this->db->escape_str(password_hash("'.$password.'", PASSWORD_DEFAULT)).'")';
+			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.password_hash($password, PASSWORD_DEFAULT).'")';
 			return $this->db->query($sql);
 		}
 
