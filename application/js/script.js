@@ -2,7 +2,7 @@ $(document).on('ready', function (){
 	/**
 	 * создает приход-расход
  	 */
-	$('#calculate').on('click', function (event) {
+	$('.calculate').on('click', function (event) {
 		var prihodRashodModal = $('#modalPrihodRashod');
 		let sum = $(prihodRashodModal).find('#sum').val();
 		if (sum == '') return;

@@ -24,12 +24,16 @@
 		</script>
 		<?php include_once 'modals.php';?>
 
-		<!--center class="row" style="opacity: 0.4;">
-			<span class="hidden-xs label label-primary">hidden-xs</span>
-			<span class="hidden-sm label label-primary">hidden-sm</span>
-			<span class="hidden-md label label-danger">hidden-md</span>
-			<span class="hidden-lg label label-default">hidden-lg</span>
-		</center-->
-		<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?>s, env=<?=ENVIRONMENT?></center>
+		<div class="row">
+			<div class="col-md-9 col-lg-8 col-xs-12">
+				<!--center class="row" style="opacity: 0.4;">
+					<span class="hidden-xs label label-primary">hidden-xs</span>
+					<span class="hidden-sm label label-primary">hidden-sm</span>
+					<span class="hidden-md label label-danger">hidden-md</span>
+					<span class="hidden-lg label label-default">hidden-lg</span>
+				</center-->
+				<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?>s</center>
+			</div>
+		</div>
 	</body>
 </html>

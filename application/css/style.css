@@ -1,7 +1,14 @@
+@media (min-width: 1200px) {
+	.navbar{
+		max-width: 1920px;
+	}
+}
 body {
 	font-family: "PT Sans",Helvetica,Arial,sans-serif;
 	padding-top: 50px;
 }
+
+/* navbar */
 .navbar-inverse {
 	background-color: #2f1500;
 	border-color: #080808;
@@ -17,6 +24,7 @@ body {
 	color: #edd8cb;
 	background-color: #3c2109;
 }
+
 .starter-template {
 	padding: 40px 15px;
 	text-align: center;
@@ -25,18 +33,26 @@ img#logo {
 	margin: -13px;
 	height: 50px;
 }
-.modal-dialog {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
+/* /navbar */
 
-.modal-content {
-	height: auto;
-	min-height: 100%;
-	border-radius: 0;
+
+/* modal */
+@media (max-width: 1200px) {
+	.modal-dialog:not(modalPrihodRashod) {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.modal-content {
+		height: auto;
+		min-height: 100%;
+		border-radius: 0;
+	}
 }
+/* /modal */
+
 
 .label { cursor: pointer;}
 .text-muted { opacity: 0.6; }
@@ -54,7 +70,8 @@ img#logo {
 }
 .items_value {
 }
-/*request edit*/
+
+
 .paymentEdit {
 	font-size: 2em;
 	padding: 15px 6px;
@@ -63,15 +80,9 @@ img#logo {
 #notes { width: 100%; }
 
 
-
 /* modal */
 .modal-header .close { margin: -2px -10px 0px -10px; }
-div#keyboard {
-	text-align: center;
-}
-div#keyboard .row-fluid {
-	margin: 7px;
-}
+
 .row-fluid > a.btn {
 	font-size: 3em;
 	border: solid 2px #6e6e6e;
@@ -83,10 +94,20 @@ div#keyboard .row-fluid {
 #modal-equipment #notes { height: 20vh; }
 textarea[name="sql"] { font-family: monospace; }
 
+/* /modal */
+div#keyboard {
+	text-align: center;
+}
+
+div#keyboard .row-fluid {
+	margin: 7px;
+}
+
 #benchmark {
-	position: sticky;
+	position: absolute;
+	top: -0;
 	bottom: 0;
 	left: 42%;
 	background-color: white;
-	opacity: 1;
+	/*opacity: 1;*/
 }

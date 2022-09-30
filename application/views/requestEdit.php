@@ -53,9 +53,9 @@
 <!--главная таблица-->
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-lg-4 col-xs-12">
+		<div class="col-md-7 col-lg-6 col-xs-12">
 			<div class="row">
-				<div class="col-xs-8">
+				<div class="col-md-5 col-lg-5 col-xs-8">
 					<h3>
 						Заявка №<?=$request->id?>&nbsp;
 <!--						<small class="label label-default 1hidden-xs">--><?//=$status?><!--</small>-->
@@ -84,8 +84,8 @@
 
 			<div class="clearfix">&nbsp;</div>
 			<div class="row">
-				<div class="col-md-9 col-lg-6 col-sm-12">
-					<div class="col-md-6 items_container">
+				<div class="col-md-6 col-lg-6 col-xs-12">
+					<div class="items_container">
 						<div class="items_head">Работы</div>
 						<div class="items_value">
 							<?=$request->name?>
@@ -94,8 +94,8 @@
 					</div>
 				</div>
 
-				<div class="col-md-9 col-lg-6 col-sm-12">
-					<div class="col-md-6 items_container">
+				<div class="col-md-6 col-lg-6 col-xs-12">
+					<div class="items_container">
 						<div class="items_head">Оборудование</div>
 						<div class="items_value">
 						<?=$request->equipment?> <?=$request->mark?> <span class="text-muted"> s/n <?=$request->serial?> </span>
@@ -114,19 +114,20 @@
 					</div>
 				</div>
 
-				<div class="col-md-9 col-lg-6 col-sm-12">
-					<div class="col-md-6 items_container">
+				<div class="col-md-6 col-lg-6 col-xs-12">
+					<div class="items_container">
 						<div class="items_head">Заказчик</div>
 						<div class="items_value">
 							<?=$request->customer_name?>
 						</div>
 					</div>
 				</div>
+			</div>
 
 
-
-				<div class="1col-md-9 1col-lg-9 col-sm-12">
-					<div class="col-md-6 items_container">
+			<div class="row">
+				<div class="col-md-9 col-lg-9 col-xs-12">
+					<div class="items_container">
 <!--						<div class="items_head">Расчеты</div>-->
 						<center class="items_value">
 							<h3>
@@ -150,18 +151,20 @@
 
 				<div class="clearfix hidden-xs">&nbsp;</div>
 
-				<div class="1col-md-9 1col-lg-9 col-sm-12">
-					<div class="col-md-6 items_container">
+				<div class="col-md-9 col-lg-8 col-xs-12">
+					<div class="items_container">
 						<div class="items_head">Заметки</div>
 						<center class="items_value">
 							<textarea id="requestNotes" data-request-id="<?=$request->id?>" class="form-control"><?=$request->notes?></textarea>
 						</center>
 					</div>
 				</div>
+			</div>
 
-				<div class="clearfix hidden-xs">&nbsp;</div><div class="clearfix hidden-xs"><hr></div>
+			<div class="clearfix hidden-xs">&nbsp;</div><div class="clearfix hidden-xs"><hr></div>
 
-				<div class="col-lg-6 col-md-9 col-xs-12">
+			<div class="row">
+				<div class="col-md-10 col-lg-7 col-xs-12">
 					<div class="items_container">
 						<div class="items_head">История</div>
 						<div class="items_value">

@@ -140,7 +140,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
 				<h3 class="modal-title" id="prihod_rashod"></h3>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-md-4 col-xs-6">
 						<select id="requestList" data-live-search="true" title="В какую заявку?" data-width="150"></select>
 					</div>
 					<div class="col-xs-4">
@@ -152,9 +152,6 @@
 						</div>
 					</div>
 				</div>
-
-
-
 			</div>
 			<div class="modal-body">
 				<input type="number" pattern="[0-9]*" id="sum" class="form-control" style="zoom: 3;">
@@ -164,7 +161,7 @@
 				<div class="clearfix">&nbsp;</div>
 			</div>
 
-			<div id="keyboard">
+			<div id="keyboard" class="hidden-sm hidden-md hidden-lg">
 				<div class="row-fluid">
 					<a href="#" class="btn key" data-key="55">7</a>
 					<a href="#" class="btn key" data-key="56">8</a>
@@ -183,13 +180,20 @@
 				<div class="row-fluid">
 					<a href="#" class="btn btn-danger" onclick="$('#sum').val('')">C</a>
 					<a href="#" class="btn key" data-key="48">0</a>
-					<a href="#" class="btn btn-success" id="calculate">OK</a>
+					<a href="#" class="btn btn-success calculate" >OK</a>
 				</div>
 			</div>
 
+
 			<div class="modal-body">
-			<input type="text" id="notes" maxlength="14" class="form-control" value="" placeholder="Заметка">
+				<input type="text" id="notes" maxlength="14" class="form-control" value="" placeholder="Заметка">
 			</div>
+
+			<div class="modal-footer hidden-xs">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+				<button type="button" class="btn btn-success calculate">OK</button>
+			</div>
+
 		</div>
 	</div>
 </div>
