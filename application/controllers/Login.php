@@ -8,7 +8,6 @@
 		}
 
 
-
         public function index() {
 			$loginData = $this->input->get_post(null, TRUE);
 			$user = new UserModel();
@@ -17,13 +16,4 @@
 			}
 
 		}
-
-
-
-
-        public function loginPage() {
-			$this->load->view('login');
-		}
-
-
     }

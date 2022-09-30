@@ -7,11 +7,11 @@
 	{
 		public $customers;
 
-//		function __construct()
-//		{
-//			$stmt = $this->db->query('select * from customer');
-//			$this->customers = $stmt->result();
-//		}
+		/*function __construct()
+		{
+			$stmt = $this->db->query('select * from customer');
+			$this->customers = $stmt->result();
+		} */
 
 
 		/**
@@ -48,7 +48,6 @@
 			WHERE id = '.$this->db->escape_str($customerData['customerId']);
 			return $this->db->query($sql);
 		}
-
 
 
 

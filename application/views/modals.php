@@ -230,7 +230,6 @@
 		modal.find('#notes').val(button.data('notes'));
 
 		sumInput.val('');
-		// console.log(button.data());
 
 		/** экранная клава */
 		// покрасим кнопки

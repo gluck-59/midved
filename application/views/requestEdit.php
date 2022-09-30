@@ -2,13 +2,6 @@
 //	prettyDump($request);
 //	prettyDump($payments);
 
-	/*switch($request->status) {
-		case Request::STATUS_NEW['status']: $status = Request::STATUS_NEW['statusText']; break;
-		case Request::STATUS_WORK['status']: $status = $status = Request::STATUS_WORK['statusText']; break;
-		case Request::STATUS_DONE['status']: $status = $status = Request::STATUS_DONE['statusText']; break;
-	}*/
-
-//	$status = Request::STATUSES[$request->status];
 
 	$sumStatus = 'label label-danger';
 	($request->sum > 0 ? $sumStatus = 'label label-success' : '');
@@ -128,10 +121,8 @@
 			<div class="row">
 				<div class="col-md-9 col-lg-9 col-xs-12">
 					<div class="items_container">
-<!--						<div class="items_head">Расчеты</div>-->
 						<center class="items_value">
 							<h3>
-<!--								<span class="label label-info">--><?//=$rashod?><!-- ₽</span> <span class="label label-info">--><?//=$prihod?><!-- ₽</span>-->
 								<span style="color: #761c19"><?=$currency->format($rashod)?> ₽</span><span class="small"></span>&nbsp;&nbsp;<span style="color: #3e8f3e"><?=$currency->format($prihod)?> ₽</span><span class="small"></span>
 							</h3>
 							<div class="row">

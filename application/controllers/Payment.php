@@ -11,10 +11,6 @@ class Payment extends CI_Controller {
 
 	public function history($reqestId = null) : array {
 		$this->request = $this->PaymentModel->history($reqestId);
-//			prettyDump($this->request);
-//		$this->load->view('header');
-//		$this->load->view('request', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
-//		$this->load->view('footer');
 	}
 
 

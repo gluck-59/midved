@@ -1,8 +1,6 @@
 <?php
 //		prettyDump($customers);
-?>
-<?php
-	//	prettyDump($requests[0]);
+//	prettyDump($requests[0]);
 ?>
 <div class="container-fluid">
 	<div class="row">
@@ -28,7 +26,6 @@
 				<thead>
 				<th>Название</th>
 				<th></th>
-				<!--				<th>Адрес</th>-->
 				</thead>
 				<?php
 					foreach ($customers as $customer) { ?>

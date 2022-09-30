@@ -5,17 +5,6 @@
 	 */
 	class PaymentModel extends CI_Model
 	{
-//		public $id;
-//		public $requestId;
-//		public $type;
-//		public $sum;
-//		public $note;
-
-//		function __construct()
-//		{
-//			$stmt = $this->db->query('select * from customer');
-//			$this->customers = $stmt->result();
-//		}
 
 
 		/**

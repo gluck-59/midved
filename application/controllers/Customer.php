@@ -10,7 +10,6 @@
 		}
 
 		public function index() {
-//prettyDump($this->CustomerModel->customers);
 			$this->load->view('header');
 			$this->load->view('customer', ['customers' => $this->CustomerModel->get()]);
 			$this->load->view('footer');

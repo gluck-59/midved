@@ -22,6 +22,7 @@
 
 			$('textarea').autoHeight();
 		</script>
+
 		<?php include_once 'modals.php';?>
 
 		<div class="row">
@@ -32,7 +33,7 @@
 					<span class="hidden-md label label-danger">hidden-md</span>
 					<span class="hidden-lg label label-default">hidden-lg</span>
 				</center-->
-				<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?>s</center>
+				<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?></center>
 			</div>
 		</div>
 	</body>

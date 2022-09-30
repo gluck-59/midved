@@ -5,9 +5,7 @@
 	 */
 	class RequestModel extends CI_Model
 	{
-//		function __construct() {
-//
-//		}
+
 
 		public function index() {
 			return __FILE__;

@@ -33,12 +33,6 @@ JOIN request r ON r.id = p.request_id
 /* ЭТО ОБОРЗЕЦ */';
 			}
 
-/* оборзец
-SELECT sum
-, IF (s.type=1, 'работа', 'неработа')
-, DATE_FORMAT(s.created, '%d.%m.%Y')
-FROM payment as s
-*/
 			$this->load->view('header');
 			$this->load->view('report', ['request' => $sql, 'result' => $result, 'stopWords' => $matches]);
 			$this->load->view('footer');

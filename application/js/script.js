@@ -28,6 +28,7 @@ $(document).on('ready', function (){
 	});
 
 
+
 	/**
 	 * редактирование приход-расход
 	 */
@@ -42,7 +43,6 @@ $(document).on('ready', function (){
 			if (data == 1) location.reload();
 		})
 	})
-
 
 
 

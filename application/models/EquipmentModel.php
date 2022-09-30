@@ -21,8 +21,11 @@
 		}
 
 
-
-
+		/**
+		 * получает список оборудования указанных $customerIds
+		 * @param array $customerIds
+		 * @return array
+		 */
 		public function getEquipment(array $customerIds = []) : array
 		{
 			$where = 'WHERE 1 ';
