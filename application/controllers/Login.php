@@ -11,7 +11,8 @@
 
         public function index() {
 			$loginData = $this->input->get_post(null, TRUE);
-			if (!empty($loginData['user'])) {
+			$user = new UserModel();
+			if ($user->isAuth($loginData)) {
 				header('Location: /welcome');
 			}
 

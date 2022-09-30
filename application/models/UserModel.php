@@ -13,7 +13,7 @@
 
 
 		public function auth() {
-			if (isset($_SESSION['user_id'])) return true;
+			if ($_SESSION['user_id'] > 0) return true;
 
 			$userData = $this->input->get_post(null, TRUE);
 			$sql = 'SELECT * FROM `users` WHERE `username` = '.$this->db->escape($userData['user']);
@@ -21,8 +21,6 @@
 			$user = $stmt->row();
 			$this->userId = $user->id;
 			$this->userName = $user->username;
-
-			$_SESSION['user_id'] = $user->id;
 
 			if (password_verify($userData['password'], $user->password)) {
 				// Проверяем, не нужно ли использовать более новый алгоритм или другую алгоритмическую стоимость
@@ -34,18 +32,15 @@
 				}
 
 				$_SESSION['user_id'] = $user->id;
-				$this->isAuth = true;
 			} else {
-				session_destroy();
-				$this->isAuth = true;
+				$_SESSION['user_id'] = 0;
 			}
-			return $this->isAuth;
 		}
 
 
-		function isAuth()
+		function isAuth($loginData)
 		{
-			return !!($_SESSION['user_id'] ?? self::auth());
+			return !!($_SESSION['user_id'] ?? self::auth($loginData));
 		}
 
 

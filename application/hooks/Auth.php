@@ -1,18 +1,14 @@
 <?php
 	class Auth {
 
-		public function doAuth() {
+		public function doAuth($loginData) {
 			$user = new UserModel();
-//			if (!is_null($user->isAuth()))
-			if ( $user->isAuth() )
+			if ( $user->isAuth($loginData) )
 			{
-//				var_dump($_SESSION);
-//				header('Location: /welcome');
 				return true;
 			} else {
 				session_destroy();
-//				$this->load->view('login');
-				header('Location: login.php');
+				header('Location: /login.php');
 				return false;
 			}
 		}
