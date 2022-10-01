@@ -10,7 +10,7 @@ class Payment extends CI_Controller {
 	}
 
 	public function history($reqestId = null) : array {
-		$this->request = $this->PaymentModel->history($reqestId);
+		$this->request = $this->PaymentModel->get($reqestId);
 	}
 
 

@@ -2,8 +2,8 @@
 
     class UserModel extends CI_Model
     {
-		private $userId;
-		private $userName;
+		public $id;
+		public $name;
 
 		public function __construct()
 		{
@@ -19,8 +19,8 @@
 			$sql = 'SELECT * FROM `users` WHERE `username` = '.$this->db->escape($userData['user']);
 			$stmt = $this->db->query($sql);
 			$user = $stmt->row();
-			$this->userId = $user->id;
-			$this->userName = $user->username;
+			$this->id = $user->id;
+			$this->name = $user->username;
 
 			if (password_verify($userData['password'], $user->password)) {
 				// Проверяем, не нужно ли использовать более новый алгоритм или другую алгоритмическую стоимость

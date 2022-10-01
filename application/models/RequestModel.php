@@ -5,10 +5,15 @@
 	 */
 	class RequestModel extends CI_Model
 	{
+		public $id;
+		public $equipment_id;
+		public $name;
+		public $status;
+		public $notes;
 
 
 		public function index() {
-			return __FILE__;
+			return;
 		}
 
 		public function getRequests(array $idRequests = null) : array {

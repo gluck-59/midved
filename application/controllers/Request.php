@@ -42,10 +42,9 @@
 		 */
 		public function edit(int $requestId = null) {
 			$this->payments = $this->load->model('PaymentModel');
-//			$payment = $this->->history($requestId);?
 
 			$this->load->view('header');
-			$this->load->view('requestEdit', ['request' => $this->RequestModel->edit($requestId), 'payments' => $this->PaymentModel->history($requestId)]);
+			$this->load->view('requestEdit', ['request' => $this->RequestModel->edit($requestId), 'payments' => $this->PaymentModel->get($requestId)]);
 			$this->load->view('footer');
 		}
 

@@ -10,9 +10,9 @@
 				<h4 class="modal-title" id="requestLabel">Новая заявка&nbsp;<small>на ремонт</small></h4>
 			</div>
 			<div class="modal-body">
-				<select class="" name="customers" data-live-search="true" title="Выберите клиента..."></select>
+				<select class="" name="customers" data-live-search="true" title="Сначала выберите клиента..."></select>
 				<div class="clearfix">&nbsp;</div>
-				<select class=""  name="equipments" data-live-search="true" title="Выберите станок..."></select>
+				<select class=""  name="equipments" data-live-search="true" title="Затем выберите станок..."></select>
 				<div class="clearfix">&nbsp;</div>
 
 				<input type="text" class="form-control" id="desc" placeholder="Описание заявки">
@@ -203,7 +203,7 @@
 	$('select').selectpicker();
 
 	// при открытии модала расставим заголовки
-	$('.modal').on('show.bs.modal', function (event) {
+	$('.modal').on('shown.bs.modal', function (event) {
 		let sumInput = $('#sum');
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
@@ -229,12 +229,16 @@
 		modal.find('#serial').val(button.data('serial'));
 		modal.find('#notes').val(button.data('notes'));
 
-		sumInput.val('');
+		sumInput.focus().val('');
+
+
 
 		/** экранная клава */
 		// покрасим кнопки
-		let color = (button.data('direction') == 0 ? '#fcc' : '#afa');
+		let color = (button.data('direction') == 0 ? 'rgba(193 84 84 / 60%)' : 'rgba(82 169 82 / 60%)');
 		$('.row-fluid > a.btn').css('border-color', color);
+		sumInput.css('border-color', color)
+		sumInput.css('box-shadow', 'none')
 
 		// отработаем нажатия
 		$('#keyboard .row-fluid .btn.key').on('click', function (event) {

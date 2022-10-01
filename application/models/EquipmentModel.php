@@ -6,7 +6,6 @@
      */
     class EquipmentModel  extends CI_Model
     {
-		public $equipments;
         public $city;
         public $address;
         public $name;
@@ -16,8 +15,8 @@
 
 		function __construct()
 		{
-			$stmt = $this->db->query('select * from equipment');
-			$this->customers = $stmt->result();
+//			$stmt = $this->db->query('select * from equipment');
+//			$this->customers = $stmt->result();
 		}
 
 

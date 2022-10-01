@@ -5,13 +5,14 @@
 	 */
 	class CustomerModel extends CI_Model
 	{
-		public $customers;
+		public $id;
+		public $name;
+		public $data;
 
-		/*function __construct()
+		function __construct()
 		{
-			$stmt = $this->db->query('select * from customer');
-			$this->customers = $stmt->result();
-		} */
+
+		}
 
 
 		/**
@@ -26,12 +27,17 @@
 		}
 
 
-		public function get(array $idCustomers = null) : array {
+		/**
+		 * тянт данные клиентов по их ID
+		 * если ID не определен, тянет данные обо всех
+		 * @param array|null $idCustomers
+		 * @return mixed
+		 */
+		public function get(array $idCustomers = null)   {
 			$where = 'WHERE 1 ';
 			if (!is_null($idCustomers)) $where .= 'AND id IN('.implode(',', $idCustomers).')';
-			$sql = "select * from customer $where";
-			$stmt = $this->db->query($sql);
-			return $stmt->result();
+			$query = $this->db->query("SELECT * FROM customer ".$where);
+			return $query->result();
 		}
 
 

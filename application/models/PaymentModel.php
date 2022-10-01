@@ -6,13 +6,19 @@
 	class PaymentModel extends CI_Model
 	{
 
+		public $id;
+		public $request_id;
+		public $type;
+		public $sum;
+		public $note;
+		public $created;
 
 		/**
 		 * тянет историю затрат/платежей по номеру заявки
 		 * @param int $reqestId
 		 * @return array
 		 */
-		public function history(int $reqestId = null) : array {
+		public function get(int $reqestId = null) : array {
 			if (is_null($reqestId)) throw new Exception('Отсутствует номер заявки в '.__CLASS__.': '.__LINE__);
 			$sql = "select  p.id, p.request_id, p.type, p.note, p.sum/100 as sum, /*DATE_FORMAT(p.created, '%m.%d.%Y') created*/p.created FROM  payment p WHERE p.request_id = $reqestId ORDER BY p.created ASC";
 			$stmt = $this->db->query($sql);
@@ -21,7 +27,7 @@
 
 
 		/**
-		 * платеж: приход-расход
+		 * платежи: создает приход-расход
 		 * @param array $paymentData
 		 * @return mixed
 		 */
@@ -39,14 +45,8 @@
 			if (!empty($paymentData['note'])) {
 				$data['note'] = $paymentData['note'];
 			}
-			return $this->db->insert('payment', $data);
 
-			/* без buildera было так
-			$type = 0;
-			if ($paymentData['type'] == 'true') $type = 1;
-			$sql = 'INSERT INTO payment (request_id, type, sum, note) VALUES ('.(int) $paymentData['requestId'].', '.$type.', '.$sum*100 .', '.$note.')';
-			return  $this->db->query($sql);
-			*/
+			return $this->db->insert('payment', $data);
 		}
 
 
