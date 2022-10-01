@@ -2,6 +2,10 @@
 
     class ReportModel extends CI_Model
     {
+		public function __construct()
+		{
+
+		}
 
 		public function execRequest($sql) {
 			$stmt = $this->db->query($sql);

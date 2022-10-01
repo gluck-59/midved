@@ -1,5 +1,5 @@
 <?php
-//	prettyDump($result);
+//	prettyDump($result[0]);
 //	prettyDump($stopWords);
 ?>
 
@@ -28,6 +28,14 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-xs-12">
+
+		</div>
+	</div>
+
+	<div class="clearfix">&nbsp;</div>
+
 	<form method="post" action="/report">
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
@@ -37,7 +45,8 @@
 			<div class="clearfix"><hr></div>
 			<div class="col-xs-12 col-md-4 text-right">
 				<input type="reset" onclick="$('[name=sql]').text('')" class="btn btn-warning" value="Очистить">
-				<input type="submit" class="btn btn-success" value="Отправить">
+				<input type="submit" name="toFile" class="btn btn-info" value="Результат в Excel">
+				<input type="submit" class="btn btn-success" value="Запрос">
 			</form>
 		</div>
 	</div>
