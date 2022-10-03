@@ -1,8 +1,8 @@
 <?php
 
-	/**
-	 * модель заказчика
-	 */
+    /**
+     * @var CustomerModel
+     */
 	class CustomerModel extends CI_Model
 	{
 		public $id;

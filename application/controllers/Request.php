@@ -1,25 +1,30 @@
 <?php
 
+//namespace application\controllers\Request;
+//use RequestModel;
+
 	class Request extends CI_Controller
 	{
-		const STATUS_NEW = ['status' => 0, 'statusText' => 'Новая'];
-		const STATUS_WORK = ['status' => 1, 'statusText' => 'Работаем'];
-		const STATUS_DONE = ['status' => 2, 'statusText' => 'Готово'];
-
 		const STATUSES = ['Новая', 'В работе', 'Готово'];
 
+		public $request;
 		public $payments;
+//		public $requestModel;
+
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('RequestModel');
+//            $this->load->model('requestModel');
 			$this->router->pageName = 'Заявки';
 
 		}
 
 		public function index() {
-			$this->request = $this->RequestModel->getRequests();
-//			prettyDump($this->request);
+//  если включать этот способ то надо закомментить лоад модели в конструкторе
+//            $r = new \RequestModel();
+//			$this->request = $r->getRequests();
+
+            $this->request = $this->requestModel->getRequests();
 			$this->load->view('header');
 			$this->load->view('request', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
 			$this->load->view('footer');
@@ -31,7 +36,7 @@
 		 */
 		public function getAll()
 		{
-			echo json_encode($this->RequestModel->getRequests());
+			echo json_encode($this->requestModel->getRequests());
 		}
 
 
@@ -44,7 +49,7 @@
 			$this->payments = $this->load->model('PaymentModel');
 
 			$this->load->view('header');
-			$this->load->view('requestEdit', ['request' => $this->RequestModel->edit($requestId), 'payments' => $this->PaymentModel->get($requestId)]);
+			$this->load->view('requestEdit', ['request' => $this->requestModel->edit($requestId), 'payments' => $this->PaymentModel->get($requestId)]);
 			$this->load->view('footer');
 		}
 
@@ -68,7 +73,7 @@
 		 */
 		public function create() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->RequestModel->create($data);
+			echo $this->requestModel->create($data);
 		}
 
 
@@ -78,7 +83,7 @@
 		 */
 		public function setNotes() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->RequestModel->setNotes($data);
+			echo $this->requestModel->setNotes($data);
 		}
 
 
@@ -88,6 +93,6 @@
 		 */
 		public function setStatus() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->RequestModel->setStatus($data);
+			echo $this->requestModel->setStatus($data);
 		}
     }

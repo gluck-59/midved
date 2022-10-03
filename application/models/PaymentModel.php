@@ -1,8 +1,10 @@
 <?php
 
-	/**
-	 * модель заказчика
-	 */
+    /**
+     * модуль платежей
+     *
+     * @var PaymentModel
+     */
 	class PaymentModel extends CI_Model
 	{
 

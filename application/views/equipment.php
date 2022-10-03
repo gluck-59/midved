@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-lg-2 col-xs-12">
 			<div class="btn-block">
-				<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-equipment">Новый станок</button>
+				<button type="button" class="btn btn-success btn-lg btn-block btn-open-modal"  data-toggle="modal" data-target="#modal-equipment">Новое оборудование</button>
 			</div>
 		</div>
 

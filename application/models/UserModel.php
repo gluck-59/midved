@@ -1,5 +1,11 @@
 <?php
 
+    /**
+     * @var UserModel
+     *
+     * модель пользователя системы
+     * @TODO добавить роли
+     */
     class UserModel extends CI_Model
     {
 		public $id;

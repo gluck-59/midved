@@ -33,8 +33,15 @@
 					<span class="hidden-md label label-danger">hidden-md</span>
 					<span class="hidden-lg label label-default">hidden-lg</span>
 				</center-->
-				<center id="benchmark" class="text-muted">Total: <?=$this->benchmark->elapsed_time()?></center>
+				<center id="benchmark" class="text-muted">Load: <?=$this->benchmark->elapsed_time()?> | © <a id="em">gluck</a> </center>
 			</div>
 		</div>
 	</body>
 </html>
+<script>
+    function footerFill() {
+        let to = 'mailto:';
+        let em = 'glu'+'ck59@gm'+'ail.com';
+        document.getElementById('em').setAttribute('href', to+em)
+    }
+</script>

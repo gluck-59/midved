@@ -1,5 +1,8 @@
 <?php
 
+    /**
+     * @var Equipment
+     */
 	class Equipment extends CI_Controller
 	{
 		public $equipment;

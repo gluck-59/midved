@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
 	<h3>Запросы <small class="text-muted">к базе даных</small></h3>
-	<p class="text-muted">Разрешены SELECT и JOIN. Структура базы сам знаешь где. Первое слово в запросе — &laquo;SELECT&raquo;.</p>
+	<p class="text-muted">Разрешены SELECT и JOIN. Структуру базы можно взять у разработчиков. Первое слово в запросе — &laquo;SELECT&raquo;.</p>
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<?php if (!empty($stopWords[0])) { ?>

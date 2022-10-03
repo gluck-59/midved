@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="/application/css/bootstrap-select/bootstrap-select.min.css">
 	<link rel="stylesheet" href="/application/css/style.css">
 </head>
-<body>
+<body onload="footerFill()">
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<a class="navbar-brand" href="/"><img id="logo" src="/application/img/logo.png"></a>

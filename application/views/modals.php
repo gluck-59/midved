@@ -12,13 +12,13 @@
 			<div class="modal-body">
 				<select class="" name="customers" data-live-search="true" title="Сначала выберите клиента..."></select>
 				<div class="clearfix">&nbsp;</div>
-				<select class=""  name="equipments" data-live-search="true" title="Затем выберите станок..."></select>
+				<select class=""  name="equipments" data-live-search="true" title="Затем выберите оборудование..."></select>
 				<div class="clearfix">&nbsp;</div>
 
-				<input type="text" class="form-control" id="desc" placeholder="Описание заявки">
+				<input type="text" class="form-control" id="desc" placeholder="Краткое описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
-				<p>Выберите клиента и станок. Подробности заявки можно будет добавлять и изменять внутри на всем жизненном циеле заявки.</p>
+				<p>Выберите клиента и оборудование для ремонта. Подробности заявки можно будет добавлять и изменять внутри заявки на всем ее жизненном цикле.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

@@ -1,5 +1,11 @@
 <?php
 
+    /**
+     * @var ReportModel
+     *
+     * модель отчетов
+     */
+
     class ReportModel extends CI_Model
     {
 		public function __construct()
@@ -7,6 +13,14 @@
 
 		}
 
+
+        /**
+         * выполняет присланный юзером SQL запрос
+         * запрос предварительно очищенный в контроллере
+         *
+         * @param $sql
+         * @return mixed
+         */
 		public function execRequest($sql) {
 			$stmt = $this->db->query($sql);
 			return $stmt->result_array();

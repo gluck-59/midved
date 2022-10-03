@@ -122,9 +122,14 @@
 				<div class="col-md-9 col-lg-9 col-xs-12">
 					<div class="items_container">
 						<center class="items_value">
-							<h3>
-								<span style="color: #761c19"><?=$currency->format($rashod)?> ₽</span><span class="small"></span>&nbsp;&nbsp;<span style="color: #3e8f3e"><?=$currency->format($prihod)?> ₽</span><span class="small"></span>
-							</h3>
+                            <div class="row">
+                                <div class="col-xs-6 text-right">
+                                    <h1><b class="text-danger"><?=$currency->format($rashod)?> </b><span class="text-muted"> ₽</span></h1>
+                                </div>
+                                <div class="col-xs-6 text-left">
+                                    <h1><b class="text-success"><?=$currency->format($prihod)?> </b><span class="text-muted"> ₽</span></h1>
+                                </div>
+                            </div>
 							<div class="row">
 								<div class="col-xs-6 text-right">
 									<div class="btn btn-danger paymentEdit" data-toggle="modal" data-target="#modalPrihodRashod" data-request-id="<?=$request->id?>" data-modal-name="Работа: расход" data-type="false" data-direction="0">Work</div>

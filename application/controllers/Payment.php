@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+    /**
+     * @var Payment
+     */
 class Payment extends CI_Controller {
 
 	function __construct() {

@@ -1,5 +1,8 @@
 <?php
 
+    /**
+     * @var Customer
+     */
 	class Customer extends CI_Controller
 	{
 		function __construct()

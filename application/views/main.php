@@ -1,5 +1,8 @@
 <?php
-//prettyDump($equipments);
+//prettyDump($customers[0]);
+//prettyDump($equipments[0]);
+//prettyDump($requests[0]);
+
 ?>
 
 <div class="container-fluid">
@@ -23,7 +26,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-lg-4">
 			<h3>Сводка <small class="text-muted">на неделю</small></h3>
-			<p class="text-muted">Думаю поставить сюда предстоящие в следующие дни события — в какие города ехать что делать. Наверное можно будет интегрироваться с гуглокалендарем и тянуть оттуда данные.</p>
+			<p class="text-muted">Сюда можно поставить предстоящие в следующие дни события — в какие города ехать что делать. Теоретически можно интегрироваться с гуглокалендарем и тянуть оттуда данные.</p>
 		</div>
 	</div>
 </div>

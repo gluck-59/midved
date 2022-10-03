@@ -145,7 +145,7 @@ JOIN request r ON r.id = p.request_id
 			$toFile = $this->input->get_post('toFile', TRUE);
 			if (isset($toFile)) {
 				self::toFile($sql);
-			} else return ($this->ReportModel->execRequest($sql));
+			} else return ($this->reportModel->execRequest($sql));
 		}
 
 
@@ -156,7 +156,7 @@ JOIN request r ON r.id = p.request_id
 		 * @return void
 		 */
 		public function toFile(string $sql) : void {
-			$sqlData = $this->ReportModel->execRequest($sql);
+			$sqlData = $this->reportModel->execRequest($sql);
 			$carHistory = [];
 			$carHistoryOut = [];
 
