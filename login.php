@@ -12,53 +12,38 @@
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 </head>
 <style>
-	#background {
-		background-image: url(application/img/medved-login.gif);
-		background-repeat: no-repeat;
-		background-size: contain;
-		background-position: top left;
-		height: 70vh;
-		opacity: 0.3;
-	}
-
-	#pad	{
-		margin: 27vh auto;
-		width: 380px;
-		position: relative;
-		/*opacity: 0.9;*/
-	}
-	form {
-		border: solid 60px #eddad2;
-		position: absolute;
-		bottom: -110px;
-		padding: 40px;
-		border-radius: 50%;
-		width: 450px;
-		padding-left: 20%;
-	}
+	#root {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 </style>
 
 <body>
-	<div id="pad">
+<div id="root">
+    <div class="row">
+        <div class="col-xs-12">
 		<form method="post" action="/login" class="form-horizontal">
 			<div class="form-group">
-				<div class="col-sm-10">
+				<div class="col-xs-12">
 					<input type="text" class="form-control" name="user" placeholder="Имя" value="demo">
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-10">
+				<div class="col-xs-12">
 					<input type="password" class="form-control" name="password" placeholder="Пароль" value="demo">
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-10">
+				<div class="col-xs-12">
 					<button type="submit" class="btn btn-success" style="width: 100%;">Войдите</button>
 				</div>
 			</div>
 		</form>
-	</div>
-	<div id="background"></div>
-
-
+        </div>
+    </div>
+</div>
+</center>
 </body>
