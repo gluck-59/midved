@@ -43,12 +43,12 @@
 		<form method="post" action="/login" class="form-horizontal">
 			<div class="form-group">
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="user" placeholder="Имя">
+					<input type="text" class="form-control" name="user" placeholder="Имя" value="demo">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-10">
-					<input type="password" class="form-control" name="password" placeholder="Пароль">
+					<input type="password" class="form-control" name="password" placeholder="Пароль" value="demo">
 				</div>
 			</div>
 			<div class="form-group">
