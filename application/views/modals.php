@@ -1,6 +1,5 @@
 <?php
 //	prettyDump($requests[0]);
-    ENVIRONMENT
 ?>
 <!-- Modal request -->
 <div class="modal fade" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="requestLabel" aria-hidden="true">
@@ -16,7 +15,7 @@
 				<select class=""  name="equipments" data-live-search="true" title="Затем выберите оборудование..."></select>
 				<div class="clearfix">&nbsp;</div>
 
-				<input type="text" class="form-control" id="desc" placeholder="Краткое описание заявки">
+				<input required type="text" class="form-control" id="desc" placeholder="Краткое описание заявки">
 				<div class="clearfix">&nbsp;</div>
 
 				<p>Выберите клиента и оборудование для ремонта. Подробности заявки можно будет добавлять и изменять внутри заявки на всем ее жизненном цикле.</p>
@@ -41,7 +40,7 @@
 			<div class="modal-body">
 				<select class="" name="requests" data-live-search="true" title="Выберите заявку..."></select>
 				<div class="clearfix">&nbsp;</div>
-				<input type="number" class="form-control" placeholder="Сумма">
+				<input required type="number" class="form-control" placeholder="Сумма">
 				<div class="clearfix">&nbsp;</div>
 
 				<p>Заявка, в которую нужно добавить платеж</p>
@@ -66,7 +65,7 @@
 			</div>
 			<div class="modal-body">
 				<input hidden id="customerId" placeholder="customerId">
-				<input type="text" id="name" class="form-control" placeholder="Название (обязательно)">
+				<input required type="text" id="name" class="form-control" placeholder="Название (обязательно)">
 				<div class="clearfix">&nbsp;</div>
 				<textarea type="text" id="data" class="form-control" placeholder="Дополнительные данные"></textarea>
 				<div class="clearfix">&nbsp;</div>
@@ -99,7 +98,7 @@
 				<input hidden id="customerId">
 				<div class="row">
 					<div class="col-xs-6">
-						<input type="text" id="name" class="form-control" placeholder="Название (обязательно)">
+						<input required type="text" id="name" class="form-control" placeholder="Название (обязательно)">
 					</div>
 					<div class="col-xs-6">
 						<input type="text" id="mark" class="form-control" placeholder="Марка/модель">
