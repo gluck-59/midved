@@ -5,9 +5,9 @@
 
     class Welcome extends CI_Controller
     {
-        public array $customer;
-        public array $request;
-        public array $equipment;
+        public $customer;
+        public $request;
+        public $equipment;
 
         function __construct()
         {

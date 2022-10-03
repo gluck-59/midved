@@ -1,5 +1,6 @@
 <?php
 //	prettyDump($requests[0]);
+    ENVIRONMENT
 ?>
 <!-- Modal request -->
 <div class="modal fade" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="requestLabel" aria-hidden="true">
