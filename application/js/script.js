@@ -63,6 +63,7 @@ $(document).on('ready', function (){
 	 */
 	$('#addRequest').on('click', function (event) {
 		let modal = $('#modal-request');
+		if (modal.find('#desc').val() == '') return;
 		let sendData = {
 			'equipments': modal.find('[name=equipments]').val(),
 			'desc': modal.find('#desc').val()
@@ -110,6 +111,7 @@ $(document).on('ready', function (){
 	 */
 	$('#saveCustomer').on('click', function (event) {
 		let modal = $('.modal#modal-customer');
+		if (modal.find('#name').val() == '') return;
 		let sendData = {
 			'customerId': modal.find('#customerId').val(),
 			'customerName': modal.find('#name').val(),
@@ -143,6 +145,7 @@ $(document).on('ready', function (){
 	 */
 	$('#saveEquipment').on('click', function (event) {
 		let modal = $('.modal#modal-equipment');
+		if (modal.find('#name').val() == '') return;
 		let sendData = {
 			'customerSelector': modal.find('[name=customers]').val(),
 			'customerField': modal.find('#customerId').val(),
