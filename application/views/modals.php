@@ -231,7 +231,8 @@
 
 		sumInput.focus().val('');
 
-
+        // select
+        modal.find('[name=customers]').selectpicker('val', button.data('customer_id'));
 
 		/** экранная клава */
 		// покрасим кнопки
