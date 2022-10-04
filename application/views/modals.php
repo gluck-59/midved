@@ -219,7 +219,7 @@
 
 		// оборудование (@TODO сделать универсальный заполнятель)
 		// заполнение полей на редактирование
-		// console.log('заполняем',button.data())
+console.log('заполняем',button.data())
 		modal.find('#equipmentId').val(button.data('equipment_id'));
 		modal.find('#customerId').val(button.data('customer_id'));
 		modal.find('#name').val(button.data('name'));
@@ -229,6 +229,9 @@
 		modal.find('#data').val(button.data('data'));
 		modal.find('#serial').val(button.data('serial'));
 		modal.find('#notes').val(button.data('notes'));
+
+        // select
+        modal.find('[name=customers]').selectpicker('val', button.data('customer_id'));
 
 		sumInput.focus().val('');
 

@@ -98,7 +98,7 @@ $(document).on('ready', function (){
 			'requestId': $('#requestId').val()
 		};
 		$.post('/request/setStatus', sendData, function (data) {
-			if (data == 1) window.location.href='/request';
+			// if (data == 1) window.location.href='/request';
 		})
 	})
 
