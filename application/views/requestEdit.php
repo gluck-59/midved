@@ -183,3 +183,25 @@
 	</div>
 </div>
 <input hidden id="requestId" value="<?=$request->id?>">
+<script>
+    /**
+     * заменяет все найденные омера телефонов на ссылки
+     * @param text
+     */
+    function autoTel(text) {
+        console.log('autoTel');
+        /*var elements = document.querySelectorAll('#requestNotes'),
+            reg = /(?:\+|\d)[\d\-\(\) ]{9,}\d/g;
+
+        Array.prototype.forEach.call(elements, function(el){
+            var el2 = el.innerHTML.replace( reg, function(i) {
+                return '<a href="tel:' + i + '">' + i + '</a>';
+            } );
+            el.innerHTML = el2;
+        });*/
+    }
+
+    // autoTel($('#requestNotes').val());
+
+
+</script>

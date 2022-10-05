@@ -5,6 +5,7 @@
 
 ?>
 
+
 <div class="container-fluid">
 	<h3>Главная <small class="text-muted">страница</small></h3>
 	<div class="row">

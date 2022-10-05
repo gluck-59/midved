@@ -1,4 +1,5 @@
 $(document).on('ready', function (){
+
 	/**
 	 * создает приход-расход
  	 */
