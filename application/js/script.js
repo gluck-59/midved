@@ -21,9 +21,9 @@ $(document).on('ready', function (){
 			'sum': sum,
 			'note': note
 		};
-		console.log('sendData', sendData);
+		// console.log('sendData', sendData);
 		$.post('/request/payment/', sendData, function (data) {
-			console.log('POST /request/payment', data);
+			// console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();
 		})
 	});
@@ -40,9 +40,12 @@ $(document).on('ready', function (){
 		postData.value = event.currentTarget.value;
 
 		$.post('/payment/edit', postData, function (data) {
-			// console.log('POST /payment/edit', data, typeof data);
-			if (data == 1) location.reload();
-		})
+			console.log('POST /payment/edit', data, typeof data);
+			if (data.toastr) {
+				showToastr(data.toastr);
+				// if (data.toastr.type == 1) window.location.reload();
+			}
+		}, "json")
 	})
 
 
@@ -260,7 +263,6 @@ function fillRequestSelect() {
 
 
 function showToastr(data) {
-	console.log(data, data.type);
 	switch (data.type) {
 		case 0:
 			toastr.error(data.message, data.header);

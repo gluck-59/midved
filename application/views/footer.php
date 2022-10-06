@@ -6,7 +6,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-		<script src="/application/js/script.js"></script>
+        <link rel="stylesheet" href="/application/css/style.css">
+        <script src="/application/js/script.js"></script>
 
 		<script>
 			jQuery.fn.extend({

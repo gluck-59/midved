@@ -104,7 +104,5 @@
                 $message = 'Перезагрузите страницу и попробуйте снова';
             }
             echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
-
-
 		}
     }

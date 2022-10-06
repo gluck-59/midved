@@ -12,7 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title><?=$this->router->pageName?></title>
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/application/css/bootstrap-select/bootstrap-select.min.css">
-	<link rel="stylesheet" href="/application/css/style.css">
+
+
 </head>
 <body onload="footerFill()">
 

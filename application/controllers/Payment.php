@@ -35,7 +35,15 @@ class Payment extends CI_Controller {
 	 */
 	public function edit() {
 		$paymentData = $this->input->get_post(null, TRUE);
-		echo $this->paymentModel->edit($paymentData);
+        if ($this->paymentModel->edit($paymentData)) {
+            $type = 1;
+            $message = 'Платеж отредактирован';
+        } else {
+            $type = 0;
+            $header = 'Не удалось отредактировать платеж';
+            $message = 'Перезагрузите страницу и попробуйте снова';
+        }
+        echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
 	}
 
 }
