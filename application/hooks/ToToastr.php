@@ -12,7 +12,7 @@
          * @param string|null $header
          * @return array
          */
-        public static function send(int $type, string|null $message = null, string|null $header = null) : array {
+        public static function send(int $type, $message = null,  $header = null) : array {
             switch ($type) {
                 case 0:
                     if (is_null($message)) $message = 'Ошибка';
