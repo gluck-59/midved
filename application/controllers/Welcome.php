@@ -1,7 +1,5 @@
 <?php
     defined('BASEPATH') or exit('No direct script access allowed');
-//error_reporting(E_ERROR);
-//ini_set('display_errors', 1);
 
     class Welcome extends CI_Controller
     {

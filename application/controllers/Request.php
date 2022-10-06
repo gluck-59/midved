@@ -83,7 +83,15 @@
 		 */
 		public function setNotes() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->requestModel->setNotes($data);
+            if ($this->requestModel->setNotes($data)) {
+                $type = 1;
+                $message = 'Заметка успешно изменена';
+            } else {
+                $type = 0;
+                $header = 'Не удалось сохранить заметку';
+                $message = 'Перезагрузите страницу и попробуйте снова';
+            }
+            echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
 		}
 
 
@@ -93,6 +101,8 @@
 		 */
 		public function setStatus() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->requestModel->setStatus($data);
+			echo json_encode(['toastr' => toToastr::send($this->requestModel->setStatus($data))]);
+
+
 		}
     }

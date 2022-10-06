@@ -84,8 +84,10 @@ $(document).on('ready', function (){
 			'notes': $(event.currentTarget).val()
 		};
 		$.post('/request/setNotes/', sendData, function (data) {
-			console.log(data)
-		})
+			if (data.toastr) {
+				showToastr(data.toastr);
+			}
+		}, "json")
 	})
 
 
@@ -99,8 +101,11 @@ $(document).on('ready', function (){
 			'requestId': $('#requestId').val()
 		};
 		$.post('/request/setStatus', sendData, function (data) {
-			// if (data == 1) window.location.href='/request';
-		})
+			// if (data == 1) window.location.href='/request'; // оригинал
+			if (data.toastr) {
+				showToastr(data.toastr);
+			}
+		}, "json");
 	})
 
 
@@ -195,8 +200,14 @@ $('.editEquipment').on('click', function (event) {
 
 
 
-
+	$('#year').text(new Date().getFullYear());
 }) // document ready
+
+
+
+
+
+
 
 
 
@@ -247,5 +258,26 @@ function fillRequestSelect() {
 }
 
 
+function showToastr(data) {
+	console.log(data, data.type);
+	switch (data.type) {
+		case 0:
+			toastr.error(data.message, data.header);
+			break;
 
+		case 1:
+			toastr.success(data.message, data.header);
+			break;
+
+		case 2:
+			toastr.info(data.message, data.header);
+			break;
+		case 3:
+			toastr.waiting(data.message, data.header);
+			break;
+
+		default:
+			toastr.info(data.message, data.header);
+	}
+}
 
