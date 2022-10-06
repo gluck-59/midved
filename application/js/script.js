@@ -104,6 +104,7 @@ $(document).on('ready', function (){
 			// if (data == 1) window.location.href='/request'; // оригинал
 			if (data.toastr) {
 				showToastr(data.toastr);
+				// if (data.toastr.type == 1) window.location.reload();
 			}
 		}, "json");
 	})
@@ -241,7 +242,7 @@ $('.paymentEdit').on('click', function (event) {
  * заполняет селектор заявок с главной
  */
 function fillRequestSelect() {
-	$.getJSON( "/request/getAll", function( data ) {
+	$.getJSON( "/request/index/true", function( data ) {
 		let select = $('#requestList');
 		select.text('');
 

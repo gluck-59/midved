@@ -3,6 +3,7 @@
     class Report extends CI_Controller
 	{
 		public $curSheet;
+        public $reportModel;
 		protected $defaultFont;
 		protected $defaultFontSize;
 		protected $sheets;
@@ -33,6 +34,7 @@
 		public function __construct()
 		{
 			parent::__construct();
+            $this->reportModel = new ReportModel();
 			$this->router->pageName = 'Отчеты';
 			$this->curSheet = -1;
 			$this->defaultFont = 'Calibri';

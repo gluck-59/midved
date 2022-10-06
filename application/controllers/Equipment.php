@@ -6,15 +6,17 @@
 	class Equipment extends CI_Controller
 	{
 		public $equipment;
+		public $equipmentModel;
+
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('EquipmentModel');
 			$this->router->pageName = 'Оборудование';
+            $this->equipmentModel = new EquipmentModel();
 		}
 
 		public function index() {
-			$this->equipment = $this->EquipmentModel->getEquipment();
+			$this->equipment = $this->equipmentModel->getEquipment();
 			$this->load->view('header');
 			$this->load->view('equipment', ['customers' => $this->customer, 'equipments' => $this->equipment]);
 			$this->load->view('footer');
@@ -29,7 +31,7 @@
 		 * @return string
 		 */
 		public function getEquipmentByCustomerId(string $customerId = '') {
-			echo json_encode($this->EquipmentModel->getEquipment([$customerId]));
+			echo json_encode($this->equipmentModel->getEquipment([$customerId]));
 		}
 
 
@@ -56,7 +58,7 @@
 		 * @return void
 		 */
 		public function create($equipmentData) {
-			$res = $this->EquipmentModel->create($equipmentData);
+			$res = $this->equipmentModel->create($equipmentData);
 			echo $res;
 		}
 
@@ -66,7 +68,7 @@
 		 * @return void
 		 */
 		public function edit($equipmentData) {
-			$res = $this->EquipmentModel->edit($equipmentData);
+			$res = $this->equipmentModel->edit($equipmentData);
 			echo $res;
 		}
 
@@ -77,7 +79,7 @@
 		 */
 		public function delete() {
 			$equipmentData = $this->input->get_post(null, TRUE);
-			$res = $this->EquipmentModel->delete($equipmentData);
+			$res = $this->equipmentModel->delete($equipmentData);
 			echo $res;
 		}
     }

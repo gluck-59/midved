@@ -58,15 +58,15 @@
 				</div>
 				<h3>
 					<div class="btn-group col-xs-4">
-						<button type="button" class="btn btn-info dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<?=Request::STATUSES[$request->status]?> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<?php
-								for ($i = 0; $i <= sizeof(Request::STATUSES); $i++) { ?>
-									<li><a href="#" class="selectStatus" id="<?=$i?>"><?=Request::STATUSES[$i]?></a></li>
-							<?php } ?>
-						</ul>
+                        <button type="button" class="btn btn-info dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?=Request::STATUSES[$request->status]?> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <?php
+                                for ($i = 0; $i <= sizeof(Request::STATUSES); $i++) { ?>
+                                    <li><a href="#" class="selectStatus" id="<?=$i?>"><?=Request::STATUSES[$i]?></a></li>
+                            <?php } ?>
+                        </ul>
 					</div>
 				</h3>
 				<div class="col-xs-9">

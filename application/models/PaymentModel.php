@@ -1,13 +1,10 @@
 <?php
 
     /**
-     * модуль платежей
-     *
      * @var PaymentModel
      */
 	class PaymentModel extends CI_Model
 	{
-
 		public $id;
 		public $request_id;
 		public $type;
