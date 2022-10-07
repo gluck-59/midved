@@ -3,10 +3,9 @@
 		<script src="/application/js/bootstrap-select/bootstrap-select.min.js"></script>
 		<script src="/application/js/bootstrap-select/i18n/defaults-ru_RU.js"></script>
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="/application/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="/application/css/toastr.css">
 
-        <link rel="stylesheet" href="/application/css/style.css">
         <script src="/application/js/script.js"></script>
 
 		<script>

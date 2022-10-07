@@ -129,9 +129,7 @@ div#keyboard .row-fluid {
 
 #toast-container>div {
 	padding: 5px 15px 5px 15px;
-	opacity: 0.7;
-	width: 80vw;
-	max-width: 300px;
+
 }
 #toast-container > .toast {
 	background-image: none!important;
