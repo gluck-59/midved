@@ -47,6 +47,19 @@ img#logo {
 }
 /* /navbar */
 
+/* table */
+.table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+	text-align: center;
+	background: #f2f2f2;
+}
+
+.close {
+	float: none;
+	color: red;
+	opacity: 1;
+}
+/* /table */
+
 
 /* modal */
 @media (max-width: 1200px) {

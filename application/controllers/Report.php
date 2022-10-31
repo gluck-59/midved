@@ -162,16 +162,8 @@ JOIN request r ON r.id = p.request_id
          * @return mixed
          */
         function debitorka() {
-            $sql = "SELECT e.name equipment, e.mark, c.name customer
-     		,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
-			from request r 
-			JOIN equipment e ON e.id = r.equipment_id 
-			JOIN customer c ON c.id = e.customer_id 
-			WHERE (SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) < 0
-			ORDER BY sum";
-
             $this->load->view('header');
-            $this->load->view('reports/debitorka', ['result' => self::execRequest($sql), 'reportName' => 'Дебиторская задолженность']);
+            $this->load->view('reports/debitorka', ['result' => $this->reportModel->debitorka(), 'reportName' => 'Дебиторская задолженность']);
             $this->load->view('reports/sample');
             $this->load->view('footer');
 

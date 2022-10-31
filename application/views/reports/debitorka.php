@@ -1,5 +1,5 @@
 <?php
-    //	prettyDump($result[0]);
+//    	prettyDump($result[0]);
     //	prettyDump($stopWords);
 
     $currency = new NumberFormatter( 'ru_RU', NumberFormatter::DECIMAL );
@@ -8,6 +8,7 @@
 
 <div class="container-fluid">
     <h3><?=$reportName?></h3>
+    <div class="clearfix">&nbsp;</div>
     <div class="row">
         <div class="col-xs-12 col-md-4">
             <?php if (!empty($stopWords[0])) { ?>
@@ -20,7 +21,7 @@
             <table class="table table-bordered table-condensed table-responsive table-striped table-hover">
                 <thead>
                     <th>Оборудование</th>
-                    <th>Марка</th>
+                    <th>Заявка</th>
                     <th>Заказчик</th>
                     <th>Задолженность</th>
                 </thead>
@@ -29,9 +30,9 @@
                     if (sizeof($result) > 0) {
                     foreach ($result as $rows) { ?>
                         <tr>
-                            <td><?=$rows['equipment']?></td>
-                            <td><?=$rows['mark']?></td>
-                            <td><?=$rows['customer']?></td>
+                            <td><?=$rows['equipment']?><br><span class="text-muted"><?=$rows['mark']?></span></td>
+                            <td><a href="/request/edit/<?=$rows['requestId']?>"><?=$rows['request']?></a><br><span class="text-muted"><?=$rows['created']?></span></td>
+                            <td><?=$rows['customer']?><br><span class="text-muted"><?=$rows['city']?></span></td>
                             <td><?=$currency->format(-$rows['sum'])?> ₽</td>
                         </tr>
                     <?php }} else { ?>

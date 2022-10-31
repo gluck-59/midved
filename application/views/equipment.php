@@ -37,7 +37,9 @@
 						</a>
 					</td>
 					<td><?=$equipment->city?> <?=$equipment->address?></td>
-					<td><button type="button" class="close deleteEquipment" id="<?=$equipment->id?>"><i class="glyphicon glyphicon-remove"></i></button></td>
+					<td>
+                        <center><button type="button" class="close deleteEquipment" id="<?=$equipment->id?>"><i class="glyphicon glyphicon-remove"></i></button></center>
+                    </td>
 				</tr>
 				<?php }	?>
 			</table>

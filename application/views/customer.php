@@ -32,11 +32,11 @@
 						<tr>
 							<td>
 								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$customer->id?>" data-name="<?=$customer->name?>" data-data="<?=$customer->data?>" ><?=$customer->name?></a>
-
 								<br>
 								<span class="small text-muted"><?=$customer->data?></span>
 							</td>
-							<td><button type="button" class="close deleteCustomer" id="<?=$customer->id?>"><i class="glyphicon glyphicon-remove"></i></button></td>
+							<td>
+                                <center><button type="button" class="close deleteCustomer" id="<?=$customer->id?>"><i class="glyphicon glyphicon-remove"></i></button></center></td>
 						</tr>
 					<?php }	?>
 			</table>

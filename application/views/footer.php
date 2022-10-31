@@ -29,6 +29,8 @@
 
 		<?php include_once 'modals.php';?>
 
+        <div class="clearfix"><hr></div>
+
 		<div class="row">
 			<div class="col-md-9 col-lg-8 col-xs-12">
 				<!--center class="row" style="opacity: 0.4;">
@@ -37,7 +39,7 @@
 					<span class="hidden-md label label-danger">hidden-md</span>
 					<span class="hidden-lg label label-default">hidden-lg</span>
 				</center-->
-				<center id="benchmark" class="text-muted"><a id="em">© gluck</a> <span id="year"></span> | server: <?=$this->benchmark->elapsed_time()?></center>
+				<center id="benchmark" class="text-muted"><a id="em">© <a href="//github.com/gluck-59/midved" target="_blank">gluck</a> <span id="year"></span> | server: <?=$this->benchmark->elapsed_time()?></center>
 			</div>
 		</div>
 	</body>
