@@ -29,6 +29,15 @@
 		const A_RIGHT = 2;
 		const A_CENTER = 3;
 
+        private $sampleSql = '
+SELECT r.name, p.sum/100 as sum
+, COALESCE(p.note, IF(p.type = 1, "работа", "неработа")) as note
+, DATE_FORMAT(p.created, "%d.%m.%Y") as date
+FROM payment as p
+JOIN request r ON r.id = p.request_id
+
+/* ЭТО ОБОРЗЕЦ */';
+
 
 		public function __construct()
 		{
@@ -116,27 +125,23 @@
 
 				if ((strpos(mb_strtolower($sql['sql']), 'select') == 0 and strpos(mb_strtolower($sql['sql']), 'select') !== false) and !preg_match_all('/' . implode("|", $re) . '/mi', $sql['sql'], $matches)) {
 					$result = self::execRequest($sql['sql']);
-				} //else $matches = //$result = implode(', ', $matches[0]).' — низзя';
+				}
 			} else {
-				$sql['sql'] = '
-SELECT r.name, p.sum/100 as sum
-, COALESCE(p.note, IF(p.type = 1, "работа", "неработа")) as note
-, DATE_FORMAT(p.created, "%d.%m.%Y") as date
-FROM payment as p
-JOIN request r ON r.id = p.request_id
-
-/* ЭТО ОБОРЗЕЦ */';
+				$sql['sql'] = $this->sampleSql;
 			}
 
 			$this->load->view('header');
-			$this->load->view('report', ['request' => $sql, 'result' => $result, 'stopWords' => $matches]);
+			$this->load->view('reports/sampleSql', ['request' => $sql, 'result' => $result, 'reportName' => 'Результат вашего запроса', 'stopWords' => $matches]);
+            $this->load->view('reports/sample');
 			$this->load->view('footer');
 		}
 
 
 
+
+
 		/**
-		 * отпраляет запрос в базу
+		 * отпраляет запрос юзера в базу
 		 * @param $sql
 		 * @return mixed
 		 */
@@ -147,6 +152,28 @@ JOIN request r ON r.id = p.request_id
 				self::toFile($sql);
 			} else return ($this->reportModel->execRequest($sql));
 		}
+
+
+        /**
+         * просто тестовый отчет
+         * не факт что он нужен
+         * @return mixed
+         */
+        function debitorka() {
+            $sql = "SELECT e.name equipment, e.mark, c.name customer
+     		,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
+			from request r 
+			JOIN equipment e ON e.id = r.equipment_id 
+			JOIN customer c ON c.id = e.customer_id 
+			WHERE (SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) < 0
+			ORDER BY sum";
+
+            $this->load->view('header');
+            $this->load->view('reports/debitorka', ['result' => self::execRequest($sql), 'reportName' => 'Дебиторская задолженность']);
+            $this->load->view('reports/sample');
+            $this->load->view('footer');
+
+        }
 
 
 
@@ -179,7 +206,7 @@ JOIN request r ON r.id = p.request_id
 
 
 
-/************ экспорт в эксель **************/
+/************ экспорт в эксель @TODO переписать это мавно **************/
 
 		public static function fromArray(array $rows, $sheetName = null)
 		{

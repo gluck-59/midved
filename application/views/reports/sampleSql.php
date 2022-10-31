@@ -14,7 +14,10 @@
 				foreach ($stopWords[0] as $stopWord) { ?>
 						<h4><span class="label label-danger"><?=$stopWord?></span></h4>
 				<?php } ?>
-			<?php } ?>
+			<?php }
+            if (!empty($result)) { ?>
+            <h3><?=$reportName?></h3>
+            <?php } ?>
 			<table class="table table-bordered table-condensed table-responsive table-striped">
 				<?php
 				foreach ($result as $rows) {
@@ -28,12 +31,6 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-xs-12">
-
-		</div>
-	</div>
-
 	<div class="clearfix">&nbsp;</div>
 
 	<form method="post" action="/report">
@@ -42,13 +39,11 @@
 				<textarea name="sql" class="form-control" style="width: 100%; verflow-y: hidden; /*height: 20vh;*/"><?=$request['sql']?></textarea>
 			</div>
 			<div class="clearfix">&nbsp;</div>
-			<div class="clearfix"><hr></div>
+			<div class="clearfix">&nbsp;</div>
 			<div class="col-xs-12 col-md-4 text-right">
 				<input type="reset" onclick="$('[name=sql]').text('')" class="btn btn-warning" value="Очистить">
-				<input type="submit" name="toFile" class="btn btn-info" value="Результат в Excel">
+				<input type="submit" name="toFile" class="btn btn-info" value="В&nbsp;Excel">
 				<input type="submit" class="btn btn-success" value="Запрос">
 			</form>
 		</div>
 	</div>
-</div>
-<div class="clearfix">&nbsp;</div>

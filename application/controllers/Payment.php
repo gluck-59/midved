@@ -12,10 +12,6 @@ class Payment extends CI_Controller {
 		$this->router->pageName = 'Расчеты';
 	}
 
-	public function history($reqestId = null) : array {
-		$this->request = $this->PaymentModel->get($reqestId);
-	}
-
 
 	/**
 	 * удаляет платеж

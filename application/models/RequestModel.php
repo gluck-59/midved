@@ -29,6 +29,7 @@
 			from request r 
 			JOIN equipment e ON e.id = r.equipment_id 
 			JOIN customer c ON c.id = e.customer_id $where ORDER BY r.status, r.updated DESC";
+
             $stmt = $this->db->query($sql);
             return $stmt->result();
         }
