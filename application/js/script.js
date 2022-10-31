@@ -1,4 +1,5 @@
 $(document).on('ready', function (){
+
 	/**
 	 * создает приход-расход
  	 */
@@ -20,9 +21,9 @@ $(document).on('ready', function (){
 			'sum': sum,
 			'note': note
 		};
-		console.log('sendData', sendData);
+		// console.log('sendData', sendData);
 		$.post('/request/payment/', sendData, function (data) {
-			console.log('POST /request/payment', data);
+			// console.log('POST /request/payment', data);
 			if (data == 'true') location.reload();
 		})
 	});
@@ -39,9 +40,12 @@ $(document).on('ready', function (){
 		postData.value = event.currentTarget.value;
 
 		$.post('/payment/edit', postData, function (data) {
-			// console.log('POST /payment/edit', data, typeof data);
-			if (data == 1) location.reload();
-		})
+			console.log('POST /payment/edit', data, typeof data);
+			if (data.toastr) {
+				showToastr(data.toastr);
+				// if (data.toastr.type == 1) window.location.reload();
+			}
+		}, "json")
 	})
 
 
@@ -84,8 +88,10 @@ $(document).on('ready', function (){
 			'notes': $(event.currentTarget).val()
 		};
 		$.post('/request/setNotes/', sendData, function (data) {
-			console.log(data)
-		})
+			if (data.toastr) {
+				showToastr(data.toastr);
+			}
+		}, "json")
 	})
 
 
@@ -99,8 +105,12 @@ $(document).on('ready', function (){
 			'requestId': $('#requestId').val()
 		};
 		$.post('/request/setStatus', sendData, function (data) {
-			if (data == 1) window.location.href='/request';
-		})
+			// if (data == 1) window.location.href='/request'; // оригинал
+			if (data.toastr) {
+				showToastr(data.toastr);
+				// if (data.toastr.type == 1) window.location.reload();
+			}
+		}, "json");
 	})
 
 
@@ -197,8 +207,14 @@ $('.editEquipment').on('click', function (event) {
 
 
 
-
+	$('#year').text(new Date().getFullYear());
 }) // document ready
+
+
+
+
+
+
 
 
 
@@ -232,7 +248,7 @@ $('.paymentEdit').on('click', function (event) {
  * заполняет селектор заявок с главной
  */
 function fillRequestSelect() {
-	$.getJSON( "/request/getAll", function( data ) {
+	$.getJSON( "/request/index/true", function( data ) {
 		let select = $('#requestList');
 		select.text('');
 
@@ -249,5 +265,25 @@ function fillRequestSelect() {
 }
 
 
+function showToastr(data) {
+	switch (data.type) {
+		case 0:
+			toastr.error(data.message, data.header);
+			break;
 
+		case 1:
+			toastr.success(data.message, data.header);
+			break;
+
+		case 2:
+			toastr.info(data.message, data.header);
+			break;
+		case 3:
+			toastr.waiting(data.message, data.header);
+			break;
+
+		default:
+			toastr.info(data.message, data.header);
+	}
+}
 

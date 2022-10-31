@@ -17,8 +17,6 @@
 
 		function __construct()
 		{
-//			$stmt = $this->db->query('select * from equipment');
-//			$this->customers = $stmt->result();
 		}
 
 

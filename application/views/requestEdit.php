@@ -58,15 +58,15 @@
 				</div>
 				<h3>
 					<div class="btn-group col-xs-4">
-						<button type="button" class="btn btn-info dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<?=Request::STATUSES[$request->status]?> <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<?php
-								for ($i = 0; $i <= sizeof(Request::STATUSES); $i++) { ?>
-									<li><a href="#" class="selectStatus" id="<?=$i?>"><?=Request::STATUSES[$i]?></a></li>
-							<?php } ?>
-						</ul>
+                        <button type="button" class="btn btn-info dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?=Request::STATUSES[$request->status]?> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <?php
+                                for ($i = 0; $i <= sizeof(Request::STATUSES); $i++) { ?>
+                                    <li><a href="#" class="selectStatus" id="<?=$i?>"><?=Request::STATUSES[$i]?></a></li>
+                            <?php } ?>
+                        </ul>
 					</div>
 				</h3>
 				<div class="col-xs-9">
@@ -183,3 +183,25 @@
 	</div>
 </div>
 <input hidden id="requestId" value="<?=$request->id?>">
+<script>
+    /**
+     * заменяет все найденные омера телефонов на ссылки
+     * @param text
+     */
+    function autoTel(text) {
+        console.log('autoTel');
+        /*var elements = document.querySelectorAll('#requestNotes'),
+            reg = /(?:\+|\d)[\d\-\(\) ]{9,}\d/g;
+
+        Array.prototype.forEach.call(elements, function(el){
+            var el2 = el.innerHTML.replace( reg, function(i) {
+                return '<a href="tel:' + i + '">' + i + '</a>';
+            } );
+            el.innerHTML = el2;
+        });*/
+    }
+
+    // autoTel($('#requestNotes').val());
+
+
+</script>

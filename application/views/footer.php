@@ -2,7 +2,11 @@
 		<script src="/application/js/bootstrap.min.js"></script>
 		<script src="/application/js/bootstrap-select/bootstrap-select.min.js"></script>
 		<script src="/application/js/bootstrap-select/i18n/defaults-ru_RU.js"></script>
-		<script src="/application/js/script.js"></script>
+
+        <script src="/application/js/toastr.min.js"></script>
+        <link rel="stylesheet" href="/application/css/toastr.css">
+
+        <script src="/application/js/script.js"></script>
 
 		<script>
 			jQuery.fn.extend({
@@ -33,7 +37,7 @@
 					<span class="hidden-md label label-danger">hidden-md</span>
 					<span class="hidden-lg label label-default">hidden-lg</span>
 				</center-->
-				<center id="benchmark" class="text-muted">Load: <?=$this->benchmark->elapsed_time()?> | © <a id="em">gluck</a> </center>
+				<center id="benchmark" class="text-muted"><a id="em">© gluck</a> <span id="year"></span> | server: <?=$this->benchmark->elapsed_time()?></center>
 			</div>
 		</div>
 	</body>
@@ -43,5 +47,23 @@
         let to = 'mailto:';
         let em = 'glu'+'ck59@gm'+'ail.com';
         document.getElementById('em').setAttribute('href', to+em)
+    }
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
     }
 </script>

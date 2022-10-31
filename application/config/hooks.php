@@ -18,3 +18,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		'filepath' => 'hooks',
 		'params'  => ''
 	);
+
+
+    $hook['post_controller_constructor'][] = array(
+		'class'    => 'ToToastr',
+		'function' => 'index',
+		'filename' => 'ToToastr.php',
+		'filepath' => 'hooks',
+		'params'  => ''
+	);

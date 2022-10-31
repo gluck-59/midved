@@ -6,10 +6,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      */
 class Payment extends CI_Controller {
 
+    public $paymentModel;
 	function __construct() {
 		parent::__construct();
-		$this->load->model('PaymentModel');
+		$this->paymentModel = new PaymentModel();
 		$this->router->pageName = 'Расчеты';
+	}
+
+	public function history($reqestId = null) : array {
+		$this->request = $this->paymentModel->get($reqestId);
 	}
 
 
@@ -18,9 +23,8 @@ class Payment extends CI_Controller {
 	 * @return void
 	 */
 	public function delete() {
-		$this->payments = $this->load->model('PaymentModel');
 		$paymentId = $this->input->get_post('id', TRUE);
-		$res = $this->PaymentModel->delete($paymentId);
+		$res = $this->paymentModel->delete($paymentId);
 		echo json_encode($res);
 	}
 
@@ -30,9 +34,16 @@ class Payment extends CI_Controller {
 	 * @return void
 	 */
 	public function edit() {
-		$this->load->model('PaymentModel');
 		$paymentData = $this->input->get_post(null, TRUE);
-		echo $this->PaymentModel->edit($paymentData);
+        if ($this->paymentModel->edit($paymentData)) {
+            $type = 1;
+            $message = 'Платеж отредактирован';
+        } else {
+            $type = 0;
+            $header = 'Не удалось отредактировать платеж';
+            $message = 'Перезагрузите страницу и попробуйте снова';
+        }
+        echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
 	}
 
 }

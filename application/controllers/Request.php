@@ -9,34 +9,32 @@
 
 		public $request;
 		public $payments;
-//		public $requestModel;
+		public $requestModel;
+        public $paymentModel;
 
 		function __construct()
 		{
 			parent::__construct();
-//            $this->load->model('requestModel');
+            $this->requestModel = new RequestModel();
+            $this->paymentModel = new PaymentModel();
 			$this->router->pageName = 'Заявки';
-
-		}
-
-		public function index() {
-//  если включать этот способ то надо закомментить лоад модели в конструкторе
-//            $r = new \RequestModel();
-//			$this->request = $r->getRequests();
-
-            $this->request = $this->requestModel->getRequests();
-			$this->load->view('header');
-			$this->load->view('request', ['customers' => $this->customer, 'requests' => $this->request, 'equipments' => $this->equipment]);
-			$this->load->view('footer');
 		}
 
 
-		/**
-		 * @return void
-		 */
-		public function getAll()
-		{
-			echo json_encode($this->requestModel->getRequests());
+        /**
+         * тянет все заявки
+         *
+         * @param $json //выходной формат
+         * @return void
+         */
+		public function index($json = false) {
+            if ($json) {
+                echo json_encode($this->requestModel->getRequests());
+            } else {
+                $this->load->view('header');
+                $this->load->view('request', ['customers' => $this->customer, 'requests' => $this->requestModel->getRequests(), 'equipments' => $this->equipment]);
+                $this->load->view('footer');
+            }
 		}
 
 
@@ -46,10 +44,8 @@
 		 * @return void
 		 */
 		public function edit(int $requestId = null) {
-			$this->payments = $this->load->model('PaymentModel');
-
 			$this->load->view('header');
-			$this->load->view('requestEdit', ['request' => $this->requestModel->edit($requestId), 'payments' => $this->PaymentModel->get($requestId)]);
+			$this->load->view('requestEdit', ['request' => $this->requestModel->edit($requestId), 'payments' => $this->paymentModel->get($requestId)]);
 			$this->load->view('footer');
 		}
 
@@ -59,10 +55,8 @@
 		 * @return void
 		 */
 		public function payment() {
-			$this->payments = $this->load->model('PaymentModel');
 			$paymentData = $this->input->get_post(null, TRUE);
-
-			$res = $this->PaymentModel->set($paymentData);
+			$res = $this->paymentModel->set($paymentData);
 			echo json_encode($res);
 		}
 
@@ -83,7 +77,15 @@
 		 */
 		public function setNotes() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->requestModel->setNotes($data);
+            if ($this->requestModel->setNotes($data)) {
+                $type = 1;
+                $message = 'Заметка успешно изменена';
+            } else {
+                $type = 0;
+                $header = 'Не удалось сохранить заметку';
+                $message = 'Перезагрузите страницу и попробуйте снова';
+            }
+            echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
 		}
 
 
@@ -93,6 +95,14 @@
 		 */
 		public function setStatus() {
 			$data = $this->input->get_post(null, TRUE);
-			echo $this->requestModel->setStatus($data);
+            if ($this->requestModel->setStatus($data)) {
+                $type = 1;
+                $message = 'Статус изменен';
+            } else {
+                $type = 0;
+                $header = 'Не удалось изменить статус';
+                $message = 'Перезагрузите страницу и попробуйте снова';
+            }
+            echo json_encode(['toastr' => toToastr::send($type, $message,  $header)]);
 		}
     }

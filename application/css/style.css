@@ -125,3 +125,12 @@ div#keyboard .row-fluid {
 	background-color: white;
 	/*opacity: 1;*/
 }
+
+
+#toast-container>div {
+	padding: 5px 15px 5px 15px;
+
+}
+#toast-container > .toast {
+	background-image: none!important;
+}

@@ -1,19 +1,22 @@
 <?php
     defined('BASEPATH') or exit('No direct script access allowed');
-//error_reporting(E_ERROR);
-//ini_set('display_errors', 1);
 
     class Welcome extends CI_Controller
     {
         public $customer;
         public $request;
         public $equipment;
+        public $customerModel;
+        public $equipmentModel;
+        public $requestModel;
 
         function __construct()
         {
             parent::__construct();
             $this->router->pageName = 'Главная';
-            $this->load->model('requestModel');
+            $this->customerModel = new CustomerModel();
+            $this->equipmentModel = new EquipmentModel();
+            $this->requestModel = new RequestModel();
         }
 
         public function index()
