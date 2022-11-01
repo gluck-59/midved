@@ -213,7 +213,7 @@ JOIN request r ON r.id = p.request_id
          * @param array|null $sqlResult
          * @return void
          */
-		public function toFile(string|null $sqlRequest, array|null $sqlResult = null) : void {
+		public function toFile($sqlRequest, $sqlResult = null) : void {
             if (is_null($sqlResult)) $sqlResult = $this->reportModel->execRequest($sqlRequest);
 
 			$carHistory = [];
