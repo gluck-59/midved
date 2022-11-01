@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
 	<h3>Запросы <small class="text-muted">к базе даных</small></h3>
-	<p class="text-muted">Разрешены SELECT и JOIN. Структуру базы можно взять у разработчиков. Первое слово в запросе — &laquo;SELECT&raquo;.</p>
+	<p class="text-muted">Вы можете написать свой запрос на языке SQL. Разрешены SELECT и JOIN. <br>Структуру базы можно взять у разработчиков. Первое слово в запросе — &laquo;SELECT&raquo;.</p>
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<?php if (!empty($stopWords[0])) { ?>
@@ -30,8 +30,6 @@
 			</table>
 		</div>
 	</div>
-
-	<div class="clearfix">&nbsp;</div>
 
 	<form method="post" action="/report">
 		<div class="row">

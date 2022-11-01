@@ -133,8 +133,8 @@ JOIN request r ON r.id = p.request_id
 			}
 
 			$this->load->view('header');
-			$this->load->view('reports/sampleSql', ['request' => $sql, 'result' => $result, 'reportName' => 'Результат вашего запроса', 'stopWords' => $matches]);
-            $this->load->view('reports/sample');
+            $this->load->view('reports/samplesInc');
+            $this->load->view('reports/sampleSql', ['request' => $sql, 'result' => $result, 'reportName' => 'Результат вашего запроса', 'stopWords' => $matches]);
 			$this->load->view('footer');
 		}
 
@@ -157,32 +157,69 @@ JOIN request r ON r.id = p.request_id
 
 
         /**
-         * просто тестовый отчет
+         * дебиторская задолженнность — просто тестовый отчет
          * не факт что он нужен
          * @return mixed
          */
-        function debitorka() {
-            $this->load->view('header');
-            $this->load->view('reports/debitorka', ['result' => $this->reportModel->debitorka(), 'reportName' => 'Дебиторская задолженность']);
-            $this->load->view('reports/sample');
-            $this->load->view('footer');
-
+        function debitorka($toFile = null) {
+            if (isset($toFile)) {
+                self::toFile( null, $this->reportModel->debitorka());
+            } else {
+                $this->load->view('header');
+                $this->load->view('reports/debitorka', ['result' => $this->reportModel->debitorka(), 'reportName' => 'Дебиторская задолженность']);
+                $this->load->view('reports/samplesInc');
+                $this->load->view('footer');
+            }
         }
 
 
+        /**
+         * всего оплачено — просто тестовый отчет
+         * не факт что он нужен
+         * @return mixed
+         */
+        function totalPayed($toFile = null) {
+            if (isset($toFile)) {
+                self::toFile( null, $this->reportModel->debitorka());
+            } else {
+                $this->load->view('header');
+                $this->load->view('reports/debitorka', ['result' => $this->reportModel->totalPayed(), 'reportName' => 'Всего оплачено']);
+                $this->load->view('reports/samplesInc');
+                $this->load->view('footer');
+            }
+        }
 
-		/**
-		 * отправляет результаты сформированного отчета в эксель-файл
-		 * @param string $sql
-		 * @return void
-		 */
-		public function toFile(string $sql) : void {
-			$sqlData = $this->reportModel->execRequest($sql);
+
+        /**
+         * зарплата по месяцам — просто тестовый отчет
+         * не факт что он нужен
+         * @return mixed
+         */
+        function salaryByMonth($toFile = null) {
+            if (isset($toFile)) {
+                self::toFile( null, $this->reportModel->salaryByMonth());
+            } else {
+                $this->load->view('header');
+                $this->load->view('reports/salaryByMonth', ['result' => $this->reportModel->salaryByMonth(), 'reportName' => 'Зарплата по месяцам']);
+                $this->load->view('reports/samplesInc');
+                $this->load->view('footer');
+            }
+        }
+
+
+        /**
+         * отправляет результаты сформированного отчета в эксель-файл
+         * @param string|null $sqlRequest
+         * @param array|null $sqlResult
+         * @return void
+         */
+		public function toFile(string|null $sqlRequest, array|null $sqlResult = null) : void {
+            if (is_null($sqlResult)) $sqlResult = $this->reportModel->execRequest($sqlRequest);
+
 			$carHistory = [];
 			$carHistoryOut = [];
-
-			if (is_array($sqlData) AND !empty($sqlData)) {
-				foreach ($sqlData as $temp) {
+			if (is_array($sqlResult) AND !empty($sqlResult)) {
+				foreach ($sqlResult as $temp) {
 					foreach ($temp as $fieldName => $value) {
 						$fieldNames[] = $fieldName;
 						$carHistory[$fieldName] = $temp[$fieldName];

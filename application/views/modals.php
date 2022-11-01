@@ -6,7 +6,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
 				<h4 class="modal-title" id="requestLabel">Новая заявка&nbsp;<small>на ремонт</small></h4>
 			</div>
 			<div class="modal-body">
@@ -34,7 +34,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
 				<h4 class="modal-title" id="paymentLabel">Платеж</h4>
 			</div>
 			<div class="modal-body">
@@ -60,7 +60,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
 				<h4 class="modal-title" id="paymentLabel">Клиент</h4>
 			</div>
 			<div class="modal-body">
@@ -86,7 +86,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
 				<h4 class="modal-title" id="">Оборудование</h4>
 			</div>
 			<div class="modal-body">
@@ -137,7 +137,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="zoom: 2;"></i></button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
 				<h3 class="modal-title" id="prihod_rashod"></h3>
 				<div class="row">
 					<div class="col-md-4 col-xs-6">
@@ -218,7 +218,7 @@
 
 		// оборудование (@TODO сделать универсальный заполнятель)
 		// заполнение полей на редактирование
-console.log('заполняем',button.data())
+// console.log('заполняем',button.data())
 		modal.find('#equipmentId').val(button.data('equipment_id'));
 		modal.find('#customerId').val(button.data('customer_id'));
 		modal.find('#name').val(button.data('name'));
