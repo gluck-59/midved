@@ -21,7 +21,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6 col-xs-12">
-		<table class="table table-condensed table-bordered table-condensed">
+		<table id="requests" class="table table-condensed table-bordered table-condensed">
 			<thead>
 			<th>Станок/Клиент</th>
 			<th>Заявка</th>
@@ -42,7 +42,7 @@
 					}
 
 					$amountClass = 'label-success';
-					if ($request->sum <= 0) $amountClass = 'label-danger';
+					if ($request->sum < 0) $amountClass = 'label-danger';
 
 					?>
 					<tr class="<?=$trClass?>">

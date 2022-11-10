@@ -27,15 +27,17 @@
 
 
 		switch ($payment->type) {
-			case 0: $paymentType = 'Работа'; break;
-			case 1: $paymentType = 'Накладные'; break;
+			case 0: $paymentType = (is_null($payment->note) || empty($payment->note) ? 'Работа' : $payment->note); break;
+			case 1: $paymentType = (is_null($payment->note) || empty($payment->note) ? 'Накладные' : $payment->note); break;
+			case 2: $paymentType = '<i class="glyphicon glyphicon-star" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Работа' : $payment->note); break;       // авторазноска
+			case 3: $paymentType = '<i class="glyphicon glyphicon-star" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Накладные' : $payment->note); break;       // авторазноска
 		}
 
 
 		$tableHtml .= '<tr id="'.$payment->id.'">
 			<td><input class="editPayment form-control" data-entity="created" value="'.$payment->created.'" ></td>
 			<td><input class="editPayment form-control" data-entity="sum" value="'.round($payment->sum, 0).'"></td>
-			<td><a href="#" class="1editPayment" data-entity="note"><span class="'.$tableHtmlSpanClass.'">'.(is_null($payment->note) || empty($payment->note) ? $paymentType : $payment->note).'</span></a></td>
+			<td><a href="#" class="1editPayment" data-entity="note"><span class="'.$tableHtmlSpanClass.'">'.$paymentType.'</span></a></td>
 			<td><button type="button" class="close deletePayment" id="'.$payment->id.'"><i class="glyphicon glyphicon-remove"></i></button></td>
 		</tr>';
 
@@ -59,12 +61,12 @@
 				<h3>
 					<div class="btn-group col-xs-4">
                         <button type="button" class="btn btn-info dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?=Request::STATUSES[$request->status]?> <span class="caret"></span>
+                            <?=RequestModel::STATUSES[$request->status]?> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <?php
-                                for ($i = 0; $i <= sizeof(Request::STATUSES); $i++) { ?>
-                                    <li><a href="#" class="selectStatus" id="<?=$i?>"><?=Request::STATUSES[$i]?></a></li>
+                                for ($i = 0; $i <= sizeof(RequestModel::STATUSES); $i++) { ?>
+                                    <li><a href="#" class="selectStatus" id="<?=$i?>"><?=RequestModel::STATUSES[$i]?></a></li>
                             <?php } ?>
                         </ul>
 					</div>

@@ -22,7 +22,7 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-6 col-xs-12">
-			<table class="table table-condensed table-bordered table-condensed">
+			<table id="customers" class="table table-condensed table-bordered table-condensed">
 				<thead>
 				<th>Название</th>
 				<th></th>

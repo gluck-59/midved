@@ -1,21 +1,33 @@
+var currentModalId; // текущий модал показанный на экране
 $(document).on('ready', function (){
 
 	/**
-	 * создает приход-расход
+	 * создает приход-расход или авторазноску (определяется по currentModalId)
  	 */
 	$('.calculate').on('click', function (event) {
-		var prihodRashodModal = $('#modalPrihodRashod');
-		let sum = $(prihodRashodModal).find('#sum').val();
-		if (sum == '') return;
+		var prihodRashodModal = $(currentModalId);
+		let sum = $(prihodRashodModal).find('.sum').val();
+
 		let requestId =  $(prihodRashodModal).find('#requestId').val() || $('#requestList').val();
+		let customerId =  $(prihodRashodModal).find('#customerList').val() || $('#customerList').val();
 		let type =  $(prihodRashodModal).find('#typePayment').val() || prihodRashodModal.find('#paymentType').prop('checked');
 		let direction =  $(prihodRashodModal).find('#direction').val();
 		let note =  $(prihodRashodModal).find('#notes').val();
-		// console.log('отправка', requestId, type, direction, sum, note)
 
+		// console.log('отправка:', 'requestId:', requestId, 'customerId:', customerId, 'type:', type, 'direction:', direction, 'sum:', sum, 'note:', note)
+
+		if (sum == '') {
+			toastr.error('Укажите сумму');
+			return;
+		}
+		if (requestId == '' && customerId == '') {
+			toastr.error('Укажите Клиента/Заявку');
+			return;
+		}
 
 		sendData = {
 			'requestId': requestId,
+			'customerId': customerId,
 			'type': (type == 'true' ? 1:0),
 			'direction': direction,
 			'sum': sum,
@@ -23,8 +35,11 @@ $(document).on('ready', function (){
 		};
 		// console.log('sendData', sendData);
 		$.post('/request/payment/', sendData, function (data) {
-			// console.log('POST /request/payment', data);
-			if (data == 'true') location.reload();
+			// console.log('ответ POST /request/payment', JSON.parse(data));
+			if (data == 'true') location.reload(); 				// не авторвзноска /*@TODO переписать ответ сервера
+			if (currentModalId == '#modalAutoDistribution') { 	// авторазноска
+				$('#modalAutoDistributionReport').html(_fillReport(JSON.parse(data)))
+			}
 		})
 	});
 
@@ -287,3 +302,33 @@ function showToastr(data) {
 	}
 }
 
+
+/**
+ * для авторазноски
+ * ловит ответ от сервера и формирует отчет
+ *
+ * @param object
+ * @return string
+ */
+function _fillReport(object) {
+	let out = ['<h3>Отчет</h3>'];
+	$.each(object, function (name, item) {
+		if (name == 'resultNorm' && item.length > 0) {
+			$.each(item, function (name, data) {
+				let temp = '<p>На заявку №'+data.requestId+' «<b>'+data.requestName+'</b>» упало '+new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'rub', maximumFractionDigits: 0 }).format((data.notEnough ? data.paymentSum : data.needSum) )+'.</p>';
+				if (data.notEnough) {
+					temp += '<p>На покрытие заявки не хватило '+new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'rub', maximumFractionDigits: 0 }).format(data.needSum - data.paymentSum)+'.</p>';
+				}
+				out.push(temp)
+			})
+		}
+
+		if (name == 'resultOver' ) {
+			$.each(item, function (name, data) {
+				let temp = '<p>Излишек '+new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'rub', maximumFractionDigits: 0 }).format(data.oversum)+' упал на заявку №'+data.oversumRequestId+' «<b>'+data.oversumRequestName+'</b>»</p>';
+				out.push(temp)
+			})
+		}
+	})
+	return out;
+}

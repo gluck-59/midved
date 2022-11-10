@@ -36,25 +36,14 @@
  * @filesource
  */
 
-/*
- *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT
- *---------------------------------------------------------------
- *
- * You can load different configurations depending on your
- * current environment. Setting the environment also influences
- * things like logging and error reporting.
- *
- * This can be set to anything, but default usage is:
- *
- *     development
+/*     development
  *     testing
  *     production
- *
- * NOTE: If you change these, also change the error_reporting() code below
  */
-//	define('ENVIRONMENT', 'development');
 	define('ENVIRONMENT', ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == 'localhost' || $_SERVER['SERVER_ADDR'] == '::1' ? 'development' : 'production'));
+//	define('ENVIRONMENT', 'development');
+
+
 
 /*
  *---------------------------------------------------------------

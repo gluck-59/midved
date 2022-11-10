@@ -5,8 +5,6 @@
 
 	class Request extends CI_Controller
 	{
-		const STATUSES = ['Новая', 'В работе', 'Готово'];
-
 		public $request;
 		public $payments;
 		public $requestModel;
@@ -24,7 +22,7 @@
         /**
          * тянет все заявки
          *
-         * @param $json //выходной формат
+         * @param $json //формат выхода, нужен для запроса аяксом
          * @return void
          */
 		public function index($json = false) {
@@ -52,11 +50,20 @@
 
 		/**
 		 * пишет приход-расход в заявку № ID
+         * авторазноска платежей здесь же
 		 * @return void
 		 */
 		public function payment() {
 			$paymentData = $this->input->get_post(null, TRUE);
-			$res = $this->paymentModel->set($paymentData);
+
+            // если customerId не передан — это обычный платеж
+            if (empty($paymentData['customerId']) AND !empty($paymentData['requestId'])) {
+			    $res = $this->paymentModel->set($paymentData);
+            }
+            // если requestId не передан — это авторазноска
+            elseif (empty($paymentData['requestId']) AND !empty($paymentData['customerId'])) {
+                $res = $this->paymentModel->autoDistribution($paymentData);
+            }
 			echo json_encode($res);
 		}
 

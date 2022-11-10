@@ -10,7 +10,7 @@
         public $name;
         public $status;
         public $notes;
-
+        const STATUSES = ['Новая', 'В работе', 'Готово'];
 
         /**
          * тянет заявки по списку ID
@@ -84,6 +84,7 @@
 
         public function setStatus($statusData)
         {
+//            print_r($statusData); die;
             $sql = 'UPDATE request SET status = ' . $this->db->escape($statusData['statusId']) . ' WHERE id = ' . $statusData['requestId'];
             return $this->db->query($sql);
         }

@@ -7,12 +7,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Payment extends CI_Controller {
 
     public $paymentModel;
+
 	function __construct() {
 		parent::__construct();
 		$this->paymentModel = new PaymentModel();
 		$this->router->pageName = 'Расчеты';
 	}
 
+    /** @deprecated */
 	public function history($reqestId = null) : array {
 		$this->request = $this->paymentModel->get($reqestId);
 	}

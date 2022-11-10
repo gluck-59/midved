@@ -154,7 +154,7 @@
 				</div>
 			</div>
 			<div class="modal-body">
-				<input type="number" pattern="[0-9]*" id="sum" class="form-control" style="zoom: 3;">
+				<input type="number" pattern="[0-9]*" id="" class="sum form-control" style="zoom: 3;">
 				<input hidden id="requestId" placeholder="заявка #">
 				<input hidden id="typePayment" placeholder="тип">
 				<input hidden id="direction" placeholder="direction">
@@ -178,7 +178,7 @@
 					<a href="#" class="btn key" data-key="51">3</a>
 				</div>
 				<div class="row-fluid">
-					<a href="#" class="btn btn-danger" onclick="$('#sum').val('')">C</a>
+					<a href="#" class="btn btn-danger" onclick="$('.sum').val('')">C</a>
 					<a href="#" class="btn key" data-key="48">0</a>
 					<a href="#" class="btn btn-success calculate" >OK</a>
 				</div>
@@ -199,16 +199,95 @@
 </div>
 
 
+
+<!-- Modal auto distribution  -->
+<div class="modal fade" id="modalAutoDistribution" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: right;"><i class="glyphicon glyphicon-remove"></i></button>
+				<h3 class="modal-title" id="prihod_rashod">Авторазноска платежа</h3>
+			</div>
+			<div class="modal-body">
+				<input type="number" pattern="[0-9]*" id="" class="sum form-control" style="zoom: 3;">
+				<input hidden id="requestId" placeholder="заявка #">
+				<input hidden id="typePayment" placeholder="тип">
+				<input hidden id="direction" placeholder="direction">
+				<div class="clearfix">&nbsp;</div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <select id="customerList" data-live-search="true" title="От кого платеж?"></select>
+                    </div>
+                    <!--div class="col-xs-4">
+                        <div class="checkbox" id="paymentTypeWrapper">
+                            <label>
+                                <input type="checkbox" id="paymentType" name="paymentType" class="1form-control" style="/*zoom: 1.3;*/">
+                                работа
+                            </label>
+                        </div>
+                    </div-->
+                </div>
+            </div>
+			<div id="keyboard" class="hidden-sm hidden-md hidden-lg">
+				<div class="row-fluid">
+					<a href="#" class="btn key" data-key="55">7</a>
+					<a href="#" class="btn key" data-key="56">8</a>
+					<a href="#" class="btn key" data-key="57">9</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn key" data-key="52">4</a>
+					<a href="#" class="btn key" data-key="53">5</a>
+					<a href="#" class="btn key" data-key="54">6</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn key" data-key="49">1</a>
+					<a href="#" class="btn key" data-key="50">2</a>
+					<a href="#" class="btn key" data-key="51">3</a>
+				</div>
+				<div class="row-fluid">
+					<a href="#" class="btn btn-danger" onclick="$('.sum').val('')">C</a>
+					<a href="#" class="btn key" data-key="48">0</a>
+					<a href="#" class="btn btn-success calculate" >OK</a>
+				</div>
+			</div>
+
+
+			<div id="modalAutoDistributionReport" class="modal-body">
+                <div class="alert alert-info" role="alert">
+                    <p>Цель автоматической разноски платежа — взять незакрытые заявки с отрицательным балансом, довести баланс до 0.</p>
+                    <p>Прежде всего корректируется самые старые заявки с отрицательным балансом и статусом, отличным от «<?=RequestModel::STATUSES[2]?>».</p>
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    <p>Сначала компенсируются накладные расходы, затем работы.</p>
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    <p>Если суммы платежа не хватит на все подходящие заявки, остаток упадет в очередную подходящую.</p>
+				    <p>Если сумма платежа больше дебиторской задолженности, компенсируются все старые заявки, излишек упадет на самую новую.</p>
+                </div>
+			</div>
+
+			<div class="modal-footer hidden-xs">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+				<button type="button" class="btn btn-success calculate">OK</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
 <script>
 	$('select').selectpicker();
 
 	// при открытии модала расставим заголовки
 	$('.modal').on('shown.bs.modal', function (event) {
-		let sumInput = $('#sum');
+		let sumInput = $('.sum');
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
 		console.warn('загружен модал', button.data('target') );
+        currentModalId = button.data('target');
 		let modal = $(this);
 		// платежи
 		modal.find('.modal-title').text(modalName);
@@ -218,7 +297,7 @@
 
 		// оборудование (@TODO сделать универсальный заполнятель)
 		// заполнение полей на редактирование
-// console.log('заполняем',button.data())
+        // console.log('заполняем',button.data())
 		modal.find('#equipmentId').val(button.data('equipment_id'));
 		modal.find('#customerId').val(button.data('customer_id'));
 		modal.find('#name').val(button.data('name'));
@@ -247,7 +326,7 @@
 		// отработаем нажатия
 		$('#keyboard .row-fluid .btn.key').on('click', function (event) {
 			// let keyboard = $(event.currentTarget);
-			sumInput.val($('#sum').val() + $(event.currentTarget).text())
+			sumInput.val($('.sum').val() + $(event.currentTarget).text())
 		})
 		/** /экранная клава */
 
@@ -259,9 +338,28 @@
 		} else if (modal.attr('id') == 'modalPrihodRashod' && requestId > 0 ) {
 			$('select#requestList').selectpicker("hide");
 			$('#paymentTypeWrapper').hide();
-
 		}
-	})
+
+
+// это модал авторазноски с главной
+if (modal.attr('id') == 'modalAutoDistribution') {
+    $.getJSON( "/customer/getAll", function( data ) {
+        let select = $('#customerList');
+        select.text('');
+
+        $.each(data, function (index, currentObject) {
+            var option = new Option();
+            $(option).html(currentObject.name);
+            $(option).val(currentObject.id);
+            // $(option).attr('data-subtext', currentObject.customer+' '+currentObject.city+' '+ currentObject.equipment);
+            select.append(option);
+        })
+        $('select#customerList').selectpicker("refresh");
+
+    });
+}
+
+	}) // /shown.bs.modal
 
 
 
