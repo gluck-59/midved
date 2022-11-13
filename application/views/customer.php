@@ -31,7 +31,8 @@
 					foreach ($customers as $customer) { ?>
 						<tr>
 							<td>
-								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$customer->id?>" data-name="<?=$customer->name?>" data-data="<?=$customer->data?>" ><?=$customer->name?></a>
+
+								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$customer->id?>" data-name="<?=$customer->name?>" data-parent-id="<?=$customer->parentId?>" data-data="<?=$customer->data?>" ><?=$customer->name?></a>
 								<br>
 								<span class="small text-muted"><?=$customer->data?></span>
 							</td>

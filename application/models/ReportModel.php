@@ -32,7 +32,7 @@
          * @return mixed
          */
         public function debitorka() {
-            $sql = "SELECT r.id requestId, r.name request, DATE_FORMAT(r.created, '%d.%m.%Y') created, e.name equipment, e.mark, e.city, c.id customerId, c.name customer
+            $sql = "SELECT r.id requestId, r.name request, DATE_FORMAT(r.created, '%d.%m.%Y') created, e.name equipment, e.mark, e.city, c.id customerId, c.parentId, c.name customer
 ,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
 FROM request r 
 
@@ -54,7 +54,7 @@ ORDER BY sum, r.created DESC ";
          * @return array
          */
         public function totalPayed() {
-            $sql = "SELECT r.id requestId, r.name request, DATE_FORMAT(r.created, '%d.%m.%Y') created, e.name equipment, e.mark, e.city, c.id customerId, c.name customer
+            $sql = "SELECT r.id requestId, r.name request, DATE_FORMAT(r.created, '%d.%m.%Y') created, e.name equipment, e.mark, e.city, c.id customerId, c.parentId, c.name customer
 ,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
 FROM request r 
 

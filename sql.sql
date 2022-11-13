@@ -2,8 +2,12 @@ create table customer
 (
     id   int(11) unsigned auto_increment
         primary key,
+    parentId int(11) unsigned,
     name tinytext not null,
-    data text     null
+    data text     null,
+    KEY `customer_parent` (`parentId`),
+    CONSTRAINT `customer_parent` FOREIGN KEY (`parentId`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 );
 
 create table equipment

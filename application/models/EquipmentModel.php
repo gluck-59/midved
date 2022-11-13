@@ -29,7 +29,7 @@
 		{
 			$where = 'WHERE 1 ';
 			if (!empty($customerIds)) $where .= 'AND c.id IN('.implode(',', $customerIds).')';
-			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer, e.serial, e.notes from equipment e JOIN customer c ON c.id = e.customer_id $where";
+			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer, c.parentId, e.serial, e.notes from equipment e JOIN customer c ON c.id = e.customer_id $where";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();
 		}

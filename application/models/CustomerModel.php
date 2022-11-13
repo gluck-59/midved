@@ -20,10 +20,22 @@
 		 * @param array $customerData
 		 * @return int
 		 */
-		public function create(array $customerData) : int {
-			$sql = 'INSERT INTO customer SET name = '.$this->db->escape($customerData['customerName']).', data = '.$this->db->escape($customerData['customerData']);
+		public function createOLD(array $customerData) : int {
+			$sql = 'INSERT INTO customer SET name = '.$this->db->escape($customerData['customerName']).', parentId = '.$this->db->escape($customerData['parentId']).', data = '.$this->db->escape($customerData['customerData']);
 			$this->db->query($sql);
 			return $this->db->insert_id();
+		}
+
+        public function create(array $customerData) : int {
+            $data = array(
+                'name' => $this->db->escape_str($customerData['customerName']),
+                'data' => $this->db->escape_str($customerData['customerData']),
+            );
+            if (!empty($customerData['parentId'])) {
+                $data['parentId'] = $this->db->escape_str($customerData['parentId']);
+            }
+            $this->db->insert('customer', $data);
+            return $this->db->insert_id();
 		}
 
 
@@ -48,8 +60,12 @@
 		 * @return int
 		 */
 		public function edit(array $customerData) : int {
+            $additional = ', parentId = NULL';
+            if (!empty($customerData['parentId'])) {
+                $additional = ', parentId = '.$this->db->escape($customerData['parentId']);
+            }
 			$sql = 'UPDATE customer SET 
-			name = '.$this->db->escape($customerData['customerName']).', 
+			name = '.$this->db->escape($customerData['customerName']).$additional.', 
 			data = '.$this->db->escape($customerData['customerData']).' 
 			WHERE id = '.$this->db->escape_str($customerData['customerId']);
 			return $this->db->query($sql);

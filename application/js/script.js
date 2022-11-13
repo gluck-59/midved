@@ -139,9 +139,16 @@ $(document).on('ready', function (){
 		if (modal.find('#name').val() == '') return;
 		let sendData = {
 			'customerId': modal.find('#customerId').val(),
+			'parentId': modal.find('[name=customers]').val(),
 			'customerName': modal.find('#name').val(),
 			'customerData': modal.find('#data').val(),
 		};
+console.log(sendData.customerId, typeof sendData.customerId)
+		if (sendData.customerId != '' && sendData.customerId == sendData.parentId) {
+			toastr.error('Клиент не может быть родителем самого себя');
+			return;
+		}
+
 		$.post('/customer/save', sendData, function (data) {
 			if (data > 0) window.location.href='/customer';
 		})
@@ -224,12 +231,6 @@ $('.editEquipment').on('click', function (event) {
 
 	$('#year').text(new Date().getFullYear());
 }) // document ready
-
-
-
-
-
-
 
 
 

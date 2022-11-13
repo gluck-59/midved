@@ -69,7 +69,7 @@
  * @return array
  */
 public function autoDistribution(array $paymentData) : array {
-    $debug = false;
+    $debug = true;
     $resultNorm = []; // результат нормальной разноски
     $resultOver = []; // результат разноски остатка после нормальной
     $totalSum = (int) $paymentData['sum'];
@@ -87,6 +87,12 @@ WHERE c.id = '.$this->db->escape($paymentData['customerId']).' AND r.status < 2
 ORDER BY requestDateUnix';
     $stmt = $this->db->query($sql);
     $payments = $stmt->result_array();
+
+
+    if (empty($payments)) {
+        return ['resultNorm' => ['У этого клиента нет подходящих заявок']];
+    }
+
 
     // подготовим заявки:
     // просуммируем платежи которые нужно компенсировать авторазноской
@@ -117,6 +123,10 @@ ORDER BY requestDateUnix';
     }
 
     if ($debug) {
+        print_r('$payments:');
+        print_r($payments);
+
+//
 //        print_r('$paymentData:');
 //        print_r($paymentData);
 

@@ -65,11 +65,21 @@
 			</div>
 			<div class="modal-body">
 				<input hidden id="customerId" placeholder="customerId">
-				<input required="true" type="text" id="name" class="form-control" placeholder="Название (обязательно)">
-				<div class="clearfix">&nbsp;</div>
-				<textarea type="text" id="data" class="form-control" placeholder="Дополнительные данные"></textarea>
-				<div class="clearfix">&nbsp;</div>
-			</div>
+                <input hidden id="parentId" placeholder="parentId">
+                <div class="form-group">
+                    <label>Родитель</label>
+                    <select required="true" class="" name="customers" data-live-search="true" title=""></select>
+                </div>
+                <div class="form-group">
+                    <label>Название</label>
+                    <input required="true" type="text" id="name" class="form-control" placeholder="Название (обязательно)">
+                    <div class="clearfix">&nbsp;</div>
+				    <textarea type="text" id="data" class="form-control" placeholder="Дополнительные данные"></textarea>
+                </div>
+            </div>
+
+
+
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				<button type="submit" id="saveCustomer" class="btn btn-success">OK</button>
@@ -193,7 +203,6 @@
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				<button type="button" class="btn btn-success calculate">OK</button>
 			</div>
-
 		</div>
 	</div>
 </div>
@@ -219,14 +228,6 @@
                     <div class="col-xs-12">
                         <select id="customerList" data-live-search="true" title="От кого платеж?"></select>
                     </div>
-                    <!--div class="col-xs-4">
-                        <div class="checkbox" id="paymentTypeWrapper">
-                            <label>
-                                <input type="checkbox" id="paymentType" name="paymentType" class="1form-control" style="/*zoom: 1.3;*/">
-                                работа
-                            </label>
-                        </div>
-                    </div-->
                 </div>
             </div>
 			<div id="keyboard" class="hidden-sm hidden-md hidden-lg">
@@ -286,8 +287,9 @@
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
-		console.warn('загружен модал', button.data('target') );
         currentModalId = button.data('target');
+		console.warn('загружен модал', currentModalId );
+
 		let modal = $(this);
 		// платежи
 		modal.find('.modal-title').text(modalName);
@@ -300,6 +302,7 @@
         // console.log('заполняем',button.data())
 		modal.find('#equipmentId').val(button.data('equipment_id'));
 		modal.find('#customerId').val(button.data('customer_id'));
+		modal.find('#parentId').val(button.data('parent-id'));
 		modal.find('#name').val(button.data('name'));
 		modal.find('#mark').val(button.data('mark'));
 		modal.find('#city').val(button.data('city'));
@@ -309,12 +312,13 @@
 		modal.find('#notes').val(button.data('notes'));
 
         // select
-        modal.find('[name=customers]').selectpicker('val', button.data('customer_id'));
+        if (currentModalId == '#modal-equipment') {
+            modal.find('[name=customers]').selectpicker('val', button.data('customer_id'));
+        } else if (currentModalId == '#modal-customer') {
+            modal.find('[name=customers]').selectpicker('val', button.data('parent-id'));
+        }
 
 		sumInput.focus().val('');
-
-        // select
-        modal.find('[name=customers]').selectpicker('val', button.data('customer_id'));
 
 		/** экранная клава */
 		// покрасим кнопки
@@ -358,7 +362,6 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
     });
 }
-
 	}) // /shown.bs.modal
 
 
@@ -373,10 +376,18 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
 
 	// заполним селект клиентов сразу после вызова модала
-	$('#modal-request, #modal-equipment').on('show.bs.modal', function (e) {
+	$('#modal-request, #modal-equipment, #modal-customer').on('show.bs.modal', function (e) {
 		$.getJSON( "/customer/getAll", function( data ) {
 			let select = $('[name=customers]');
 			select.text('');
+
+            if (e.currentTarget.id == 'modal-customer') {
+                var option = new Option();
+                $(option).html('Клиент верхнего уровня');
+                $(option).val(null);
+                select.append(option);
+            }
+
 			select.selectpicker("refresh");
 			$.each(data, function (index, currentObject) {
 				var option = new Option();
@@ -388,9 +399,16 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
 
 			// если это #modal-equipment и equipment_id непустое, то это редактирование оборудования и нужно установть селектор
-			if ($(e.currentTarget).find('#customerId').val() != '') {
-				$('[name=customers]').selectpicker("val", $(e.currentTarget).find('#customerId').val());
-			}
+			// if (currentModalId == '#modal-equipment' && $(e.currentTarget).find('#customerId').val() != '') {
+            //     console.log('customerId', $(e.currentTarget).find('#customerId').val());
+			// 	$('[name=customers]').selectpicker("val", $(e.currentTarget).find('#modal-equipment #customerId').val());
+			// }
+
+            // если это #modal-customer и parentId непустое, то это редактирование клиента и нужно установть селектор
+			// if (currentModalId == '#modal-customer' && $(e.currentTarget).find('#parentId').val() != '') {
+            //     console.log('parentId', $(e.currentTarget).find('#parentId').val())
+			// 	$('[name=customers]').selectpicker("val", $(e.currentTarget).find('#modal-customer #parentId').val());
+			// }
 		});
 	})
 
@@ -398,7 +416,9 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
 	$('[name=customers]').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
 		// console.log('name=customers событие select', $('[name=customers]').val())
-		$.getJSON( "/equipment/getEquipmentByCustomerId/"+$('[name=customers]').val(), function( data ) {
+        let customerId = $('[name=customers]').val();
+        if (customerId == '') return;
+		$.getJSON( "/equipment/getEquipmentByCustomerId/"+customerId, function( data ) {
 			let select = $('[name=equipments]');
 			select.html('');
 			$.each(data, function (index, currentObject) {
