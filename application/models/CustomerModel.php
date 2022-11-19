@@ -45,9 +45,11 @@
 		 * @param array|null $idCustomers
 		 * @return mixed
 		 */
-		public function get(array $idCustomers = null)   {
-			$where = 'WHERE 1 ';
-			if (!is_null($idCustomers)) $where .= 'AND id IN('.implode(',', $idCustomers).')';
+		public function get(array $idCustomers = null, $withChild = true)   {
+			$where = 'WHERE 1';
+			if (!is_null($idCustomers)) $where .= ' AND id IN('.implode(',', $idCustomers).')';
+			if (!is_null($withChild)) $where .= ' AND parentId IS NULL';
+
 			$query = $this->db->query("SELECT * FROM customer ".$where);
 			return $query->result();
 		}
@@ -93,7 +95,7 @@
          * @param int $depth
          * @return string
          */
-        public function makeTree($deps, $withKids = true) {
+        public function makeTree($deps, $withChild = true) {
             foreach ($deps as $customer) {
                 if (!$customer->parentId) {
                     $parents[] = $customer;
@@ -102,7 +104,7 @@
                 }
             }
 
-            if (!$withKids) return $parents;
+            if (!$withChild) return $parents;
 
             foreach ($parents as $parent) {
                 foreach ($childs as $child) {

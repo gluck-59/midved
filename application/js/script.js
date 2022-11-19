@@ -314,6 +314,10 @@ function showToastr(data) {
 function _fillReport(object) {
 	let out = ['<h3>Отчет</h3>'];
 	$.each(object, function (name, item) {
+		if (name == 'error') {
+			console.log(item, item.join())
+			return item.join();
+		}
 		if (name == 'resultNorm' && item.length > 0) {
 			$.each(item, function (name, data) {
 				let temp = '<p>На заявку №'+data.requestId+' «<b>'+data.requestName+'</b>» упало '+new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'rub', maximumFractionDigits: 0 }).format((data.notEnough ? data.paymentSum : data.needSum) )+'.</p>';
@@ -331,5 +335,6 @@ function _fillReport(object) {
 			})
 		}
 	})
+	$('div#modalAutoDistribution button.calculate').remove();
 	return out;
 }

@@ -69,7 +69,7 @@
  * @return array
  */
 public function autoDistribution(array $paymentData) : array {
-    $debug = true;
+    $debug = false;
     $resultNorm = []; // результат нормальной разноски
     $resultOver = []; // результат разноски остатка после нормальной
     $totalSum = (int) $paymentData['sum'];
@@ -85,12 +85,22 @@ JOIN equipment e ON e.id = r.equipment_id
 JOIN customer c ON c.id = e.customer_id
 WHERE c.id = '.$this->db->escape($paymentData['customerId']).' AND r.status < 2 
 ORDER BY requestDateUnix';
+
+    $sql = 'SELECT #"=p=", p.*, "=r=", r.*, "=e=", e.*, "=c=", c.*,
+#(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) as balance, 
+p.sum paymentSum, p.type paymentType, r.id requestId, r.name requestName, r.status requestStatus, r.created requestDate, UNIX_TIMESTAMP(r.created) requestDateUnix, e.name equipmentName, c.id customerId, c.name customerName
+FROM payment p
+JOIN request r ON r.id = p.request_id
+JOIN equipment e ON e.id = r.equipment_id
+JOIN customer c ON c.id = e.customer_id AND c.parentId = '.$this->db->escape($paymentData['customerId']).'
+WHERE r.status < 2 
+ORDER BY requestDateUnix';
     $stmt = $this->db->query($sql);
     $payments = $stmt->result_array();
 
 
     if (empty($payments)) {
-        return ['resultNorm' => ['У этого клиента нет подходящих заявок']];
+        return ['error' => ['У этого клиента нет подходящих заявок']];
     }
 
 

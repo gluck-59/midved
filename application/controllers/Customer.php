@@ -33,7 +33,7 @@
 		 * @return string
 		 */
 		public function getAll() {
-			echo json_encode($this->customerModel->get(), JSON_NUMERIC_CHECK);
+			echo json_encode($this->customerModel->get(null, false), JSON_NUMERIC_CHECK);
 		}
 
 
