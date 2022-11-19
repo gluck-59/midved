@@ -46,11 +46,10 @@
 		 * @return mixed
 		 */
 		public function get(array $idCustomers = null, $withChild = true)   {
-			$where = 'WHERE 1';
+			$where = 'WHERE 1 ';
 			if (!is_null($idCustomers)) $where .= ' AND id IN('.implode(',', $idCustomers).')';
-			if (!is_null($withChild)) $where .= ' AND parentId IS NULL';
-
-			$query = $this->db->query("SELECT * FROM customer ".$where);
+			if (!$withChild) $where .= ' AND c.parentId IS NULL';
+			$query = $this->db->query("SELECT * FROM customer c ".$where);
 			return $query->result();
 		}
 
