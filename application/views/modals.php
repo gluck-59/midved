@@ -69,6 +69,7 @@
                 <div class="form-group">
                     <label>Родитель</label>
                     <select required="true" class="" name="customers" data-live-search="true" title=""></select>
+                    <small class="text-muted">в соответствии с вашей структурой</small>
                 </div>
                 <div class="form-group">
                     <label>Название</label>
@@ -77,9 +78,6 @@
 				    <textarea type="text" id="data" class="form-control" placeholder="Дополнительные данные"></textarea>
                 </div>
             </div>
-
-
-
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
 				<button type="submit" id="saveCustomer" class="btn btn-success">OK</button>

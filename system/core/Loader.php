@@ -317,7 +317,7 @@ class CI_Loader {
 
 			if (file_exists($app_path.$class.'.php'))
 			{
-				prettyDump($class,1);
+//				prettyDump($class,1);
 				require_once($app_path.$class.'.php');
 				if ( ! class_exists($class, FALSE))
 				{
@@ -628,7 +628,7 @@ class CI_Loader {
 				$base_helper = BASEPATH.'helpers/'.$helper.'.php';
 				if ( ! file_exists($base_helper))
 				{
-					show_error('Unable to load the requested file: helpers/'.$helper.'.php');
+					show_error(__LINE__.': Unable to load the requested file: helpers/'.$helper.'.php');
 				}
 
 				include_once($base_helper);
@@ -653,7 +653,7 @@ class CI_Loader {
 			// unable to load the helper
 			if ( ! isset($this->_ci_helpers[$helper]))
 			{
-				show_error('Unable to load the requested file: helpers/'.$helper.'.php');
+                show_error(__LINE__.': Unable to load the requested file: helpers/'.$helper.'.php');
 			}
 		}
 
@@ -924,7 +924,7 @@ class CI_Loader {
 
 		if ( ! $file_exists && ! file_exists($_ci_path))
 		{
-			show_error('Unable to load the requested file: '.$_ci_file);
+            show_error(__LINE__.': Unable to load the requested file: '.$_ci_file);
 		}
 
 		// This allows anything loaded using $this->load (views, files, etc.)

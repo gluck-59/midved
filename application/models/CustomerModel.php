@@ -84,4 +84,33 @@
 			return $this->db->query($sql);
 		}
 
+
+
+        /**
+         * Данный метод рекурсивно собирает и возвращает HTML-код дерева филиалов на основе массива объектов.
+         *
+         * @param array $deps
+         * @param int $depth
+         * @return string
+         */
+        public function makeTree($deps, $withKids = true) {
+            foreach ($deps as $customer) {
+                if (!$customer->parentId) {
+                    $parents[] = $customer;
+                } else {
+                    $childs[] = $customer;
+                }
+            }
+
+            if (!$withKids) return $parents;
+
+            foreach ($parents as $parent) {
+                foreach ($childs as $child) {
+                    if ($parent->id == $child->parentId) {
+                        $parent->childs[] = $child;
+                    }
+                }
+            }
+            return $parents;
+        }
 	}

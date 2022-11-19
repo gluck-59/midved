@@ -1,21 +1,28 @@
 <?php
 
+//    use application\controllers\helper\CurrentUser;
+
     /**
      * @var Customer
      */
 	class Customer extends CI_Controller
 	{
         public $customerModel;
+        public $allCustomers;
 		function __construct()
 		{
 			parent::__construct();
 			$this->customerModel = new CustomerModel();
 			$this->router->pageName = 'Клиенты';
+            foreach ($this->customerModel->get() as $cust) {
+                $this->allCustomers[$cust->id] = $cust;
+            }
 		}
 
 		public function index() {
+            $customerTree = $this->customerModel->makeTree($this->allCustomers);
 			$this->load->view('header');
-			$this->load->view('customer', ['customers' => $this->customerModel->get()]);
+            $this->load->view('customer', ['customers' => $this->allCustomers, 'customers' => ($customerTree)]);
 			$this->load->view('footer');
 		}
 
@@ -72,4 +79,8 @@
 			$res = $this->customerModel->delete($customerData);
 			echo $res;
 		}
-    }
+
+
+
+
+    } // /class
