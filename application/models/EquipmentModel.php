@@ -13,8 +13,6 @@
         public $name;
         public $marka;
 
-
-
 		function __construct()
 		{
 		}
@@ -28,7 +26,7 @@
 		public function getEquipment(array $customerIds = []) : array
 		{
 			$where = 'WHERE 1 ';
-			if (!empty($customerIds)) $where .= 'AND c.id IN('.implode(',', $customerIds).')';
+			if (!empty($customerIds)) $where .= 'AND c.parentId IN('.implode(',', $customerIds).')';
 			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer, c.parentId, e.serial, e.notes from equipment e JOIN customer c ON c.id = e.customer_id $where";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();

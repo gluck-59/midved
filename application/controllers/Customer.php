@@ -14,7 +14,7 @@
 			parent::__construct();
 			$this->customerModel = new CustomerModel();
 			$this->router->pageName = 'Клиенты';
-            foreach ($this->customerModel->get() as $cust) {
+            foreach ($this->customerModel->get(null, 0) as $cust) {
                 $this->allCustomers[$cust->id] = $cust;
             }
 		}
@@ -33,7 +33,8 @@
 		 * @return string
 		 */
 		public function getAll() {
-			echo json_encode($this->customerModel->get(null, false), JSON_NUMERIC_CHECK);
+            $child = $this->input->get('child');
+			echo json_encode($this->customerModel->get(null, $child), JSON_NUMERIC_CHECK);
 		}
 
 

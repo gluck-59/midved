@@ -64,8 +64,8 @@
 				<h4 class="modal-title" id="paymentLabel">Клиент</h4>
 			</div>
 			<div class="modal-body">
-				<input hidden id="customerId" placeholder="customerId">
-                <input hidden id="parentId" placeholder="parentId">
+				<input 1hidden id="customerId" placeholder="customerId">
+                <input 1hidden id="parentId" placeholder="parentId">
                 <div class="form-group">
                     <label>Родитель</label>
                     <select required="true" class="" name="customers" data-live-search="true" title=""></select>
@@ -256,6 +256,7 @@
                 <div class="alert alert-info" role="alert">
                     <p>Цель автоматической разноски платежа — взять незакрытые заявки с отрицательным балансом и статусом, отличным от «<?=RequestModel::STATUSES[2]?>» и довести их баланс до 0. Заявка с нулевым балансом считается полностью оплаченной.</p>
                     <p>Прежде всего корректируются самые старые заявки.</p>
+                </div>
                 <div class="alert alert-warning" role="alert">
                     <p>Сначала компенсируются накладные расходы, затем работы.</p>
                 </div>
@@ -374,7 +375,9 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
 	// заполним селект клиентов сразу после вызова модала
 	$('#modal-request, #modal-equipment, #modal-customer').on('show.bs.modal', function (e) {
-		$.getJSON( "/customer/getAll", function( data ) {
+        let child = 1;
+        if (this.id == 'modal-equipment') child = 2;
+		$.getJSON( "/customer/getAll?child="+child, function( data ) {
 			let select = $('[name=customers]');
 			select.text('');
 

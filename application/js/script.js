@@ -315,8 +315,8 @@ function _fillReport(object) {
 	let out = ['<h3>Отчет</h3>'];
 	$.each(object, function (name, item) {
 		if (name == 'error') {
-			console.log(item, item.join())
-			return item.join();
+			console.log(item, item)
+			return out.push(item);
 		}
 		if (name == 'resultNorm' && item.length > 0) {
 			$.each(item, function (name, data) {

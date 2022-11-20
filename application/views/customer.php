@@ -28,11 +28,12 @@
                         <td>
                             <b><a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$parent->id?>" data-name="<?=$parent->name?>" data-parent-id="<?=$parent->parentId?>" data-data="<?=$parent->data?>" ><?=$parent->name?></a>:</b>
                             &nbsp;&nbsp;<button type="button" class="close deleteCustomer" id="<?=$parent->id?>"><i class="glyphicon glyphicon-remove"></i></button>
-                        <?php //if ($parent->childs)
+                        <?php 
+                        //if ($parent->childs)
                         {
                             foreach ($parent->childs as $child) {?>
                             <br>&nbsp;&nbsp;- <a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$child->id?>" data-name="<?=$child->name?>" data-parent-id="<?=$child->parentId?>" data-data="<?=$child->data?>" ><?=$child->name?></a>
-                                &nbsp;&nbsp;<button type="button" class="close deleteCustomer" id="<?=$parent->id?>"><i class="glyphicon glyphicon-remove"></i></button>
+                                &nbsp;&nbsp;<button type="button" class="close deleteCustomer" id="<?=$child->id?>"><i class="glyphicon glyphicon-remove"></i></button>
                         <?php } ?>
                         </td>
                 <?php }} ?>
