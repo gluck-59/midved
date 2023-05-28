@@ -11,7 +11,7 @@
 
 
 
-### [Демо:](https://opengluck.online) логин:пароль — demo:demo
+### [Демо:](https://opengluck.ru) логин:пароль — demo:demo
 
 ### Использование
 - войдите 
