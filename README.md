@@ -4,7 +4,7 @@
 #### мини-CRM для самых маленьких (с уклоном в ремонт некоего оборудования)
 ###### скорее всего это не CRM... а что? не ERP же :) 
 ## 
-###### Built with PHP8.1, Codeigniter 3, MySQL 5.7.34, Bootsrap 3.3.7, Jquery 1.9.1.
+###### Built with PHP8.1, Codeigniter, MySQL, Bootsrap, Jquery.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub version](https://badge.fury.io/gh/gluck-59%2Fmidved.svg)](https://badge.fury.io/gh/gluck-59%2Fmidved)
