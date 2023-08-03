@@ -45,11 +45,20 @@
 		 * @param array|null $idCustomers
 		 * @return mixed
 		 */
-		public function get(array $idCustomers = null)   {
+		public function get(array $idCustomers = null) {
 			$where = 'WHERE 1 ';
 			if (!is_null($idCustomers)) $where .= 'AND id IN('.implode(',', $idCustomers).')';
-			$query = $this->db->query("SELECT * FROM customer ".$where);
-			return $query->result();
+            $sql = "SELECT * FROM customer ".$where;
+			$query = $this->db->query($sql);
+            $allCustomers = $query->result();
+
+            $customers = [];
+            foreach ($allCustomers as $customer) {
+                if (is_null($customer->parentId)) $customers['parents'][] = $customer;
+                else $customers['childs'][] = $customer;
+            }
+
+			return $customers;
 		}
 
 

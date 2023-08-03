@@ -28,17 +28,24 @@
 				<th></th>
 				</thead>
 				<?php
-					foreach ($customers as $customer) { ?>
+					foreach ($customers['parents'] as $parent) { ?>
 						<tr>
-							<td>
-
-								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$customer->id?>" data-name="<?=$customer->name?>" data-parent-id="<?=$customer->parentId?>" data-data="<?=$customer->data?>" ><?=$customer->name?></a>
-								<br>
-								<span class="small text-muted"><?=$customer->data?></span>
+                            <td>
+								<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$parent->id?>" data-name="<?=$parent->name?>" data-parent-id="<?=$parent->parentId?>" data-data="<?=$parent->data?>" ><b><?=$parent->name?></b></a>
 							</td>
-							<td>
-                                <center><button type="button" class="close deleteCustomer" id="<?=$customer->id?>"><i class="glyphicon glyphicon-remove"></i></button></center></td>
+							<td><center><button type="button" class="close deleteCustomer" id="<?=$parent->id?>"><i class="glyphicon glyphicon-remove"></i></button></center></td>
 						</tr>
+                        <?php
+                            foreach ($customers['childs'] as $child) {
+                                if ($child->parentId == $parent->id) { ?>
+                            <tr>
+                                <td>
+                                    &nbsp;&nbsp;&nbsp;<a href="#" id="" data-toggle="modal" data-target="#modal-customer" data-customer_id="<?=$child->id?>" data-name="<?=$child->name?>" data-parent-id="<?=$child->parentId?>" data-data="<?=$child->data?>" ><?=$child->name?></a>
+                                    <span class="small"><?=$child->data?></span>
+                                </td>
+                                <td><center><button type="button" class="close deleteCustomer" id="<?=$child->id?>"><i class="glyphicon glyphicon-remove"></i></button></center></td>
+                            </tr>
+                        <?php }} ?>
 					<?php }	?>
 			</table>
 
@@ -46,4 +53,5 @@
 	</div>
 </div>
 
-
+<?php
+//    prettyDump($customers);

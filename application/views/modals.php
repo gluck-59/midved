@@ -287,7 +287,7 @@
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
-        currentModalId = button.data('target');
+        let currentModalId = button.data('target');
 		console.warn('загружен модал', currentModalId );
 
 		let modal = $(this);
@@ -389,9 +389,13 @@ if (modal.attr('id') == 'modalAutoDistribution') {
             }
 
 			select.selectpicker("refresh");
-			$.each(data, function (index, currentObject) {
+
+            // теоресиськи можно объединить родителей с дочками чтобы появилась возможность подчинить дочку другой дочке, но во вьюхе customer настроено отобажение только 0 и 1 уровня
+            // let allCustomers = $.merge( data.parents, data.childs )
+
+			$.each(data.parents, function (index, currentObject) {
 				var option = new Option();
-				$(option).html(currentObject.name);
+				$(option).html(currentObject.parentId == null ? currentObject.name : '> '+currentObject.name);
 				$(option).val(currentObject.id);
 				select.append(option);
 			})
