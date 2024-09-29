@@ -1,6 +1,4 @@
-var currentModalId; // текущий модал показанный на экране
 $(document).on('ready', function (){
-
 	/**
 	 * создает приход-расход или авторазноску (определяется по currentModalId)
  	 */
@@ -14,7 +12,7 @@ $(document).on('ready', function (){
 		let direction =  $(prihodRashodModal).find('#direction').val();
 		let note =  $(prihodRashodModal).find('#notes').val();
 
-		// console.log('отправка:', 'requestId:', requestId, 'customerId:', customerId, 'type:', type, 'direction:', direction, 'sum:', sum, 'note:', note)
+// console.log('отправка:', 'requestId:', requestId, 'customerId:', customerId, 'type:	', type, 'direction:', direction, 'sum:', sum, 'note:', note)
 
 		if (sum == '') {
 			toastr.error('Укажите сумму');

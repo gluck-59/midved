@@ -210,7 +210,7 @@
 
 
 <!-- Modal auto distribution  -->
-<div class="modal fade" id="modalAutoDistribution" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+<div class="modal fade" id="modalAutoDistribution" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" >
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -227,6 +227,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <select id="customerList" data-live-search="true" title="От кого платеж?"></select>
+<!--                        <select id="customers" data-live-search="true" title="От кого платеж?"></select>-->
                     </div>
                 </div>
             </div>
@@ -280,6 +281,7 @@
 
 <script>
 	$('select').selectpicker();
+	var currentModalId;
 
 	// при открытии модала расставим заголовки
 	$('.modal').on('shown.bs.modal', function (event) {
@@ -287,8 +289,9 @@
 		let button = $(event.relatedTarget)
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
-        let currentModalId = button.data('target');
-		console.warn('загружен модал', currentModalId );
+        currentModalId = button.data('target');
+		console.warn('загружен модал currentModalId', currentModalId );
+// console.log('modals.php', event.currentTarget.id)
 
 		let modal = $(this);
 		// платежи
@@ -344,14 +347,17 @@
 			$('#paymentTypeWrapper').hide();
 		}
 
-
+// console.log('modal id', modal.attr('id'))
 // это модал авторазноски с главной
 if (modal.attr('id') == 'modalAutoDistribution') {
     $.getJSON( "/customer/getAll", function( data ) {
         let select = $('#customerList');
         select.text('');
-
-        $.each(data, function (index, currentObject) {
+// console.log('modalAutoDistribution select', data)
+let itog = data.childs.concat(data.parents)
+console.log('itog', itog)
+        $.each(itog, function (index, currentObject) {
+// console.log('option index', index, 'currentObject', currentObject)
             var option = new Option();
             $(option).html(currentObject.name);
             $(option).val(currentObject.id);
@@ -376,11 +382,11 @@ if (modal.attr('id') == 'modalAutoDistribution') {
 
 
 	// заполним селект клиентов сразу после вызова модала
-	$('#modal-request, #modal-equipment, #modal-customer').on('show.bs.modal', function (e) {
+	$('#modal-request, #modal-equipment, #modal-customer, #modalAutoDistribution').on('show.bs.modal', function (e) {
 		$.getJSON( "/customer/getAll", function( data ) {
 			let select = $('[name=customers]');
 			select.text('');
-
+// console.log('e.currentTarget.id',e.currentTarget.id)
             if (e.currentTarget.id == 'modal-customer') {
                 var option = new Option();
                 $(option).html('Клиент верхнего уровня');
