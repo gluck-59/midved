@@ -7,7 +7,6 @@
 ###### Built with PHP8.1, Codeigniter, MySQL, Bootsrap, Jquery.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-### [![GitHub version](https://badge.fury.io/gh/gluck-59%2Fmidved.svg)](https://badge.fury.io/gh/gluck-59%2Fmidved)
 
 
 
