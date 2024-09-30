@@ -1,4 +1,4 @@
-## [preved-midved](https://opengluck.online)
+## [preved-midved](https://opengluck.ru)
 
 
 #### мини-CRM для самых маленьких (с уклоном в ремонт некоего оборудования)
