@@ -64,6 +64,8 @@
             elseif (empty($paymentData['requestId']) AND !empty($paymentData['customerId'])) {
                 $res = $this->paymentModel->autoDistribution($paymentData);
             }
+//prettyDump($res);
+//prettyDump(json_encode($res), 1);
 			echo json_encode($res);
 		}
 

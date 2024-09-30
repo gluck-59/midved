@@ -33,7 +33,7 @@ $(document).on('ready', function (){
 		};
 		// console.log('sendData', sendData);
 		$.post('/request/payment/', sendData, function (data) {
-			// console.log('ответ POST /request/payment', JSON.parse(data));
+// console.log('ответ POST /request/payment', data);
 			if (data == 'true') location.reload(); 				// не авторвзноска /*@TODO переписать ответ сервера
 			if (currentModalId == '#modalAutoDistribution') { 	// авторазноска
 				$('#modalAutoDistributionReport').html(_fillReport(JSON.parse(data)))
@@ -141,7 +141,7 @@ $(document).on('ready', function (){
 			'customerName': modal.find('#name').val(),
 			'customerData': modal.find('#data').val(),
 		};
-console.log(sendData.customerId, typeof sendData.customerId)
+// console.log(sendData.customerId, typeof sendData.customerId)
 		if (sendData.customerId != '' && sendData.customerId == sendData.parentId) {
 			toastr.error('Клиент не может быть родителем самого себя');
 			return;
@@ -193,18 +193,18 @@ console.log(sendData.customerId, typeof sendData.customerId)
 	})
 
 
-/**
- * редактирует оборудование
- */
-$('.editEquipment').on('click', function (event) {
-	let sendData = {
-		'id': modal.find('#name').val(),
+	/**
+	 * редактирует оборудование
+	 */
+	$('.editEquipment').on('click', function (event) {
+		let sendData = {
+			'id': modal.find('#name').val(),
 
-	};
-	$.post('/equipment/edit', sendData, function (data) {
-		if (data == 1) window.location.href='/equipment';
+		};
+		$.post('/equipment/edit', sendData, function (data) {
+			if (data == 1) window.location.href='/equipment';
+		})
 	})
-})
 
 
 

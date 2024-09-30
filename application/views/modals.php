@@ -347,29 +347,27 @@
 			$('#paymentTypeWrapper').hide();
 		}
 
-// console.log('modal id', modal.attr('id'))
-// это модал авторазноски с главной
-if (modal.attr('id') == 'modalAutoDistribution') {
-    $.getJSON( "/customer/getAll", function( data ) {
-        let select = $('#customerList');
-        select.text('');
-// console.log('modalAutoDistribution select', data)
-let itog = data.childs.concat(data.parents)
-console.log('itog', itog)
-        $.each(itog, function (index, currentObject) {
-// console.log('option index', index, 'currentObject', currentObject)
-            var option = new Option();
-            $(option).html(currentObject.name);
-            $(option).val(currentObject.id);
-            // $(option).attr('data-subtext', currentObject.customer+' '+currentObject.city+' '+ currentObject.equipment);
-            select.append(option);
-        })
-        $('select#customerList').selectpicker("refresh");
+		// это модал авторазноски с главной
+		if (modal.attr('id') == 'modalAutoDistribution') {
+			$.getJSON( "/customer/getAll", function( data ) {
+				let select = $('#customerList');
+				select.text('');
 
-    });
-}
+				// если надо и родителей и дочек
+				// let allCustomers = data.childs.concat(data.parents)
+				// $.each(allCustomers, function (index, currentObject)
+				$.each(data.parents, function (index, currentObject)
+				{
+					var option = new Option();
+					$(option).html(currentObject.name);
+					$(option).val(currentObject.id);
+					// $(option).attr('data-subtext', currentObject.customer+' '+currentObject.city+' '+ currentObject.equipment);
+					select.append(option);
+				})
+				$('select#customerList').selectpicker("refresh");
+			});
+		}
 	}) // /shown.bs.modal
-
 
 
 

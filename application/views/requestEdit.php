@@ -29,8 +29,8 @@
 		switch ($payment->type) {
 			case 0: $paymentType = (is_null($payment->note) || empty($payment->note) ? 'Работа' : $payment->note); break;
 			case 1: $paymentType = (is_null($payment->note) || empty($payment->note) ? 'Накладные' : $payment->note); break;
-			case 2: $paymentType = '<i class="glyphicon glyphicon-star" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Работа' : $payment->note); break;       // авторазноска
-			case 3: $paymentType = '<i class="glyphicon glyphicon-star" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Накладные' : $payment->note); break;       // авторазноска
+			case 2: $paymentType = '<i class="glyphicon glyphicon-random" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Работа' : $payment->note); break;       // авторазноска
+			case 3: $paymentType = '<i class="glyphicon glyphicon-random" title="Авторазноска"></i>&nbsp;'.(is_null($payment->note) || empty($payment->note) ? 'Накладные' : $payment->note); break;       // авторазноска
 		}
 
 
