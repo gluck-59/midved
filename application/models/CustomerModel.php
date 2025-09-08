@@ -8,15 +8,17 @@
 		public $id;
 		public $name;
 		public $data;
+        public $currentUser;
 
 		function __construct()
 		{
-
+            $userModel = new UserModel();
+            $this->currentUser = $userModel->getCurrentUser();
 		}
 
 
 		/**
-		 * создвет заказчика
+		 * создает заказчика
 		 * @param array $customerData
 		 * @return int
 		 */
@@ -28,6 +30,7 @@
 
         public function create(array $customerData) : int {
             $data = array(
+                'creator' => $this->currentUser->id,
                 'name' => $this->db->escape_str($customerData['customerName']),
                 'data' => $this->db->escape_str($customerData['customerData']),
             );
@@ -40,19 +43,20 @@
 
 
 		/**
-		 * тянт данные клиентов по их ID
-		 * если ID не определен, тянет данные обо всех
+		 * тянет данные клиентов по ID клиента и по ID создателя
+		 * если оба ID не определены, тянет данные обо всех
 		 * @param array|null $idCustomers
 		 * @return mixed
 		 */
 		public function get(array $idCustomers = null) {
-			$where = 'WHERE 1 ';
+			$where = 'WHERE 1';
+            if (!is_null($this->currentUser->id)) $where = 'WHERE creator = '.$this->currentUser->id;
 			if (!is_null($idCustomers)) $where .= 'AND id IN('.implode(',', $idCustomers).')';
             $sql = "SELECT * FROM customer ".$where;
 			$query = $this->db->query($sql);
             $allCustomers = $query->result();
 
-            $customers = [];
+            $customers = ['parents' => [], 'childs' => []];
             foreach ($allCustomers as $customer) {
                 if (is_null($customer->parentId)) $customers['parents'][] = $customer;
                 else $customers['childs'][] = $customer;

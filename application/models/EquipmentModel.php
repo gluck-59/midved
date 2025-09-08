@@ -12,11 +12,14 @@
         public $address;
         public $name;
         public $marka;
+        public $currentUser;
 
 
 
 		function __construct()
 		{
+            $userModel = new UserModel();
+            $this->currentUser = $userModel->getCurrentUser();
 		}
 
 
@@ -27,8 +30,9 @@
 		 */
 		public function getEquipment(array $customerIds = []) : array
 		{
-			$where = 'WHERE 1 ';
-			if (!empty($customerIds)) $where .= 'AND c.id IN('.implode(',', $customerIds).')';
+			$where = 'WHERE 1';
+            if (!is_null($this->currentUser->id)) $where = 'WHERE c.creator = '.$this->currentUser->id;
+			if (!empty($customerIds)) $where .= ' AND c.id IN('.implode(',', $customerIds).')';
 			$sql = "select e.id, e.customer_id, e.name, e.mark, e.city, e.address, c.name customer, c.parentId, e.serial, e.notes from equipment e JOIN customer c ON c.id = e.customer_id $where";
 			$stmt = $this->db->query($sql);
 			return $stmt->result();

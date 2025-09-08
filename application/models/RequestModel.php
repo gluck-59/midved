@@ -10,6 +10,15 @@
         public $name;
         public $status;
         public $notes;
+        public $currentUser;
+
+
+
+        function __construct()
+        {
+            $userModel = new UserModel();
+            $this->currentUser = $userModel->getCurrentUser();
+        }
         const STATUSES = ['Новая', 'В работе', 'Готово'];
 
         /**
@@ -20,8 +29,9 @@
          */
         public function getRequests(array $idRequests = null): array
         {
-            $where = 'WHERE 1 ';
-            if (!is_null($idRequests)) $where .= 'AND id IN(' . implode(',', $idRequests) . ')';
+            $where = 'WHERE 1';
+            if (!is_null($this->currentUser->id)) $where = 'WHERE c.creator = '.$this->currentUser->id;
+            if (!is_null($idRequests)) $where .= ' AND id IN(' . implode(',', $idRequests) . ')';
             $sql = "select r.id, r.name, r.status, r.notes, DATE_FORMAT(r.created, '%d.%m.%y') created, DATE_FORMAT(r.updated, '%d.%m.%y') updated, 
        		e.name equipment, e.city, e.address, e.mark, e.serial, 
        		c.name customer

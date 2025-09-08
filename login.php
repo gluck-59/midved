@@ -25,23 +25,24 @@
 <div id="root">
     <div class="row">
         <div class="col-xs-12">
-		<form method="post" action="/login" class="form-horizontal">
-			<div class="form-group">
-				<div class="col-xs-12">
-					<input type="text" class="form-control" name="user" placeholder="Имя" value="demo">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-xs-12">
-					<input type="password" class="form-control" name="password" placeholder="Пароль" value="demo">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-xs-12">
-					<button type="submit" class="btn btn-success" style="width: 100%;">Войдите</button>
-				</div>
-			</div>
-		</form>
+            <?php echo (isset($_GET['wrongpassword']) ? '<div class="has-error">Неверный пароль</div>' : ''); ?>
+            <form method="post" action="/login" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input type="text" class="form-control" name="user" placeholder="Имя" value="demo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <input type="password" class="form-control" name="password" placeholder="Пароль" value="demo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success" style="width: 100%;">Войдите</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

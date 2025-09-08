@@ -2,7 +2,7 @@
 //	prettyDump($requests[0]);
 ?>
 <!-- Modal request -->
-<div class="modal fade" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="requestLabel" aria-hidden="true">
+<div class="modal fade" id="modal-request" tabindex="-1" role="dialog" aria-labelledby="requestLabel" aria-hidden="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -56,7 +56,7 @@
 
 
 <!-- Modal Customer -->
-<div class="modal fade" id="modal-customer" tabindex="-1" role="dialog" aria-labelledby="newCustomer" aria-hidden="true">
+<div class="modal fade" id="modal-customer" tabindex="-1" role="dialog" aria-labelledby="newCustomer" aria-hidden="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -68,7 +68,7 @@
                 <input hidden id="parentId" placeholder="parentId">
                 <div class="form-group">
                     <label>Родитель</label>
-                    <select required="true" class="" name="customers" data-live-search="true" title=""></select>
+                    <select required="true" class="" name="customers" data-live-search="true" title="Выберите"></select>
                 </div>
                 <div class="form-group">
                     <label>Название</label>
@@ -92,7 +92,7 @@
 
 
 <!-- Modal Equipment -->
-<div class="modal fade" id="modal-equipment" tabindex="-1" role="dialog" aria-labelledby="newEquipment" aria-hidden="true">
+<div class="modal fade" id="modal-equipment" tabindex="-1" role="dialog" aria-labelledby="newEquipment" aria-hidden="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -143,7 +143,7 @@
 
 
 <!-- Modal prihod-rashod -->
-<div class="modal fade" id="modalPrihodRashod" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+<div class="modal fade" id="modalPrihodRashod" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="false">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -256,14 +256,15 @@
 
 
 			<div id="modalAutoDistributionReport" class="modal-body">
+                <div class="alert alert-warning" role="alert">
+                    <p>Используйте авторазноску с осторожностью: возможно она сделает не то что вы хотите на самом деле.</p>
+                </div>
                 <div class="alert alert-info" role="alert">
                     <p>Цель автоматической разноски платежа — взять незакрытые заявки с отрицательным балансом, довести баланс до 0.</p>
-                    <p>Прежде всего корректируется самые старые заявки с отрицательным балансом и статусом, отличным от «<?=RequestModel::STATUSES[2]?>».</p>
+                    <p>Прежде всего корректируется самые старые заявки с отрицательным балансом и статусом, отличным от «<?=RequestModel::STATUSES[2]?>». </p>
                 </div>
                 <div class="alert alert-warning" role="alert">
                     <p>Сначала компенсируются накладные расходы, затем работы.</p>
-                </div>
-                <div class="alert alert-warning" role="alert">
                     <p>Если суммы платежа не хватит на все подходящие заявки, остаток упадет в очередную подходящую.</p>
 				    <p>Если сумма платежа больше дебиторской задолженности, компенсируются все старые заявки, излишек упадет на самую новую.</p>
                 </div>
@@ -290,7 +291,7 @@
 		let modalName = button.data('modal-name')
 		let requestId = button.data('request-id')
         currentModalId = button.data('target');
-		console.warn('загружен модал currentModalId', currentModalId );
+		console.warn('загружен модал', currentModalId );
 // console.log('modals.php', event.currentTarget.id)
 
 		let modal = $(this);
@@ -391,13 +392,10 @@
                 $(option).val(null);
                 select.append(option);
             }
-
 			select.selectpicker("refresh");
 
-            // теоресиськи можно объединить родителей с дочками чтобы появилась возможность подчинить дочку другой дочке, но во вьюхе customer настроено отобажение только 0 и 1 уровня
-            // let allCustomers = $.merge( data.parents, data.childs )
-
-			$.each(data.parents, function (index, currentObject) {
+            let allCustomers = $.merge( data.parents, data.childs )
+			$.each(allCustomers, function (index, currentObject) {
 				var option = new Option();
 				$(option).html(currentObject.parentId == null ? currentObject.name : '> '+currentObject.name);
 				$(option).val(currentObject.id);

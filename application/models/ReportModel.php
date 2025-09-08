@@ -8,9 +8,11 @@
 
     class ReportModel extends CI_Model
     {
+        public $currentUser;
 		public function __construct()
 		{
-
+            $userModel = new UserModel();
+            $this->currentUser = $userModel->getCurrentUser();
 		}
 
 
@@ -37,13 +39,12 @@
 FROM request r 
 
 JOIN equipment e ON e.id = r.equipment_id 
-JOIN customer c ON c.id = e.customer_id 
+JOIN customer c ON c.id = e.customer_id AND c.creator = ".$this->currentUser->id." 
 
 WHERE (SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) < 0
 
 GROUP BY customerId, requestId
 ORDER BY sum, r.created DESC ";
-
             $stmt = $this->db->query($sql);
             return $stmt->result_array();
         }
@@ -51,6 +52,8 @@ ORDER BY sum, r.created DESC ";
 
         /**
          * всего оплачено
+         * НЕ УЧИТЫВАЮТСЯ ПЛАТЕЖИ ЗА СТАНКИ ДОЧЕК
+         *
          * @return array
          */
         public function totalPayed() {
@@ -59,13 +62,13 @@ ORDER BY sum, r.created DESC ";
 FROM request r 
 
 JOIN equipment e ON e.id = r.equipment_id 
-JOIN customer c ON c.id = e.customer_id 
+JOIN customer c ON c.id = e.customer_id AND c.creator = ".$this->currentUser->id." 
 
 WHERE (SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) > 0
 
 GROUP BY customerId, customer, requestId
 ORDER BY customer, sum DESC";
-
+prettyDump($sql);
             $stmt = $this->db->query($sql);
             return $stmt->result_array();
         }

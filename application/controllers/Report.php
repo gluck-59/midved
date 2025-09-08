@@ -32,7 +32,7 @@
 
         private $sampleSql = '
 SELECT r.name, p.sum/100 as sum
-, COALESCE(p.note, IF(p.type = 1, "работа", "неработа")) as note
+, COALESCE(p.note, IF(p.type = 1, "работа", "з/ч и накладные")) as note
 , DATE_FORMAT(p.created, "%d.%m.%Y") as date
 FROM payment as p
 JOIN request r ON r.id = p.request_id
@@ -134,8 +134,11 @@ JOIN request r ON r.id = p.request_id
 
 			$this->load->view('header');
             $this->load->view('reports/samplesInc');
-            $this->load->view('reports/sampleSql', ['request' => $sql, 'result' => $result, 'reportName' => 'Результат вашего запроса', 'stopWords' => $matches]);
-			$this->load->view('footer');
+
+// нельзя это показывать потому что сначала надо придумать как отделить чужие заявки
+//            $this->load->view('reports/sampleSql', ['request' => $sql, 'result' => $result, 'reportName' => 'Результат вашего запроса', 'stopWords' => $matches]);
+
+            $this->load->view('footer');
 		}
 
 

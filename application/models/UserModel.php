@@ -10,6 +10,7 @@
     {
 		public $id;
 		public $name;
+        public $currentUser;
 
 		public function __construct()
 		{
@@ -44,8 +45,7 @@
 		}
 
 
-		function isAuth($loginData)
-		{
+		function isAuth($loginData) {
 			return !!($_SESSION['user_id'] ?? self::auth($loginData));
 		}
 
@@ -55,6 +55,19 @@
 			$sql = 'INSERT INTO `users` (`username`, `password`) VALUES ("'.$this->db->escape_str($user).'", "'.password_hash($password, PASSWORD_DEFAULT).'")';
 			return $this->db->query($sql);
 		}
+
+        public function getCurrentUser() {
+            return self::_getUser($_SESSION['user_id']);
+        }
+
+        private function _getUser($userId = null) {
+            if (is_null($userId)) return [];
+
+            $sql = 'SELECT id, username FROM `users` WHERE `id` = '.$this->db->escape($userId);
+            $stmt = $this->db->query($sql);
+            $user = $stmt->row();
+            return $user;
+        }
 
 
 	} // /class
