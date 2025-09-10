@@ -80,10 +80,16 @@ $(document).on('ready', function (){
 	 */
 	$('#addRequest').on('click', function (event) {
 		let modal = $('#modal-request');
-		if (modal.find('#desc').val() == '') return;
+		let desc = modal.find('#desc');
+		let equipments = modal.find('[name=equipments]');
+		if (desc.val() == '' || equipments.val() == '') {
+			toastr.error('Укажите оборудование и придумайте описание для заявки');
+			return;
+		}
+
 		let sendData = {
-			'equipments': modal.find('[name=equipments]').val(),
-			'desc': modal.find('#desc').val()
+			'equipments': equipments.val(),
+			'desc': desc.val()
 		};
 		$.post('/request/create/', sendData, function (data) {
 			if (data == 1) window.location.href='/request';

@@ -183,10 +183,10 @@ JOIN request r ON r.id = p.request_id
          */
         function totalPayed($toFile = null) {
             if (isset($toFile)) {
-                self::toFile( null, $this->reportModel->debitorka());
+                self::toFile( null, $this->reportModel->totalPayed());
             } else {
                 $this->load->view('header');
-                $this->load->view('reports/debitorka', ['result' => $this->reportModel->totalPayed(), 'reportName' => 'Всего оплачено']);
+                $this->load->view('reports/totalPayed', ['result' => $this->reportModel->totalPayed(), 'reportName' => 'Оплата по клиентам']);
                 $this->load->view('reports/samplesInc');
                 $this->load->view('footer');
             }

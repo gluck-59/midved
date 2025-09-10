@@ -52,38 +52,41 @@ ORDER BY sum, r.created DESC ";
 
         /**
          * всего оплачено
-         * НЕ УЧИТЫВАЮТСЯ ПЛАТЕЖИ ЗА СТАНКИ ДОЧЕК
          *
          * @return array
          */
         public function totalPayed() {
             $sql = "SELECT r.id requestId, r.name request, DATE_FORMAT(r.created, '%d.%m.%Y') created, e.name equipment, e.mark, e.city, c.id customerId, c.parentId, c.name customer
-,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id)/100 as sum 
+,(SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id AND p.sum > 0)/100 as sum 
+
 FROM request r 
 
 JOIN equipment e ON e.id = r.equipment_id 
-JOIN customer c ON c.id = e.customer_id AND c.creator = ".$this->currentUser->id." 
+JOIN customer c ON c.id = e.customer_id
+JOIN payment p ON p.request_id = r.id
 
-WHERE (SELECT SUM(p.sum) FROM payment p WHERE p.request_id = r.id) > 0
+WHERE c.creator = ".$this->currentUser->id." AND r.status <> 2
+and p.sum > 0
 
-GROUP BY customerId, customer, requestId
-ORDER BY customer, sum DESC";
-prettyDump($sql);
+GROUP BY customerId
+ORDER BY p.created DESC";
+//prettyDump($sql);
             $stmt = $this->db->query($sql);
             return $stmt->result_array();
         }
 
 
 		public function salaryByMonth() {
+            $this->db->query("SET lc_time_names='ru_RU'");
             $sql = "SELECT SUM(p.sum)/100 sum, MONTHNAME(p.created) monthh, YEAR(p.created) yearr
 FROM payment p
 
 JOIN request r ON r.id = p.request_id
 JOIN equipment e ON e.id = r.equipment_id 
-JOIN customer c ON c.id = e.customer_id 
+JOIN customer c ON c.id = e.customer_id AND c.creator = ".$this->currentUser->id." 
 
 GROUP BY monthh, yearr";
-
+//prettyDump($sql);
             $stmt = $this->db->query($sql);
             return $stmt->result_array();
         }

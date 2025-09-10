@@ -9,6 +9,23 @@
 		</div>
 	</div>
 
+    <?php
+    if (1 || empty($requests)) { ?>
+        <div class="row">
+            <div class="col-xs-12 col-lg-6">
+                <div class="alert alert-info" role="alert">
+                    Создайте Заявку для Оборудования клиента. Заявка может отражать например ремонт оборудования или любые другие операции с ним. <br><br>
+                    Заявки имеют статусы
+                    <?php foreach (RequestModel::STATUSES as $key => $value) {
+                    echo '<span class="btn btn-xs btn-info">'.$value.'</span>&nbsp;';
+                    } ?>
+                    и поддерживают операции приходов-расходов. <br><br>
+                    Система учитывает произведенные над Заявками работы и (по желанию) учет этих приходов-расходов в разрезе Клиентов.
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
 	<div class="row">
 		<div class="col-lg-2 col-xs-12">
 			<div class="btn-block">
@@ -47,7 +64,7 @@
 					?>
 					<tr class="<?=$trClass?>">
 						<td><span><?=$request->equipment .' '.$request->mark.'<br><span class="text-muted">'.$request->customer. ' '.$request->city.', '.$request->address?></span></td>
-						<td><a href="/request/edit/<?=$request->id?>"><?=$request->id?>. <?=$request->name?></a></td>
+						<td><a href="/request/edit/<?=$request->id?>">№<?=$request->id?>: <?=$request->name?></a></td>
 						<td><span class="label <?=$amountClass?>"><?=round($request->sum, 2)?>&nbsp;₽</span><!--br><a href="#" class="text-muted">история</a--></td>
 						<td><span class="text-muted"><?=$request->created?></span><br><?=$request->updated?></td>
 					</tr>

@@ -9,6 +9,18 @@
 		</div>
 	</div>
 
+    <?php if (1 || empty($equipments)) { ?>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="alert alert-info" role="alert">
+                    Теперь создайте Оборудование вашего Клиента.<br><br>
+                    Это могут быть станки, компьютерная или автомобильная техника — всё что требует выполнения некоторых "наземных" операций с Вашим участием.<br><br>
+                    Вы заносите произведенные операции в Заявках, а система учитывает их и (по желанию) ведёт учет доходов-расходов по ним.
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
 	<div class="row">
 		<div class="col-lg-2 col-xs-12">
 			<div class="btn-block">
@@ -20,7 +32,7 @@
 		<div class="clearfix">&nbsp;</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-6 col-xs-12">
+        <div class="col-xs-12 col-md-4">
 			<table id="equipments" class="table table-condensed table-bordered table-condensed">
 				<thead>
 				<th>Название</th>

@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body onload="footerFill()">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<a class="navbar-brand" href="/"><img id="logo" src="/application/img/logo.png" style="margin: -13px;"></a>
+		<a class="navbar-brand" href="/"><img id="logo" src="/application/img/logo-medved.png" style="margin: -13px;"></a>
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

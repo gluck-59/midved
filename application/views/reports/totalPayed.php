@@ -11,11 +11,18 @@
     <div class="clearfix">&nbsp;</div>
     <div class="row">
         <div class="col-xs-12 col-md-4">
+            <div class="alert alert-info" role="alert">
+                Здесь учитываются только актуальные заявки со статусами "<?=RequestModel::STATUSES[0]?>" и "<?=RequestModel::STATUSES[1]?>"
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
             <table class="table table-bordered table-condensed table-responsive table-striped table-hover">
                 <thead>
+                    <th>Заказчик</th>
                     <th>Оборудование</th>
                     <th>Заявка</th>
-                    <th>Заказчик</th>
                     <th>Сумма</th>
                 </thead>
                 <tbody>
@@ -23,18 +30,18 @@
                     if (sizeof($result) > 0) {
                     foreach ($result as $rows) { ?>
                         <tr>
-                            <td><?=$rows['equipment']?><br><span class="text-muted"><?=$rows['mark']?></span></td>
-                            <td><a href="/request/edit/<?=$rows['requestId']?>"><?=$rows['request']?></a><br><span class="text-muted"><?=$rows['created']?></span></td>
                             <td><?=$rows['customer']?><br><span class="text-muted"><?=$rows['city']?></span></td>
-                            <td><?=$currency->format($rows['sum'])?> ₽</td>
+                            <td><?=$rows['equipment']?><br><span class="text-muted"><?=$rows['mark']?></span></td>
+                            <td><a href="/request/edit/<?=$rows['requestId']?>"><?=$rows['request']?></a><br><span class="text-muted">от <?=$rows['created']?></span></td>
+                            <td><?=$currency->format($rows['sum'])?> ₽<br><span class="text-muted">итого по этой заявке<span></span></td>
                         </tr>
                     <?php }} else { ?>
-                        <tr><td colspan="4"><center>Все заявки оплачены</center></td></tr>
+                        <tr><td colspan="4"><center>В незакрытых заявках оплат не было</center></td></tr>
                 <?php } ?>
                 </tbody>
             </table>
 
-            <a href="/report/debitorka/toFile" class="btn btn-info pull-right">В&nbsp;Excel</a>
+            <a href="/report/totalPayed/toFile" class="btn btn-info pull-right">В&nbsp;Excel</a>
 
         </div>
     </div>

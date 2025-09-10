@@ -6,9 +6,19 @@
 	<div class="row">
 		<div class="col-lg-4 col-xs-12">
 			<h3>Клиенты <small class="text-muted">список</small></h3>
-<!--			<p class="text-muted"></p>-->
 		</div>
 	</div>
+    <?php if (1 || empty($customers['parents'])) { ?>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="alert alert-info" role="alert">
+                    Создайте Клиента. К нему можно будет привязать принадлежащее ему Оборудование, на которое впоследствии создаются Заявки.<br><br>
+                    Над Заявками производятся некие "наземные" операции, которые вы фиксируете в системе.<br><br>
+                    Система учитывает произведенные над Заявками работы и (по желанию) приходы-расходы в разрезе созданных здесь Клиентов.
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 
 	<div class="row">
 		<div class="col-lg-2 col-xs-12">
@@ -21,13 +31,14 @@
 		<div class="clearfix">&nbsp;</div>
 	</div>
 	<div class="row">
-		<div class="col-lg-6 col-xs-12">
+		<div class="col-lg-4 col-xs-12">
 			<table id="customers" class="table table-condensed table-bordered table-condensed">
 				<thead>
-				<th>Название</th>
+				<th>Название клиента</th>
 				<th></th>
 				</thead>
 				<?php
+                if (!empty($customers['parents']) || !empty($customers['childs'])) {
 					foreach ($customers['parents'] as $parent) { ?>
 						<tr>
                             <td>
@@ -46,7 +57,15 @@
                                 <td><center><button type="button" class="close deleteCustomer" id="<?=$child->id?>"><i class="glyphicon glyphicon-remove"></i></button></center></td>
                             </tr>
                         <?php }} ?>
-					<?php }	?>
+					<?php }} else { ?>
+                    <tfoot>
+                    <tr>
+                        <td>
+                            <center>Нет клиентов</center>
+                        </td>
+                    </tr>
+                    </tfoot>
+                        <?php } ?>
 			</table>
 
 		</div>

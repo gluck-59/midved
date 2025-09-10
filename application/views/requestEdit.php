@@ -79,7 +79,7 @@
 
 			<div class="clearfix">&nbsp;</div>
 			<div class="row">
-				<div class="col-md-6 col-lg-6 col-xs-12">
+				<div class="col-md-6 col-lg-5 col-xs-12">
 					<div class="items_container">
 						<div class="items_head">Работы</div>
 						<div class="items_value">
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 col-lg-6 col-xs-12">
+				<div class="col-md-6 col-lg-5 col-xs-12">
 					<div class="items_container">
 						<div class="items_head">Оборудование</div>
 						<div class="items_value">
@@ -109,7 +109,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-6 col-lg-6 col-xs-12">
+				<div class="col-md-6 col-lg-5 col-xs-12">
 					<div class="items_container">
 						<div class="items_head">Заказчик</div>
 						<div class="items_value">
@@ -126,9 +126,11 @@
 						<center class="items_value">
                             <div class="row">
                                 <div class="col-xs-6 text-right">
+                                    <div class="legend text-muted">Расход</div>
                                     <h1><b class="text-danger"><?=$currency->format($rashod)?> </b><span class="text-muted"> ₽</span></h1>
                                 </div>
                                 <div class="col-xs-6 text-left">
+                                    <div class="legend text-muted">Приход</div>
                                     <h1><b class="text-success"><?=$currency->format($prihod)?> </b><span class="text-muted"> ₽</span></h1>
                                 </div>
                             </div>

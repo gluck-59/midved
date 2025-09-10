@@ -93,7 +93,7 @@
 		 * @return mixed
 		 */
 		public function delete(array $customerData) {
-			$sql = 'DELETE FROM customer WHERE id = '.$customerData['customerId'] ;
+			$sql = 'DELETE FROM customer WHERE id = '.$customerData['customerId'].' OR parentId = '.$customerData['customerId'];
 			return $this->db->query($sql);
 		}
 

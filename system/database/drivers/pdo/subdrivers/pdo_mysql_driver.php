@@ -146,6 +146,7 @@ class CI_DB_pdo_mysql_driver extends CI_DB_pdo_driver {
 				if (empty($this->options[PDO::MYSQL_ATTR_INIT_COMMAND]))
 				{
 					$this->options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET SESSION sql_mode = '.$sql;
+//					$this->options[PDO::MYSQL_ATTR_INIT_COMMAND] = "SET lc_time_names='ru_RU'";
 				}
 				else
 				{
