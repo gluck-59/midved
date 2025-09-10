@@ -25,7 +25,7 @@
             $this->equipment = $this->equipmentModel->getEquipment();
             $this->request = $this->requestModel->getRequests();
 
-            if (empty($this->customer)) {
+            if (empty($this->customer['parents'])) {
                 header('Location: /customer');
             } elseif (empty($this->equipment)) {
                 header('Location: /equipment');
@@ -40,12 +40,13 @@
 
 
         /**
-         * использование: https://ссайт/welcome/jopaReGisTer/имя/пароль/
+         * использование: https://ссайт/welcome/reGisTer/имя/пароль/
+         *
          * @param $user
          * @param $password
          * @return void
          */
-        public function jopaReGisTer($user, $password)
+        public function reGisTer($user, $password)
         {
             echo($this->userModel->register($user, $password) ? 'TRUE' : 'FALSE');
         }
