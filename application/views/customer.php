@@ -8,7 +8,7 @@
 			<h3>Клиенты <small class="text-muted">список</small></h3>
 		</div>
 	</div>
-    <?php if (1 || empty($customers['parents'])) { ?>
+    <?php if (empty($customers['parents'])) { ?>
         <div class="row">
             <div class="col-xs-12 col-md-4">
                 <div class="alert alert-info" role="alert">

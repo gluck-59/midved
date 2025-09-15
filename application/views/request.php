@@ -10,7 +10,7 @@
 	</div>
 
     <?php
-    if (1 || empty($requests)) { ?>
+    if (empty($requests)) { ?>
         <div class="row">
             <div class="col-xs-12 col-lg-6">
                 <div class="alert alert-info" role="alert">
@@ -19,7 +19,9 @@
                     <?php foreach (RequestModel::STATUSES as $key => $value) {
                     echo '<span class="btn btn-xs btn-info">'.$value.'</span>&nbsp;';
                     } ?>
-                    и поддерживают операции приходов-расходов. <br><br>
+                    и поддерживают операции приходов-расходов.
+                </div>
+                <div class="alert alert-info" role="alert">
                     Система учитывает произведенные над Заявками работы и (по желанию) учет этих приходов-расходов в разрезе Клиентов.
                 </div>
             </div>
