@@ -4,12 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
+<?php $docTitle = isset($pageTitle) ? $pageTitle : $this->router->pageName; ?>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 	<link rel="icon" href="/application/favicon.ico">
-	<title><?=$this->router->pageName?></title>
+	<title><?=$docTitle?></title>
 	<link rel="stylesheet" href="/application/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/application/css/bootstrap-select/bootstrap-select.min.css">
     <link rel="stylesheet" href="/application/css/style.css">

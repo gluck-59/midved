@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-	$route['request'] = 'request';
-	$route['default_controller'] = 'welcome';
+	$route['docs'] = 'docs/index';
+    $route['docs/(:any)'] = 'docs/index/$1';
+    $route['request'] = 'request';
 
+    $route['default_controller'] = 'welcome';
 	$route['404_override'] = 'errors/error_404';
 	$route['translate_uri_dashes'] = FALSE;
 
