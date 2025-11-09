@@ -2,6 +2,7 @@
 
 
 #### мини-CRM для самых маленьких (с уклоном в ремонт некоего оборудования)
+#### Дока для прогеров живет в /docs
 ###### Built with PHP7.4, Codeigniter, MySQL, Bootsrap, Jquery.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -35,5 +36,7 @@
 - заготовка для наиболее востребованных отчетов
 
 Верстка для мобильных.
-## 
+ 
+# 
 Начать стоит с application/controllers/Welcome.php:48
+
