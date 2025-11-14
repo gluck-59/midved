@@ -4,8 +4,10 @@
 #### мини-CRM для самых маленьких (с уклоном в ремонт некоего оборудования)
 #### Дока для прогеров живет в /docs
 ###### Built with PHP7.4, Codeigniter, MySQL, Bootsrap, Jquery.
+### Symfony версия: https://github.com/gluck-59/navyrost-crm
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 
 
